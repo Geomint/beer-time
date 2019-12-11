@@ -6,20 +6,29 @@
 <meta http-equiv="X-UA-Compatible" content="ie=edge">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css">
-<link rel="stylesheet" href="{{ url_for('assets', filename='css/main.css') }}">
+<!-- <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}"> -->
 <title>Beer Time</title>
 </head>
 <body>
 
-    <div class="main-body">
+    <nav class="main-nav">
+        <div class="main-nav__inner">
+            <ul>
+                <li><a href="{{ url_for('index') }}">Home</a></li>
+                <li><a href="{{ url_for('contact') }}">Home</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main class="main-body">
         <div class="container">
-            <div class="row">
+            <section class="row">
                 <div class="col-sm-12">
                     <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Culpa dolorum asperiores ex quod excepturi, assumenda voluptas reiciendis in quasi quaerat facilis consequuntur ratione nostrum cumque labore magni corporis minus laborum!</p>
                 </div>
-            </div>
+            </section>
         </div>
-    </div>
+    </main>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.slim.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.15.0/umd/popper.min.js"></script>
