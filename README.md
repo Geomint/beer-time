@@ -102,3 +102,4 @@ Here is a list of known bugs that exist on the site: ❌
 #### Running <project name> Locally
 ## Closing Notes:
 ## Credits: 💳
+https://coolors.co/1b443a-f9a03f-e3e4db-588b8b-fefffe
