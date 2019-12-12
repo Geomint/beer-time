@@ -5,6 +5,10 @@
         &__nav {
             list-style: none;
             display: flex;
+
+            &__item {
+                padding: 0 10px;
+            }
         }
     }
 }
