@@ -1,5 +1,10 @@
 //import base styles
 @import 'base/base';
+@import 'base/fonts';
+@import 'base/mixins';
+
+// import variables
+@import 'variables/variables';
 
 //import header styles
 @import 'header/header';
