@@ -1,3 +1,5 @@
 /__pycache__
 /.sass-cache
 /static/css/main.css.map
+/env
+/.vscode
