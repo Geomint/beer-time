@@ -12,23 +12,6 @@
 </head>
 <body>
 
-    <nav class="main-nav">
-        <div class="main-nav__inner d-flex">
-
-            <div class="main-nav__inner__logo">
-                <a href="/" class="main-nav__inner__logo__image"><img src="static/images/logo/beer-time-white-logo.png" alt=""></a>
-            </div>
-
-            <ul class="main-nav__inner__nav d-flex ml-auto align-items-center">
-                <li class="main-nav__inner__nav__item"><a href="{{ url_for('index') }}">Home</a></li>
-                <li class="main-nav__inner__nav__item"><a href="{{ url_for('hot') }}">What's Hot</a></li>
-                <li class="main-nav__inner__nav__item"><a href="{{ url_for('favourites') }}">Our Favourites</a></li>
-                <li class="main-nav__inner__nav__item"><a href="{{ url_for('signIn') }}">Sign In</a></li>
-                <li class="main-nav__inner__nav__item"><a href="{{ url_for('contact') }}">Contact</a></li>
-            </ul>
-
-        </div>
-    </nav>
 
     <section class="home-banner">
         <div class="home-banner__slick">
@@ -44,7 +27,7 @@
         </div>
     </section>
 
-    <main class="main-body">
+    <main class="main-body page-padding">
         <div class="container">
             <section class="row">
                 <div class="col-sm-12">
