@@ -5,6 +5,7 @@
     width: 100%;
     position: fixed;
     transition: $default-transition;
+    box-shadow: $default-box-shadow;
     
     &__inner {
         padding: 0 40px;
