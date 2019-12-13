@@ -1,14 +1,23 @@
 .main-nav {
-    padding: 20px;
+    padding: 20px 30px;
+    background: $default-body-color;
     
     &__inner {
-        
+        padding: 0 40px;
+
         &__nav {
             list-style: none;
             display: flex;
 
             &__item {
                 padding: 0 10px;
+            }
+        }
+
+        &__logo {
+
+            &__image {
+
             }
         }
     }
