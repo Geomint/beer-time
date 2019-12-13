@@ -1,6 +1,9 @@
 .main-nav {
     padding: 20px 30px;
-    background: $default-body-color;
+    background: rgba(0,0,0,0.4);
+    z-index: 1;
+    width: 100%;
+    position: fixed;;
     
     &__inner {
         padding: 0 40px;
