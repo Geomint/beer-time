@@ -6,14 +6,19 @@
 <meta http-equiv="X-UA-Compatible" content="ie=edge">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css">
-<link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='scss/index.css') }}">
 <title>Beer Time</title>
 </head>
 <body>
 
     <nav class="main-nav">
-        <div class="main-nav__inner">
-            <ul class="main-nav__inner__nav ml-auto">
+        <div class="main-nav__inner d-flex">
+            
+            <div class="main-nav__inner__logo">
+                <a href="/" class="main-nav__inner__logo__image"><img src="static/images/logo/beer-time-logo.png" alt=""></a>
+            </div>
+
+            <ul class="main-nav__inner__nav d-flex ml-auto align-items-center">
                 <li class="main-nav__inner__nav__item"><a href="{{ url_for('index') }}">Home</a></li>
                 <li class="main-nav__inner__nav__item"><a href="{{ url_for('hot') }}">What's Hot</a></li>
                 <li class="main-nav__inner__nav__item"><a href="{{ url_for('favourites') }}">Our Favourites</a></li>
