@@ -7,6 +7,22 @@
             background-size: cover;
             background-repeat: no-repeat;
             background-position: center;
+
+            &__content {
+                position: absolute;
+                z-index: 1;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                background: rgba(0,0,0,0.8);
+                padding: 30px;
+                border-radius: 4px;
+                color: $secondary-color;
+
+                &__button-wrapper {
+                    display: flex;
+                }
+            }
         }
     }
 }
