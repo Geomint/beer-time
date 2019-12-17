@@ -20,19 +20,13 @@
                 a {
                     color: $secondary-color;
                     transition: $default-transition;
+                    text-shadow: $default-text-shadow;
                     
                     &:hover {
                         color: darken($secondary-color, 10%);
                         text-decoration: none;
                     }
                 }
-            }
-        }
-
-        &__logo {
-
-            &__image {
-
             }
         }
     }
