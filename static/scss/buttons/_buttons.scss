@@ -1,0 +1,23 @@
+.btn {
+    padding: 10px 20px;
+    border-radius: 5px;
+    box-shadow: $default-box-shadow;
+    
+    &__primary {
+        background: $secondary-color;
+        color: darken($white-color, 5%) !important;
+        text-shadow: $default-text-shadow;
+
+        &:hover {
+            background: darken($secondary-color, 15%);
+            color: darken($white-color, 15%);
+        }
+    }
+
+    &__secondary {
+
+        &:hover {
+
+        }
+    }
+}
