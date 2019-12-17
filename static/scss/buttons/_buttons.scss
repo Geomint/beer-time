@@ -2,6 +2,7 @@
     padding: 10px 20px;
     border-radius: 5px;
     box-shadow: $default-box-shadow;
+    transition: $default-transition;
     
     &__primary {
         background: $secondary-color;
@@ -18,6 +19,16 @@
 
         &:hover {
 
+        }
+    }
+
+    &__no-inner {
+        border: 1px solid $white-color;
+        color: $white-color;
+
+        &:hover {
+            border: 1px solid $secondary-color;
+            color: $secondary-color;
         }
     }
 }
