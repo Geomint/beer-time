@@ -1,3 +1,4 @@
+import json
 from flask import Flask, render_template
 
 app = Flask(__name__)
@@ -9,16 +10,19 @@ def index():
 
 @app.route('/whats-hot')
 def hot():
-    return render_template("whats-hot.html")
+    return render_template("whats-hot.html", page_title="Whats Hot")
 
 @app.route('/our-favourites')
 def favourites():
-    return render_template("our-favourites.html")
+    data = []
+    with open("static/data/beers.json", "r") as response:
+        data = json.load(response)
+    return render_template("our-favourites.html", page_title="Our Favourites", beers_list=data)
 
 @app.route('/sign-in')
 def signIn():
-    return render_template("sign-in.html")
+    return render_template("sign-in.html", page_title="Sign In")
 
 @app.route('/contact')
 def contact():
-    return render_template("contact-us.html")
+    return render_template("contact-us.html", page_title="Contact Us")
