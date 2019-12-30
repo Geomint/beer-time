@@ -24,8 +24,13 @@ body {
   padding: 25px 0;
 }
 
+.img-responsive {
+  margin: auto;
+  max-width: 100%;
+}
+
 .main-nav {
-  padding: 20px 30px;
+  padding: 10px 30px;
   background: rgba(0, 0, 0, 0.4);
   z-index: 1;
   width: 100%;
@@ -122,6 +127,22 @@ body {
   background-image: url("../../static/images/banner/beer-banner-image-3.jpg");
 }
 
+.main-body__highlight-panel {
+  background: #E3E4DB;
+  padding: 15px;
+  border-radius: 10px;
+  -webkit-box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.5);
+          box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.5);
+}
+
+.main-body__highlight-panel__text {
+  padding: 20px 0;
+}
+
+.main-body__highlight-panel__text p {
+  padding: 10px 0;
+}
+
 .btn {
   padding: 10px 20px;
   border-radius: 5px;
@@ -150,5 +171,24 @@ body {
 .btn__no-inner:hover {
   border: 1px solid #ffc038;
   color: #ffc038;
+}
+
+.btn__no-inner--alt {
+  color: #1B443A;
+  border: 1px solid #1B443A;
+}
+
+.btn__no-inner--alt:hover {
+  border: 1px solid #317b69;
+  color: #317b69;
+}
+
+.f-beers {
+  text-align: center;
+  background: #E3E4DB;
+  padding: 15px;
+  -webkit-box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.5);
+          box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.5);
+  margin-bottom: 30px;
 }
 /*# sourceMappingURL=index.css.map */
