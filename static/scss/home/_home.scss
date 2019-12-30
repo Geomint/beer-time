@@ -55,3 +55,22 @@
 #home-banner-3 {
     background-image: url('../../static/images/banner/beer-banner-image-3.jpg')
 }
+
+
+.main-body {
+
+    &__highlight-panel {
+        background: $default-body-color;
+        padding: 15px;
+        border-radius: 10px;
+        box-shadow: $darkest-box-shadow;
+
+        &__text {
+            padding: 20px 0;
+
+            p {
+                padding: 10px 0;
+            }
+        }
+    }
+}
