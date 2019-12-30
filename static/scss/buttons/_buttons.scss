@@ -30,5 +30,15 @@
             border: 1px solid $secondary-color;
             color: $secondary-color;
         }
+
+        &--alt {
+            color: $primary-color;
+            border: 1px solid $primary-color;
+
+            &:hover {
+                border: 1px solid lighten($primary-color, 15%);
+                color: lighten($primary-color, 15%);
+            }
+        }
     }
 }
