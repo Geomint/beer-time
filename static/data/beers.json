@@ -1,0 +1,38 @@
+[
+    {
+        "name": "Beer Example 1",
+        "type": "Sour",
+        "brewery": "Brewery 1",
+        "notes": "Well Nice Innit",
+        "abv": "9%",
+        "image": "static/images/beer.jpg",
+        "image_alt": "A beer"
+    },
+    {
+        "name": "Beer Example 2",
+        "type": "IPA",
+        "brewery": "Brewery 2",
+        "notes": "Nice Innit",
+        "abv": "1%",
+        "image": "static/images/beer.jpg",
+        "image_alt": "A beer"
+    },
+    {
+        "name": "Beer Example 3",
+        "type": "Pale Ale",
+        "brewery": "Brewery 3",
+        "notes": "Innit",
+        "abv": "4%",
+        "image": "static/images/beer.jpg",
+        "image_alt": "A beer"
+    },
+    {
+        "name": "Beer Example 4",
+        "type": "Stout",
+        "brewery": "Brewery 4",
+        "notes": "It",
+        "abv": "12%",
+        "image": "static/images/beer.jpg",
+        "image_alt": "A beer"
+    }
+]
