@@ -1,19 +1,59 @@
 <!DOCTYPE html>
 <html lang="en">
+
 {% include 'head/head.html' %}
 
 <body>
-    {% include 'header/header.html' %}
-    <h1>{{ beer.name }}</h1>
 
-    <div class="container">
-        <section class="row">
-            <div class="col-sm-12 col-md-4">
+    <nav class="static-nav">
+        <div class="static-nav__inner d-flex">
 
+            <div class="static-nav__inner__logo">
+                <a id="logo" href="/" class="main-nav__inner__logo__image">
+                    <img src="../static/images/logo/beer-time-white-logo.png" alt="">
+                </a>
             </div>
-        </section>
-    </div>
 
+            <ul class="static-nav__inner__nav d-flex ml-auto align-items-center">
+                <li class="static-nav__inner__nav__item"><a href="{{ url_for('index') }}">Home</a></li>
+                <li class="static-nav__inner__nav__item"><a href="{{ url_for('hot') }}">What's Hot</a></li>
+                <li class="static-nav__inner__nav__item"><a href="{{ url_for('favourites') }}">Our Favourites</a></li>
+                <li class="static-nav__inner__nav__item"><a href="{{ url_for('contact') }}">Contact</a></li>
+                <li class="static-nav__inner__nav__item"><a class="btn btn__primary" href="{{ url_for('signIn') }}">Sign
+                        In</a></li>
+            </ul>
+
+        </div>
+    </nav>
+
+    <main class="beer-page">
+        <div class="container">
+            <section class="row beer-page__hero">
+                <div class="col-sm-12 col-md-6">
+                    <div class="beer-page__left-panel">
+                        <p class="beer-page__left-panel__image-wrapper">
+                            <img class="img-responsive" src="../{{ beer.image }}" alt="{{ beer.image_alt }}">
+                        </p>
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-6">
+                    <div class="beer-page__right-panel">
+                        <h1>{{ beer.name }}</h1>
+                        <p><span>Type: </span>{{ beer.type }}</p>
+                        <p><span>Brewery: </span>{{ beer.brewery }}</p>
+                        <p><span>ABV (alchohol by volume): </span>{{ beer.abv }}</p>
+                        <p><span>Tasting Notes: </span>{{ beer.notes }}</p>
+                    </div>
+            </section>
+        </div>
+    </main>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.15.0/umd/popper.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.js"></script>
+    <script src="{{ url_for('static', filename='js/slick.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/scripts.js') }}"></script>
 </body>
 
 </html>
