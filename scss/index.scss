@@ -1,19 +1,21 @@
 //import variables
-@import 'variables/variables';
+@import "variables/variables";
 
 //import base styles
-@import 'base/base';
-@import 'base/fonts';
-@import 'base/mixins';
+@import "base/base";
+@import "base/fonts";
+@import "base/mixins";
 
 //import header styles
-@import 'header/header';
+@import "header/header";
+@import "header/static-header";
 
 //import index styles
-@import 'home/home';
+@import "home/home";
 
 //import button styles
-@import 'buttons/buttons';
+@import "buttons/buttons";
 
 //import pages
-@import 'pages/favourites';
+@import "pages/favourites";
+@import "pages/beer-page";
