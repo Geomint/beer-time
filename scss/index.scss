@@ -1,0 +1,19 @@
+//import variables
+@import 'variables/variables';
+
+//import base styles
+@import 'base/base';
+@import 'base/fonts';
+@import 'base/mixins';
+
+//import header styles
+@import 'header/header';
+
+//import index styles
+@import 'home/home';
+
+//import button styles
+@import 'buttons/buttons';
+
+//import pages
+@import 'pages/favourites';
