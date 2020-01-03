@@ -6,11 +6,11 @@ app = Flask(__name__)
 ##Routes for beer time
 @app.route('/')
 def index():
-    return render_template("index.html")
+    return render_template("index.html", page_title="Home")
 
 @app.route('/whats-hot')
 def hot():
-    return render_template("whats-hot.html", page_title="Whats Hot")
+    return render_template("whats-hot.html", page_title="What's Hot")
 
 @app.route('/our-favourites')
 def favourites():
