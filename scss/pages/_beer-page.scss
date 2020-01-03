@@ -1,0 +1,41 @@
+.beer-page {
+  padding-top: 100px;
+  padding-bottom: 100px;
+
+  //custom container max-widths for beer page
+  .container {
+    @media (min-width: 576px) {
+      max-width: 800px;
+    }
+
+    @media (min-width: 768px) {
+      max-width: 980px;
+    }
+
+    @media (min-width: 992px) {
+      max-width: 1220px;
+    }
+
+    @media (min-width: 1200px) {
+      max-width: 1400px;
+    }
+  }
+
+  &__hero {
+    background: $default-body-color;
+    box-shadow: $darkest-box-shadow;
+    border-radius: 5px;
+  }
+
+  &__left-panel {
+    padding: 30px;
+
+    &__image-wrapper {
+
+    }
+  }
+
+  &__right-panel {
+    padding: 30px;
+  }
+}
