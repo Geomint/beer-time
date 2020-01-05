@@ -1,0 +1,24 @@
+.f-beers {
+  text-align: center;
+  background: $default-body-color;
+  padding: 15px;
+  box-shadow: $darkest-box-shadow;
+  margin-bottom: 30px;
+}
+
+#our-favourites {
+  .banner {
+    &__slick {
+      &__slide {
+        height: 50vh;
+
+        &__content {
+          top: 60%;
+          left: 40%;
+          transform: translate(-35%, -50%);
+          padding: 15px;
+        }
+      }
+    }
+  }
+}
