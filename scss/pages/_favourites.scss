@@ -6,3 +6,15 @@
     box-shadow: $darkest-box-shadow;
     margin-bottom: 30px;
 }
+
+#our-favourites {
+
+.banner {
+    &__slick {
+        &__slide {
+            height: 40vh;
+        }
+    }
+}
+
+}
