@@ -1,105 +1,96 @@
+######
 
-# Beer Time
-## Contents:
-* UX 👍
-    * Project Goals
-    * Target Audience Goals
-    * Site Owner Goals
-    * User Requirements and Expectations
-    * Design Choices 🎨
-        * Fonts
-        * Icons
-        * Colours
-        * Styling
-        * Images
-        * Backgrounds
-* Wireframes 🔧
-* Features 🎡
-    * Features that have been developed
-    * Features that will be implemented in the future
-* Technologies Used 👨‍💻
-* Testing 🔌
-* Bugs 🐞
-* Deployment 🚀
-* Credits 💳
+# Beer Time! 🍻
 
+** insert device screenshot **
 
-## UX (User Experience) 👍
-### Project Goals
+Welcome to Beer Time, if you're like me then you love to drink beer, and not just the basic stuff, explore the wide range of variety using this website and make sure to add your favourites to your personal list. If you would like to get in touch about this project head over to my GitHub contact details.
 
-#### User Goals:
+## Contents: 
 
-#### User Stories:
+- UX 👍
+    - Project Goals
+    - Target Audience Goals
+    - Site Owner Goals
+    - User Stories
+    - User Requirements and Expectations
+- Design Choices 🎨
+    - Fonts
+    - Icons
+    - Colours
+    - Styling
+    - Images
+    - Backgrounds
+- Planning✏️
+- Wireframes 🔧
+    - Website Layout
+    - Account Creation Flowchart
+    - Database Design
+- Features 🎡
+    - Features that have been developed
+    - Features that will be implemented in the future
+- Technologies Used 👨‍💻
+- Testing 🔌
+- Bugs 🐞
+- Deployment 🚀
+- Credits 💳
 
-#### Site Owner Goals:
+## User Experience: 👍
 
-## User Requirements and Expectations:
-##### Requirements:
+### Project Goals:
+### Target Audience Goals:
+### Site Owner Goals:
+### User Stories:
+### User Requirements and Expectations:
 
-##### Expectations:
 
 ## Design Choices: 🎨
 
-##### Fonts: 
+### Fonts:
+### Icons:
+### Colours:
+### Base Styles:
+### Images:
+### Background (images/colours):
 
-##### Icons: 
+## Planning: ✏️
 
-##### Colours:
-
-##### Styling: 
-
-##### Background:
-
-## Wireframes: 🔧
+## Wireframes/Flowcharts: 🔧
+ 
+### Website Layout:
+### Account Creation Flowchart:
+### Database Design:
 
 ## Features: 🎡
 
+### Features that have been developed:
+### Features that will be developed in the future:
+
 ## Technologies Used: 👨‍💻
+#### Languages:
+* <a href="https://developer.mozilla.org/en-US/docs/Web/HTML">HTML</a>
+* <a href="https://developer.mozilla.org/en-US/docs/Web/CSS">CSS</a>
+* <a href="https://www.w3schools.com/js/">JavaScript</a>
+* <a href="https://www.json.org/json-en.html">JSON</a>
+* <a href="https://www.python.org/">Python</a>
 
-### Languages:
+#### Tools & Libraries: 
 
-### Tools & Libraries:
+* <a href="https://jquery.com/">jQuery</a>
+* <a href="https://git-scm.com/">Git</a>
+* <a href="https://getbootstrap.com/">Bootstrap</a>
+* <a href="https://fontawesome.com/icons?d=gallery">Font-Awesome</a>
+* <a href="https://developers.google.com/maps/documentation/javascript/tutorial">Google Maps</a>
+* <a href="https://kenwheeler.github.io/slick/">Slick Carousel</a>
+* <a href="https://gulpjs.com/">Gulp.js</a>
+* <a href="https://sass-lang.com/">SASS/SCSS</a>
+* <a href="https://tinypng.com/">TinyPng (image compression)</a>
 
-## Testing: 🔌
+## Testing 🔌
 
-##### Test Planning: 
+## Bugs 🐞
 
-##### Testing Stories:
+## Deployment 🚀
 
+## Credits 💳
 
-### Overall:
-
-<strong>List testing steps here - </strong>
-* <strong>Plan</strong> 📝:
-* <strong>Implementation</strong> 🏭:
-* <strong>Result</strong> 🏆:
-* <strong>Verdict</strong> ✅:
-
-<strong>List testing steps here - </strong>
-* <strong>Plan</strong> 📝:
-* <strong>Implementation</strong> 🏭:
-* <strong>Result</strong> 🏆:
-* <strong>Verdict</strong> ✅:
-
-## Bugs: 🐞
-
-#### Bugs During Development:
-
-List bugs here
-* <strong>Bug</strong> 🕷: 
-* <strong>Fix</strong> 🔧:  
-* <strong>Verdict</strong> ✅:
-
-List bugs here
-* <strong>Bug</strong> 🕷: 
-* <strong>Fix</strong> 🔧:  
-* <strong>Verdict</strong> ✅:
-
-
-#### Known Bugs:
-Here is a list of known bugs that exist on the site: ❌
-## Deployment: 🚀
-#### Running <project name> Locally
-## Closing Notes:
-## Credits: 💳
-https://coolors.co/1b443a-f9a03f-e3e4db-588b8b-fefffe
