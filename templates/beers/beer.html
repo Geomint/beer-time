@@ -38,12 +38,24 @@
                 </div>
                 <div class="col-sm-12 col-md-6">
                     <div class="beer-page__right-panel">
-                        <h1>{{ beer.name }}</h1>
-                        <p><span>Type: </span>{{ beer.type }}</p>
-                        <p><span>Brewery: </span>{{ beer.brewery }}</p>
-                        <p><span>ABV (alchohol by volume): </span>{{ beer.abv }}</p>
-                        <p><span>Tasting Notes: </span>{{ beer.notes }}</p>
+                        <h1 class="beer-page__right-panel__title">{{ beer.name }}</h1>
+                        <p class="beer-page__right-panel__text"><span>Type: </span>{{ beer.type }}</p>
+                        <p class="beer-page__right-panel__text"><span>Brewery: </span>{{ beer.brewery }}</p>
+                        <p class="beer-page__right-panel__text"><span>ABV (alchohol by volume): </span>{{ beer.abv }}</p>
+                        <p class="beer-page__right-panel__text"><span>Tasting Notes: </span>{{ beer.notes }}</p>
                     </div>
+            </section>
+
+            <section class="row">
+                <div class="col-sm-12">
+                    <div class="beer-page__bottom">
+                        <div>
+                            <h2>
+                                You may also like...
+                            </h2>
+                        </div>
+                    </div>
+                </div>
             </section>
         </div>
     </main>
