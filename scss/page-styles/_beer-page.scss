@@ -33,5 +33,13 @@
 
   &__right-panel {
     padding: 30px;
+
+    &__title {
+      padding-bottom: 10px;
+    }
+
+    &__text {
+      padding: 5px 0;
+    }
   }
 }
