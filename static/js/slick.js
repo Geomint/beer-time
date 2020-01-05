@@ -1,4 +1,4 @@
-$('.home-banner__slick').slick({
+$('.banner__slick').slick({
     slidesToShow: 1,
     slidesToScroll: 1,
     fade: true,
