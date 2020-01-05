@@ -1,10 +1,10 @@
 [
     {
-        "name": "Beer Example 1",
-        "type": "Sour",
-        "brewery": "Brewery 1",
-        "excerpt" : "excerpt",
-        "notes": "Well Nice Innit",
+        "name": "Cannonball IPA",
+        "type": "Indian Pale Ale",
+        "brewery": "Magic Rock",
+        "excerpt" : "Big on hops and flavour",
+        "notes": "The Cannonball IPA is one of Magic Rock Brewings flagship beers and has certainly put Huddersfield on the beer map. New-world hops impart big notes of pinem citrus fruits and perhaps even grass whilst its big bitterness cuts through the sweet flavours like a hot knife.",
         "abv": "9%",
         "image": "static/images/beer.jpg",
         "image_alt": "A beer",
