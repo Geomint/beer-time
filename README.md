@@ -30,7 +30,7 @@ Welcome to Beer Time, if you're like me then you love to drink beer, and not jus
     - Features that have been developed
     - Features that will be implemented in the future
 - Technologies Used 👨‍💻
-- Testing 🔌
+- Testing + Planning: ✏️ 🔌
 - Bugs 🐞
 - Deployment 🚀
 - Credits 💳
@@ -52,8 +52,6 @@ Welcome to Beer Time, if you're like me then you love to drink beer, and not jus
 ### Base Styles:
 ### Images:
 ### Background (images/colours):
-
-## Planning: ✏️
 
 ## Wireframes/Flowcharts: 🔧
  
@@ -86,7 +84,26 @@ Welcome to Beer Time, if you're like me then you love to drink beer, and not jus
 * <a href="https://sass-lang.com/">SASS/SCSS</a>
 * <a href="https://tinypng.com/">TinyPng (image compression)</a>
 
-## Testing 🔌
+## Planning:  + Testing: ✏️ 🔌
+
+#### Planning: 
+Planning for this project took a significant amount of a time as to not skip over any detail, when using new languages I would argue that planning is THE most important aspect so that you don't miss something down the line.
+
+#### Testing: 
+This project naturally will need alot of testing due to the scope of the website, therefore my testing plan and documentation had to be very detailed with high levels of scrutiny. Due to the way the website was built I could perform and deploy tests in an organised fashion, page by page, feature by feature. 
+
+#### Feature Testing 🎡: 
+
+<strong>Sliding Banner -</strong>
+- <strong>Plan</strong> 📝: I want to include a sliding banner on the project on multiple pages, but also with varying images/size depending on what page the user is currently on. I will need to choose images the represent the theme of the website and that also work well for a sliding banner with content on, I may add a dark overlay on the sliding banner so that content is easier to read.
+
+- <strong>Implementation</strong> 🏭: Using slick.js carousel and the documentation provided (see credits) implementing this feature was simple, also having used this tool alot i'm familiar with the structure. Using conditional statements thanks to Flask and Jinja frameworks I was able to make the slider dynamic and render different content based on the page the user is currently on.
+
+- <strong>Test</strong> 🧪: To test this feature I had to check that the slider rendered correctly on each page specified and also on each device size too, thanks to chrome-dev-tools this wasn't that much of a challenge. 
+
+- <strong>Result</strong> 🏆: The test passed on all fronts, the content displayed was correctly aligned with that specified in the conditional statement. Also the speed of the slide works as intended.
+
+- <strong>Verdict</strong> ✅: This test has passed based on the above criteria and notes.
 
 ## Bugs 🐞
 
