@@ -4,16 +4,26 @@ from flask import Flask, render_template
 app = Flask(__name__)
 
 # Routes for beer time
+
+"""
+Route for the home page
+"""
 @app.route('/')
 def index():
     return render_template("index.html", body_id="home-page", page_title="Home")
 
 
+"""
+Route for the 'whats-hot' page
+"""
 @app.route('/whats-hot')
 def hot():
     return render_template("whats-hot.html", body_id="whats-hot", page_title="What's Hot")
 
 
+"""
+Route for the 'our-favourites' page
+"""
 @app.route('/our-favourites')
 def favourites():
     data = []
@@ -22,6 +32,11 @@ def favourites():
     return render_template("our-favourites.html", body_id="our-favourites", page_title="Our Favourites", beers_list=data)
 
 
+"""
+Route for the our favourites, individual beer page, the url takes the beer_name and appends it on the url after /our-favourites/
+opening the beers.json file to read and storing that data in 'response' to check that the url is equal to beer_name. If true
+return the beer.html page where the user will see the selected beer.
+"""
 @app.route('/our-favourites/<beer_name>')
 def about_beer(beer_name):
     beer = {}
@@ -35,11 +50,17 @@ def about_beer(beer_name):
     return render_template("beers/beer.html", beer=beer)
 
 
+"""
+Route for the sign-in page
+"""
 @app.route('/sign-in')
 def signIn():
     return render_template("sign-in.html", body_id="sign-in", page_title="Sign In")
 
 
+"""
+Route for the contact page
+"""
 @app.route('/contact')
 def contact():
     return render_template("contact-us.html", body_id="contact-page", page_title="Contact Us")
