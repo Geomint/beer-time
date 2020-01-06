@@ -1,3 +1,4 @@
+import os
 import json
 from flask import Flask, render_template
 
@@ -64,3 +65,7 @@ Route for the contact page
 @app.route('/contact')
 def contact():
     return render_template("contact-us.html", body_id="contact-page", page_title="Contact Us")
+
+
+if __name__ == '__main__':
+    app.run(host=os.getenv('IP'), port=os.getenv('PORT'), debug=True)
