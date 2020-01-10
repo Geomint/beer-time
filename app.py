@@ -1,6 +1,6 @@
 import os
 import json
-from flask import Flask, render_template, request, flash, session
+from flask import Flask, render_template, request, flash, session, redirect
 
 app = Flask(__name__)
 app.secret_key = "vRb81oq80xFpG45So4CKACqU1GvA9Fv"
@@ -55,8 +55,15 @@ def about_beer(beer_name):
 """
 Route for the sign-in page
 """
-@app.route('/sign-in')
+@app.route('/sign-in', methods=["GET", "POST"])
 def signIn():
+
+    if request.method == "POST":
+        session["username"] = request.form["username"]
+
+    if "username" in session:
+        return redirect('/my-list')
+
     return render_template("sign-in.html", body_id="sign-in", page_title="Sign In")
 
 
