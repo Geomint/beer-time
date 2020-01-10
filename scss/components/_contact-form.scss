@@ -1,0 +1,44 @@
+.form-group {
+
+    &__section {
+        width: 100%;
+
+        label {
+            display: block;
+            width: 100%;
+            margin-top: 10px;
+            margin-bottom: 10px;
+        }
+
+        input {
+            width: 100%;
+
+            &:active, &:focus {
+                border: 2px solid $secondary-color !important;
+                outline: none;
+            }
+        }
+
+        textarea {
+            width: 100%;
+            
+
+            &:active, &:focus {
+                border: 2px solid $secondary-color !important;
+                outline: none;
+            }
+        }
+
+        &__required {
+            color: $red-color;
+        }
+
+        &__submit {
+            width: 100%;
+            button {    
+                width: 100%;
+                margin-top: 20px;
+            }
+        }
+    }
+}
