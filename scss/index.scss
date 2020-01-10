@@ -16,9 +16,13 @@
 //import button styles
 @import "buttons/buttons";
 
+//import components
+@import "components/contact-form";
+
 //import banners
 @import "banner/banner";
 
 //import pages
 @import "page-styles/favourites";
 @import "page-styles/beer-page";
+@import "page-styles/contact";
