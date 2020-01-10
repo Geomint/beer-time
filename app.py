@@ -1,8 +1,9 @@
 import os
 import json
-from flask import Flask, render_template
+from flask import Flask, render_template, request, flash, session
 
 app = Flask(__name__)
+app.secret_key = "vRb81oq80xFpG45So4CKACqU1GvA9Fv"
 
 # Routes for beer time
 
@@ -62,8 +63,11 @@ def signIn():
 """
 Route for the contact page
 """
-@app.route('/contact')
+@app.route('/contact', methods=["GET", "POST"])
 def contact():
+    if request.method == "POST":
+        flash("Thanks {} we have recieved your message!".format(
+            request.form["name"]))
     return render_template("contact-us.html", body_id="contact-page", page_title="Contact Us")
 
 

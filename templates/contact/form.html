@@ -1,29 +1,54 @@
 <section class="row">
     <div class="col-sm-6 offset-sm-3">
-        <form action="form-group">
+        <form method="POST">
             <div class="form-group__section">
-                <label class="form-group__section__label" for="">Name  <span class="form-group__section__required">*</span></label>
-                <input class="form-group__section__input" type="text" name="" id="" placeholder="Name">
+                {% if body_id == 'contact-page' %}
+                <label class="form-group__section__label" for="">Name <span
+                        class="form-group__section__required">*</span></label>
+                <input class="form-group__section__input" type="text" required="true" name="name" placeholder="Name">
                 <p class="form-group__section__text"></p>
+                {% elif body_id == 'sign-in' %}
+                <label class="form-group__section__label" for="">Username/Email <span
+                        class="form-group__section__required">*</span></label>
+                <input class="form-group__section__input" type="text" required="true" name="username"
+                    placeholder="Username/Email">
+                <p class="form-group__section__text"></p>
+                {% endif %}
             </div>
+
 
             <div class="form-group__section">
-                <label for="">Surname  <span class="form-group__section__required">*</span></label>
-                <input type="text" name="" id="" placeholder="Surname">
+                {% if body_id == 'contact-page' %}
+                <label for="">Surname <span class="form-group__section__required">*</span></label>
+                <input type="text" required="true" name="surname" placeholder="Surname">
                 <p></p>
+                {% elif body_id == 'sign-in' %}
+                <label for="">Password <span class="form-group__section__required">*</span></label>
+                <input type="password" required="true" name="surname" placeholder="Password">
+                <p></p>
+                <label for="">Repeat Password <span class="form-group__section__required">*</span></label>
+                <input type="password" required="true" name="surname" placeholder="Repeat Password">
+                <p></p>
+                {% endif %}
+
             </div>
 
+            {% if body_id == "contact-page" %}
             <div class="form-group__section">
-                <label for="">Email Address  <span class="form-group__section__required">*</span></label>
-                <input type="text" name="" id="" placeholder="Email Address">
+                <label for="">Email <span class="form-group__section__required">*</span></label>
+                <input type="text" required="true" name="email" placeholder="Email Address">
                 <p></p>
             </div>
+            {% endif %}
 
+            {% if body_id == "contact-page" %}
             <div class="form-group__section">
                 <label for="">Messages <span class="form-group__section__required">*</span></label>
-                <textarea type="text" name="" id="" rows="6" placeholder="Send us a message..."></textarea>
+                <textarea type="text" required="true" name="message" rows="6"
+                    placeholder="Send us a message..."></textarea>
                 <p></p>
             </div>
+            {% endif %}
 
             <div class="form-group__section">
                 <div class="form-group__section__submit">
