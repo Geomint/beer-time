@@ -51,7 +51,9 @@ def about_beer(beer_name):
 
     return render_template("beers/beer.html", beer=beer)
 
-
+@app.route('/my-list', methods=["GET", "POST"])
+def myList():
+    return render_template("my-list.html", body_id="my-list", page_title="My List")
 """
 Route for the sign-in page
 """
