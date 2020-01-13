@@ -1,0 +1,23 @@
+#my-list {
+  .banner {
+    display: none;
+  }
+
+  .main-nav {
+    background: $primary-color;
+    position: unset !important;
+  }
+}
+
+.my-list {
+  text-align: center;
+  margin-top: 20px;
+
+  &__title {
+    padding-bottom: 10px;
+  }
+
+  &__text {
+    padding-bottom: 10px;
+  }
+}

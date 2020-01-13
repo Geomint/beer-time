@@ -1,0 +1,20 @@
+#contact-page {
+    .banner {
+        &__slick {
+            &__slide {
+                height: 40vh;
+                &__content {
+                    display: none;
+                }
+            }
+        }
+    }
+}
+
+.contact-page {
+
+    &__title {
+        text-align: center;
+        padding: 20px 0;
+    }
+}
