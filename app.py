@@ -73,6 +73,13 @@ def signIn():
 
     return render_template("sign-in.html", body_id="sign-in", page_title="Sign In")
 
+"""
+Route for sign-out
+"""
+@app.route('/sign-out')
+def signOut():
+    session.clear()
+    return redirect('/')
 
 """
 Route for the contact page
