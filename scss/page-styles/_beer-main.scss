@@ -1,0 +1,14 @@
+.beer-main {
+    
+}
+
+#beer-page {
+  .banner {
+    display: none;
+  }
+
+  .main-nav {
+    background: $primary-color;
+    position: unset !important;
+  }
+}

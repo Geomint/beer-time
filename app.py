@@ -76,6 +76,12 @@ def signIn():
 
     return render_template("sign-in.html", body_id="sign-in", page_title="Sign In")
 
+
+@app.route('/beer-page')
+def beerPage():
+    return render_template("beer-page.html", body_id="beer-page", page_title="beer-page")
+
+
 """
 Route for sign-out
 """
@@ -83,6 +89,7 @@ Route for sign-out
 def signOut():
     session.clear()
     return redirect('/')
+
 
 """
 Route for the contact page
