@@ -10,6 +10,12 @@ $('.banner__slick').slick({
   });
 
 
-$('.beer__slick').slick({
-  
+$('.beers__slick').slick({
+  infinite: true,
+  slidesToShow: 3,
+  slidesToScroll: 1,
+  arrows: false,
+  dots: false,
+  autoplay: true,
+  autoplaySpeed: 3000,
 })

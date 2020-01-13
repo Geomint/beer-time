@@ -12,7 +12,10 @@ Route for the home page
 """
 @app.route('/')
 def index():
-    return render_template("index.html", body_id="home-page", page_title="Home")
+    data = []
+    with open("static/data/beers.json", "r") as response:
+        data = json.load(response)
+    return render_template("index.html", body_id="home-page", page_title="Home", beers_list=data)
 
 
 """

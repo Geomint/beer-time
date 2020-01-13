@@ -3,10 +3,19 @@ ul,ol,li,p {
     margin: 0;
 }
 
+a {
+    &:active, &:focus, &:hover {
+        text-decoration: none;
+        border: none;
+        outline: none;
+    }
+}
+
 h1,h2,h3,h4,h5 {
     font-family: 'Permanent Marker', sans-serif;
     padding: 0;
     margin: 0;
+    font-weight: 300;
 }
 
 body {
