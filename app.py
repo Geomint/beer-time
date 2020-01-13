@@ -1,7 +1,9 @@
+import os
 import json
-from flask import Flask, render_template
+from flask import Flask, render_template, request, flash, session, redirect
 
 app = Flask(__name__)
+app.secret_key = "vRb81oq80xFpG45So4CKACqU1GvA9Fv"
 
 # Routes for beer time
 
@@ -21,7 +23,9 @@ Route for the 'whats-hot' page
 """
 @app.route('/whats-hot')
 def hot():
-    return render_template("whats-hot.html", body_id="whats-hot", page_title="What's Hot")
+    with open("static/data/popular-beers.json", "r") as response:
+        data = json.load(response)
+    return render_template("whats-hot.html", body_id="whats-hot", page_title="What's Hot", beers_list=data)
 
 
 """
@@ -53,17 +57,43 @@ def about_beer(beer_name):
     return render_template("beers/beer.html", beer=beer)
 
 
+@app.route('/my-list', methods=["GET", "POST"])
+def myList():
+    return render_template("my-list.html", body_id="my-list", page_title="My List")
+
+
 """
 Route for the sign-in page
 """
-@app.route('/sign-in')
+@app.route('/sign-in', methods=["GET", "POST"])
 def signIn():
+
+    if request.method == "POST":
+        session["username"] = request.form["username"]
+
+    if "username" in session:
+        return redirect('/my-list')
+
     return render_template("sign-in.html", body_id="sign-in", page_title="Sign In")
 
+"""
+Route for sign-out
+"""
+@app.route('/sign-out')
+def signOut():
+    session.clear()
+    return redirect('/')
 
 """
 Route for the contact page
 """
-@app.route('/contact')
+@app.route('/contact', methods=["GET", "POST"])
 def contact():
+    if request.method == "POST":
+        flash("Thanks {} we have recieved your message!".format(
+            request.form["name"]))
     return render_template("contact-us.html", body_id="contact-page", page_title="Contact Us")
+
+
+if __name__ == '__main__':
+    app.run(host=os.getenv('IP'), port=os.getenv('PORT'), debug=True)

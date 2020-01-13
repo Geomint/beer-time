@@ -13,4 +13,3 @@ def mongo_connect(url):
     except pymongo.errors.ConnectionFailure as e:
         print("Could not connect to mongodb: %s") % e
 
-def show_menu
