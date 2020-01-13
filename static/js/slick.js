@@ -8,3 +8,8 @@ $('.banner__slick').slick({
     dots: false,
     rows: 0
   });
+
+
+$('.beer__slick').slick({
+  
+})
