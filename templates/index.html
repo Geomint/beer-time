@@ -41,14 +41,28 @@
                 </div>
             </section>
 
-            <section class="row">
-                {% for beer in beers_list %}
-                    <div class="col-sm-4">
-
+            <section class="row beers">
+                <div class="col-sm-12">
+                    <div class="row beers__slick">
+                        {% for beer in beers_list %}
+                        <div class="beers__slick__slide">
+                            <a class="beers__slick__slide__link" href="/">
+                                <div class="beers__slick__slide__image">
+                                    <img class="img-responsive" src="../{{ beer.image }}" alt="{{ beer.image_alt }}">
+                                </div>
+                                <div class="beers__slick__slide__content">
+                                    <h3>{{ beer.name }}</h3>
+                                    <p>{{ beer.type }}</p>
+                                    <p>{{ beer.brewery }}</p>
+                                    <p>{{ beer.excerpt }}</p>
+                                    <p>{{ beer.abv }}</p>
+                                </div>
+                            </a>
+                        </div>
+                        {% endfor %}
                     </div>
-                {% endfor %}
+                </div>
             </section>
-
         </div>
     </main>
 
