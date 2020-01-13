@@ -5,7 +5,13 @@
     <section class="row">
         <div class="col-sm-12">
             <div class="my-list">
-                    <p>User saved beers will appear here</p>
+                    <!-- coniditional code will sit here to check if list is empty/filled etc -->
+                <div class="my-list__no-beers">
+                    <h2 class="my-list__title">Oh No!</h2>
+                    <p class="my-list__text">Your list is empty</p>
+                    <p class="my-list__text">Use the button below to browse our beers</p>
+                </div>
+                    <a class="btn btn__primary" href="{{ url_for }}">View Beers</a>
             </div>
         </div>
     </section>
