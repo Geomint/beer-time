@@ -20,6 +20,7 @@
         padding: 15px;
         border-radius: 10px;
         box-shadow: $darkest-box-shadow;
+        align-items: center;
 
         &__text {
             padding: 20px 0;
@@ -27,6 +28,21 @@
             p {
                 padding: 10px 0;
             }
+        }
+    }
+}
+
+.company-intro {
+    text-align: center;
+    padding: 15px;
+    background: $default-body-color;
+    box-shadow: $darkest-box-shadow;
+    border-radius: 10px;
+    margin-bottom: 40px;
+
+    &__block {
+        h2 {
+            margin-bottom: 20px;
         }
     }
 }
