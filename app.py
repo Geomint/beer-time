@@ -20,7 +20,9 @@ Route for the 'whats-hot' page
 """
 @app.route('/whats-hot')
 def hot():
-    return render_template("whats-hot.html", body_id="whats-hot", page_title="What's Hot")
+    with open("static/data/popular-beers.json", "r") as response:
+        data = json.load(response)
+    return render_template("whats-hot.html", body_id="whats-hot", page_title="What's Hot", beers_list=data)
 
 
 """
