@@ -1,11 +1,21 @@
+from flask import Flask, render_template, request, flash, session, redirect, url_for
 import os
 import json
-from flask import Flask, render_template, request, flash, session, redirect
+from flask_pymongo import PyMongo
+from bson.objectid import ObjectId
 
 app = Flask(__name__)
+app.config["MONGO_DBNAME"] = 'Beer-Time'
+app.config["MONGO_URI"] = os.getenv("MONGO_URI")
 app.secret_key = "vRb81oq80xFpG45So4CKACqU1GvA9Fv"
 
+mongo = PyMongo(app) 
+
 # Routes for beer time
+
+@app.route('/all-beers')
+def all_beers():
+    return render_template("beers/all-beers.html", beers=mongo.db.beers.find())
 
 """
 Route for the home page
