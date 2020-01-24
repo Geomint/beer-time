@@ -1,5 +1,21 @@
+#all-beers {
+    .banner {
+      display: none;
+    }
+  
+    .main-nav {
+      background: $primary-color;
+      position: unset !important;
+    }
+  }
+
+.all-beers {
+    padding-top: 30px;
+    padding-bottom: 50px;
+}
+
 .beer-panel {
-    margin-top: 25px;
+    margin-top: 20px;
 
     a {
         color: unset;
@@ -20,6 +36,8 @@
         padding: 20px;
         background: $default-body-color;
         transition: $default-transition;
+        box-shadow: $darkest-box-shadow;
+        border-radius: 3px;
 
         &__title {
             text-align: center;
@@ -47,7 +65,5 @@
         &__title {
             padding-bottom: 20px;
         }
-    }
-
-    
+    }    
 }
