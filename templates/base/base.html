@@ -7,7 +7,9 @@
 {% include 'header/header.html' %}
 <body id="{{ body_id }}">
     {% include 'banner/top-banner.html' %}
-    {% block content %} {% endblock %}
+    <main class="container">
+        {% block content %} {% endblock %}
+    </main>
     {% block beers_list %} {% endblock %}
     {% include 'footer/footer.html' %}
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.slim.min.js"></script>
