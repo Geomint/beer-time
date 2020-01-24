@@ -1,25 +1,21 @@
 <!DOCTYPE html>
 <html lang="en">
 
-{% include 'head/head.html' %}
-
+<head>
+    {% include 'head/head.html' %}
+</head>
+{% include 'header/header.html' %}
 <body id="{{ body_id }}">
-
-    {% include 'header/header.html' %}
     {% include 'banner/top-banner.html' %}
-
+    {% block content %} {% endblock %}
     {% block beers_list %} {% endblock %}
-
-    {% block footer %} {% endblock %}
-
+    {% include 'footer/footer.html' %}
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.slim.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.15.0/umd/popper.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.js"></script>
     <script src="{{ url_for('static', filename='js/slick.js') }}"></script>
     <script src="{{ url_for('static', filename='js/scripts.js') }}"></script>
-
-  
 </body>
 
 </html>
