@@ -15,7 +15,7 @@ mongo = PyMongo(app)
 
 @app.route('/all-beers')
 def all_beers():
-    return render_template("beers/all-beers.html", beers=mongo.db.beers.find())
+    return render_template("beers/all-beers.html", beers=mongo.db.beers.find(), body_id="all-beers")
 
 """
 Route for the home page
