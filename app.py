@@ -9,13 +9,15 @@ app.config["MONGO_DBNAME"] = 'Beer-Time'
 app.config["MONGO_URI"] = os.getenv("MONGO_URI")
 app.secret_key = "vRb81oq80xFpG45So4CKACqU1GvA9Fv"
 
-mongo = PyMongo(app) 
+mongo = PyMongo(app)
 
 # Routes for beer time
+
 
 @app.route('/all-beers')
 def all_beers():
     return render_template("beers/all-beers.html", beers=mongo.db.beers.find(), body_id="all-beers")
+
 
 """
 Route for the home page
