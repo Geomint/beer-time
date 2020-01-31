@@ -19,6 +19,11 @@ def all_beers():
     return render_template("beers/all-beers.html", beers=mongo.db.beers.find(), body_id="all-beers")
 
 
+@app.route('/add-beer')
+def add_beer():
+    return render_template('beers/add-beer.html', body_id="add-beer")
+
+
 """
 Route for the home page
 """
