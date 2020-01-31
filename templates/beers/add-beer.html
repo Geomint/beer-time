@@ -1,0 +1,61 @@
+{% extends 'base/base.html' %}
+{% block content %}
+<section class="row">
+    <div class="col-sm-12">
+        <h1 class="add-beer-title">Add A Beer</h1>
+    </div>
+</section>
+<section class="add-beer-form-background row">
+    <div class="col-sm-6 offset-sm-3">
+        <form id="test" action="" class="add-beer-form">
+            <div class="add-beer-form__collection">
+                <div class="add-beer-form__group">
+                    <div class="add-beer-form__group__text">
+                        <label for="name">Name</label>
+                    </div>
+                    <input type="text">
+                </div>
+                <div class="add-beer-form__group">
+                    <div class="add-beer-form__group__text">
+                        <label for="name">Brewery</label>
+                    </div>
+                    <input type="text">
+                </div>
+                <div class="add-beer-form__group">
+                    <div class="add-beer-form__group__text">
+                        <label for="name">Type</label>
+                    </div>
+                    <input type="text">
+                </div>
+                <div class="add-beer-form__group">
+                    <div class="add-beer-form__group__text">
+                        <label for="name">Excerpt</label>
+                    </div>
+                    <input type="text">
+                </div>
+                <div class="add-beer-form__group">
+                    <div class="add-beer-form__group__text">
+                        <label for="name">Notes</label>
+                    </div>
+                    <input type="text">
+                </div>
+                <div class="add-beer-form__group">
+                    <div class="add-beer-form__group__text">
+                        <label for="name">ABV</label>
+                    </div>
+                    <input type="text">
+                </div>
+                <div class="add-beer-form__group">
+                    <div class="add-beer-form__group__text">
+                        <label for="name">Image</label>
+                    </div>
+                    <input type="file">
+                </div>
+                <div class="add-beer-form__group">
+                    <input type="submit">
+                </div>
+            </div>
+        </form>
+    </div>
+</section>
+{% endblock %}
