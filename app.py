@@ -21,7 +21,14 @@ def all_beers():
 
 @app.route('/add-beer')
 def add_beer():
-    return render_template('beers/add-beer.html', body_id="add-beer")
+    return render_template('beers/add-beer.html', body_id="add-beer", types=mongo.db.types.find())
+
+
+@app.route('/insert-beer', methods=['POST', 'GET'])
+def insert_beer():
+    beers = mongo.db.beers
+    beers.insert_one(request.form.to_dict())
+    return redirect(url_for('all_beers'))
 
 
 """
