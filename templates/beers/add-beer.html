@@ -7,19 +7,30 @@
 </section>
 <section class="add-beer-form-background row">
     <div class="col-sm-6 offset-sm-3">
-        <form id="test" action="" class="add-beer-form">
+        <form id="test" action="{{ url_for('insert_beer') }}" class="add-beer-form">
             <div class="add-beer-form__collection">
                 <div class="add-beer-form__group">
                     <div class="add-beer-form__group__text">
                         <label for="name">Name</label>
                     </div>
-                    <input type="text">
+                    <input id="beers_name" name="beers_name" type="text">
                 </div>
                 <div class="add-beer-form__group">
                     <div class="add-beer-form__group__text">
                         <label for="name">Brewery</label>
                     </div>
-                    <input type="text">
+                    <input id="beers_brewery" name="beers_brewery" type="text">
+                </div>
+                <div class="add-beer-form__group">
+                    <div class="add-beer-form__group__text">
+                        <label for="name">Beer Types</label>
+                    </div>
+                    <select name="types" id="types">
+                        <option value="" disabled selected>Please select a beer type</option>
+                        {% for type in types %}
+                        <option value="{{ type.beer_type }}">{{ type.beer_type }}</option>
+                        {% endfor %}
+                    </select>
                 </div>
                 <div class="add-beer-form__group">
                     <div class="add-beer-form__group__text">
