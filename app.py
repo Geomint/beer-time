@@ -14,6 +14,13 @@ mongo = PyMongo(app)
 # Routes for beer time
 
 
+@app.route('/edit-beer/<beer_id>')
+def edit_beer(beer_id):
+    the_beer = mongo.db.beers.find_one({"_id": ObjectId(beer_id)})
+    all_types = mongo.db.types.find()
+    return render_template('beers/edit-beer.html', beer=the_beer, types=all_types)
+
+
 @app.route('/all-beers')
 def all_beers():
     return render_template("beers/all-beers.html", beers=mongo.db.beers.find(), body_id="all-beers")
