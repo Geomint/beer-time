@@ -65,5 +65,15 @@
         &__title {
             padding-bottom: 20px;
         }
+
+        &__session-buttons {
+            display: inline-flex;
+            width: 100%;
+
+            a {
+                max-width: 50%;
+                margin: auto;
+            }
+        }
     }    
 }
