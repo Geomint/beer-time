@@ -14,6 +14,12 @@ mongo = PyMongo(app)
 # Routes for beer time
 
 
+@app.route('/delete-beer/<beer_id>')
+def delete_beer(beer_id):
+    mongo.db.beers.remove({'_id': ObjectId(beer_id)})
+    return redirect(url_for('all_beers'))
+
+
 @app.route('/edit-beer/<beer_id>')
 def edit_beer(beer_id):
     the_beer = mongo.db.beers.find_one({"_id": ObjectId(beer_id)})
