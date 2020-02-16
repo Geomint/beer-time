@@ -1,5 +1,5 @@
-from flask import Flask, render_template, request, flash, session, redirect, url_for
 import os
+from flask import Flask, render_template, request, flash, session, redirect, url_for
 import json
 from flask_pymongo import PyMongo
 from bson.objectid import ObjectId
@@ -24,7 +24,7 @@ def add_beer():
     return render_template('beers/add-beer.html', body_id="add-beer", types=mongo.db.types.find())
 
 
-@app.route('/insert-beer', methods=['POST', 'GET'])
+@app.route('/insert-beer', methods=['POST'])
 def insert_beer():
     beers = mongo.db.beers
     beers.insert_one(request.form.to_dict())
