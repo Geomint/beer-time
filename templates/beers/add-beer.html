@@ -7,25 +7,25 @@
 </section>
 <section class="add-beer-form-background row">
     <div class="col-sm-6 offset-sm-3">
-        <form id="test" action="{{ url_for('insert_beer') }}" class="add-beer-form">
+        <form id="test" action="{{ url_for('insert_beer') }}" method="POST" class="add-beer-form">
             <div class="add-beer-form__collection">
                 <div class="add-beer-form__group">
                     <div class="add-beer-form__group__text">
                         <label for="name">Name</label>
                     </div>
-                    <input id="beers_name" name="beers_name" type="text">
+                    <input id="name" name="name" type="text">
                 </div>
                 <div class="add-beer-form__group">
                     <div class="add-beer-form__group__text">
                         <label for="name">Brewery</label>
                     </div>
-                    <input id="beers_brewery" name="beers_brewery" type="text">
+                    <input id="brewery" name="brewery" type="text">
                 </div>
                 <div class="add-beer-form__group">
                     <div class="add-beer-form__group__text">
                         <label for="name">Beer Types</label>
                     </div>
-                    <select name="types" id="types">
+                    <select name="type" id="type">
                         <option value="" disabled selected>Please select a beer type</option>
                         {% for type in types %}
                         <option value="{{ type.beer_type }}">{{ type.beer_type }}</option>
@@ -34,15 +34,9 @@
                 </div>
                 <div class="add-beer-form__group">
                     <div class="add-beer-form__group__text">
-                        <label for="name">Type</label>
-                    </div>
-                    <input type="text">
-                </div>
-                <div class="add-beer-form__group">
-                    <div class="add-beer-form__group__text">
                         <label for="name">Excerpt</label>
                     </div>
-                    <input type="text">
+                    <input id="excerpt" name="excerpt" type="text">
                 </div>
                 <div class="add-beer-form__group">
                     <div class="add-beer-form__group__text">
@@ -54,13 +48,13 @@
                     <div class="add-beer-form__group__text">
                         <label for="name">ABV</label>
                     </div>
-                    <input type="text">
+                    <input id="abv" name="abv" type="text">
                 </div>
                 <div class="add-beer-form__group">
                     <div class="add-beer-form__group__text">
                         <label for="name">Image</label>
                     </div>
-                    <input type="file">
+                    <input id="image" name="image" type="file">
                 </div>
                 <div class="add-beer-form__group">
                     <input type="submit">
