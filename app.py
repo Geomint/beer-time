@@ -21,6 +21,23 @@ def edit_beer(beer_id):
     return render_template('beers/edit-beer.html', beer=the_beer, types=all_types)
 
 
+@app.route('/update_beer/<beer_id>', methods=['POST'])
+def update_beer(beer_id):
+    beer = mongo.db.beers
+    beer.update({'_id': ObjectId(beer_id)},
+                {
+                'name': request.form.get('name'),
+                'brewery': request.form.get('brewery'),
+                'type': request.form.get('type'),
+                'excerpt': request.form.get('excerpt'),
+                'notes': request.form.get('notes'),
+                'abv': request.form.get('abv'),
+                'image': request.form.get('image')
+                }
+                )
+    return redirect(url_for('add_beer'))
+
+
 @app.route('/all-beers')
 def all_beers():
     return render_template("beers/all-beers.html", beers=mongo.db.beers.find(), body_id="all-beers")
