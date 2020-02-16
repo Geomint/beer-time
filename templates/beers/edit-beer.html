@@ -7,7 +7,7 @@
 </section>
 <section class="add-beer-form-background row">
     <div class="col-sm-6 offset-sm-3">
-        <form id="test" action="{{ url_for('insert_beer') }}" method="POST" class="add-beer-form">
+        <form id="test" action="{{ url_for('update_beer', beer_id=beer._id) }}" method="POST" class="add-beer-form">
             <div class="add-beer-form__collection">
                 <div class="add-beer-form__group">
                     <div class="add-beer-form__group__text">
@@ -42,7 +42,7 @@
                     <div class="add-beer-form__group__text">
                         <label for="name">Notes</label>
                     </div>
-                    <textarea id="notes" name="notes" type="text" cols="50" rows="10" value="{{beer.notes}}"></textarea>
+                    <textarea id="notes" name="notes" type="text" cols="50" rows="10">{{beer.notes}}</textarea>
                 </div>
                 <div class="add-beer-form__group">
                     <div class="add-beer-form__group__text">
@@ -55,7 +55,8 @@
                         <label for="name">Image</label>
                     </div>
                     <input id="image" name="image" type="file" value="{{beer.image}}">
-                    <img class="img-responsie" src="/{{beer.image}}" alt="{{beer.image}}">
+                    <p>Current image:</p>
+                    <img class="img-responsive" src="/{{beer.image}}" alt="{{beer.name}}">
                 </div>
                 <div class="add-beer-form__group">
                     <input type="submit">
