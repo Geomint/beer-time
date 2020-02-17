@@ -1,0 +1,23 @@
+{% extends 'base/base.html' %}
+
+{% block content %}
+<section class="row">
+    <div class="col-sm-12">
+        <form action="{{ url_for('createAccount') }}" method="POST">
+            <div class="register-form__group">
+                <label for="">Username</label>
+                <input type="text" name="username">
+            </div>
+            <div>
+                <label for="">Password</label>
+                <input type="text" name="password">
+            </div>
+            <div>
+                <label for="">Repeat Password</label>
+                <input type="text">
+            </div>
+            <input type="submit" name="" id="">
+        </form>
+    </div>
+</section>
+{% endblock %}
