@@ -114,9 +114,12 @@ def about_beer(beer_name):
 
 @app.route('/my-list', methods=["GET", "POST"])
 def myList():
-    if 'username' in session:
-        return 'Hi ' + session['username'] + ' welcome back.'
-    return render_template("my-list.html", body_id="my-list", page_title="My List")
+    return render_template("my-list.html", body_id="my-list", page_title="My List", users=mongo.db.users.find(), test=mongo.db.beers.find({'_id': ObjectId('5e21cc5b1c9d4400003b91be')} ))
+
+    # if 'username' in session:
+    # return 'Hi ' + session['username'] + ' welcome back.'
+    # user_favourites = mongo.db.users.session['username'].favourites.find()
+    # return user_favourites
 
 
 @app.route('/register', methods=["GET", "POST"])

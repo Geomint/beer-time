@@ -14,4 +14,15 @@
             </div>
         </div>
     </section>
+    <div class="row">
+            {% for user in users %}
+            <div class="col-sm-4">
+                <p>{{ user.name }}</p>
+                <p>{{ user.favourites }}</p>
+            </div>
+            {% endfor %}
+            {% for t in test %}
+            <p>{{ t.name }}</p>
+            {% endfor %}
+    </div>
 {% endblock %}
