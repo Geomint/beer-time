@@ -1,6 +1,7 @@
 import os
 from flask import Flask, render_template, request, flash, session, redirect, url_for
 import json
+import bcrypt
 from flask_pymongo import PyMongo
 from bson.objectid import ObjectId
 
@@ -113,21 +114,49 @@ def about_beer(beer_name):
 
 @app.route('/my-list', methods=["GET", "POST"])
 def myList():
+    if 'username' in session:
+        return 'Hi ' + session['username'] + ' welcome back.'
     return render_template("my-list.html", body_id="my-list", page_title="My List")
+
+
+@app.route('/register', methods=["GET", "POST"])
+def createAccount():
+    if request.method == 'POST':
+        users = mongo.db.users
+        existing_user = users.find_one({'name': request.form['username']})
+
+        if existing_user is None:
+            hashpass = bcrypt.hashpw(
+                request.form['password'].encode('utf-8'), bcrypt.gensalt())
+            users.insert({
+                'name': request.form['username'],
+                'password': hashpass
+            })
+            session['username'] = request.form['username']
+            return redirect(url_for('index'))
+
+        return 'That Username Already Exists!'
+
+    return render_template("create-account.html", body_id="register-page", page_title="Create an Account")
 
 
 """
 Route for the sign-in page
 """
-@app.route('/sign-in', methods=["GET", "POST"])
+@app.route('/login', methods=["POST"])
+def login():
+    users = mongo.db.users
+    login_user = users.find_one({'name': request.form['username']})
+
+    if login_user:
+        if bcrypt.hashpw(request.form['password'].encode('utf-8'), login_user['password']) == login_user['password']:
+            session['username'] = request.form['username']
+            return redirect(url_for('index'))
+    return 'invalid user/pass'
+
+
+@app.route('/sign-in', methods=["POST", "GET"])
 def signIn():
-
-    if request.method == "POST":
-        session["username"] = request.form["username"]
-
-    if "username" in session:
-        return redirect('/my-list')
-
     return render_template("sign-in.html", body_id="sign-in", page_title="Sign In")
 
 
