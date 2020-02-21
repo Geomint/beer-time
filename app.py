@@ -15,6 +15,10 @@ mongo = PyMongo(app)
 # Routes for beer time
 
 
+@app.route('/add-to-fav/<beer_id>', methods=['POST'])
+def addToFavourites(beer_id):
+    return render_template('/my-list.html')
+
 @app.route('/delete-beer/<beer_id>')
 def delete_beer(beer_id):
     mongo.db.beers.remove({'_id': ObjectId(beer_id)})
@@ -114,11 +118,10 @@ def about_beer(beer_name):
 
 @app.route('/my-list', methods=["GET", "POST"])
 def myList():
-    return render_template("my-list.html", body_id="my-list", page_title="My List", users=mongo.db.users.find(), test=mongo.db.beers.find({'_id': ObjectId('5e21cc5b1c9d4400003b91be')} ))
+    return render_template("my-list.html", body_id="my-list", page_title="My List", users=mongo.db.users.find(), test=mongo.db.beers.find({'_id': ObjectId('5e21cc5b1c9d4400003b91be')}))
 
     # if 'username' in session:
     # return 'Hi ' + session['username'] + ' welcome back.'
-    # user_favourites = mongo.db.users.session['username'].favourites.find()
     # return user_favourites
 
 
