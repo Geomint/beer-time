@@ -1,5 +1,4 @@
 {% extends 'base/base.html' %}
-
 {% block beers_list %}
 <div class="container all-beers">
     <div class="row">
@@ -12,12 +11,15 @@
                         <p class="beer-panel__excerpt">"{{ beer.excerpt }}"</p>
                         <img class="img-responsive" src="{{ beer.image }}" alt="">
                         <p>Brewery: {{ beer.brewery }}</p>
+                        <p>{{ beer._id }}</p>
                         <p>Type: {{ beer.type }}</p>
                         <p>ABV: {{ beer.abv }}</p>
                         {% if session['username'] %}
                             <div class="beer-panel__group__session-buttons">
                                 <a class="btn btn__no-inner" href="/my-list">My List</a>
-                                <a class="btn btn__primary" href="/add-to-favourites">Favourite</a>
+                                <form class="add-to-favourites" action="{{ url_for('addToFavourites', beer_id=beer._id) }}" method="POST">
+                                    <input type="checkbox" name="favourite" class="favourite">
+                                </form>
                             </div>
                         {% endif %}
                         <!-- if user is admin -->
