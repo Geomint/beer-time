@@ -11,3 +11,5 @@ $(window).scroll(function () {
 $('.favourite').click(function () {
     $('.add-to-favourites').submit();
 }) 
+
+$('.checkedBox').attr('checked', true);
