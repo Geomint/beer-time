@@ -19,6 +19,7 @@ mongo = PyMongo(app)
 def addToFavourites(beer_id):
     return render_template('/my-list.html')
 
+
 @app.route('/delete-beer/<beer_id>')
 def delete_beer(beer_id):
     mongo.db.beers.remove({'_id': ObjectId(beer_id)})
@@ -51,7 +52,23 @@ def update_beer(beer_id):
 
 @app.route('/all-beers')
 def all_beers():
-    return render_template("beers/all-beers.html", beers=mongo.db.beers.find(), body_id="all-beers")
+    current_user = session['username']
+    users = mongo.db.users
+    current_user_obj = users.find_one({'name': session['username']})
+    current_user_favourites = current_user_obj['favourites']
+    favourite_beers = []
+    favourite_beers_id = []
+
+    for fav in current_user_favourites:
+        current_beer = mongo.db.beers.find_one({'_id': fav})
+        current_beer_id = current_beer['_id']
+        favourite_beers_id.append(current_beer_id)
+
+    print(favourite_beers_id.index(current_beer_id))
+
+    # ObjectId('5e21cc5b1c9d4400003b91be')
+
+    return render_template("beers/all-beers.html", favourite_beers_id=favourite_beers_id, beers=mongo.db.beers.find(), body_id="all-beers", current_user=users.find_one({'name': session['username']}) )
 
 
 @app.route('/add-beer')
@@ -118,11 +135,22 @@ def about_beer(beer_name):
 
 @app.route('/my-list', methods=["GET", "POST"])
 def myList():
-    return render_template("my-list.html", body_id="my-list", page_title="My List", users=mongo.db.users.find(), test=mongo.db.beers.find({'_id': ObjectId('5e21cc5b1c9d4400003b91be')}))
+    current_user = session['username']
+    users = mongo.db.users
+    current_user_obj = users.find_one({'name': session['username']})
+    current_user_favourites = current_user_obj['favourites']
+    favourite_beers = []
 
-    # if 'username' in session:
-    # return 'Hi ' + session['username'] + ' welcome back.'
-    # return user_favourites
+    print(current_user_obj)
+    print(current_user_favourites)
+
+    for fav in current_user_favourites:
+        current_beer = mongo.db.beers.find_one({'_id': fav})
+        favourite_beers.append(current_beer)
+
+    print(favourite_beers.index(current_beer))
+
+    return render_template("my-list.html", body_id="my-list", page_title="My List", favourite_beers=favourite_beers, current_user=users.find_one({'name': session['username']}))
 
 
 @app.route('/register', methods=["GET", "POST"])
