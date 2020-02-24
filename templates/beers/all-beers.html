@@ -18,9 +18,9 @@
                                 <a class="btn btn__no-inner" href="/my-list">My List</a>
                                 <form class="add-to-favourites" action="{{ url_for('addToFavourites', beer_id=beer._id) }}" method="POST">
                                     {% if beer._id in favourite_beers_id %}
-                                        <span>Favourite?</span><input type="checkbox" id="checkbox" class="checkedBox">
+                                        <span>Favourite?</span><input type="checkbox" id="favourite" class="checkedBox">
                                     {% else %}
-                                        <span>Favourite?</span><input type="checkbox" id="checkbox">
+                                        <span>Favourite?</span><input type="checkbox" id="favourite" class="favourite">
                                     {% endif %}
                                 </form>
                             </div>
