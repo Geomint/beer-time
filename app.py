@@ -21,11 +21,8 @@ def addToFavourites(beer_id):
     users = mongo.db.users
     current_user_obj = users.find_one({'name': session['username']})
     current_user_favourites = current_user_obj['favourites']
-    current_user_obj.update(
-        { $addToSet: {favourites: [request.form.get('favourite')]}}
-    )
-
-    print(current_user_obj)
+    print(beer_id)
+    mongo.db.users.update(current_user_obj,{ "$push": {"favourites": ObjectId(beer_id)}})
     return render_template('/my-list.html')
 
 
