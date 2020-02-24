@@ -17,6 +17,15 @@ mongo = PyMongo(app)
 
 @app.route('/add-to-fav/<beer_id>', methods=['POST'])
 def addToFavourites(beer_id):
+    current_user = session['username']
+    users = mongo.db.users
+    current_user_obj = users.find_one({'name': session['username']})
+    current_user_favourites = current_user_obj['favourites']
+    current_user_obj.update(
+        { $addToSet: {favourites: [request.form.get('favourite')]}}
+    )
+
+    print(current_user_obj)
     return render_template('/my-list.html')
 
 
@@ -66,9 +75,7 @@ def all_beers():
 
     print(favourite_beers_id.index(current_beer_id))
 
-    # ObjectId('5e21cc5b1c9d4400003b91be')
-
-    return render_template("beers/all-beers.html", favourite_beers_id=favourite_beers_id, beers=mongo.db.beers.find(), body_id="all-beers", current_user=users.find_one({'name': session['username']}) )
+    return render_template("beers/all-beers.html", favourite_beers_id=favourite_beers_id, beers=mongo.db.beers.find(), body_id="all-beers", current_user=users.find_one({'name': session['username']}))
 
 
 @app.route('/add-beer')
@@ -141,14 +148,9 @@ def myList():
     current_user_favourites = current_user_obj['favourites']
     favourite_beers = []
 
-    print(current_user_obj)
-    print(current_user_favourites)
-
     for fav in current_user_favourites:
         current_beer = mongo.db.beers.find_one({'_id': fav})
         favourite_beers.append(current_beer)
-
-    print(favourite_beers.index(current_beer))
 
     return render_template("my-list.html", body_id="my-list", page_title="My List", favourite_beers=favourite_beers, current_user=users.find_one({'name': session['username']}))
 
