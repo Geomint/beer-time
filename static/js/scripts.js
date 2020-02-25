@@ -8,8 +8,12 @@ $(window).scroll(function () {
     }
 });
 
-$('.favourite').click(function () {
+$('.favourite').click(function() {
     $('.add-to-favourites').submit();
-}) 
+})
+
+$('.checkedBox').click(function() {
+    $('.remove-from-favourites').submit();
+})
 
 $('.checkedBox').attr('checked', true);
