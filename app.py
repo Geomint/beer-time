@@ -21,8 +21,19 @@ def addToFavourites(beer_id):
     users = mongo.db.users
     current_user_obj = users.find_one({'name': session['username']})
     current_user_favourites = current_user_obj['favourites']
-    print(beer_id)
-    mongo.db.users.update(current_user_obj,{ "$push": {"favourites": ObjectId(beer_id)}})
+    mongo.db.users.update(
+        current_user_obj, {"$push": {"favourites": ObjectId(beer_id)}})
+    return render_template('/my-list.html')
+
+
+@app.route('/remove-from-favourites/<beer_id>', methods=['POST'])
+def remove_from_favourites(beer_id):
+    current_user = session['username']
+    users = mongo.db.users
+    current_user_obj = users.find_one({'name': session['username']})
+    current_user_favourites = current_user_obj['favourites']
+    mongo.db.users.update(
+        current_user_obj, {"$pull": {"favourites": ObjectId(beer_id)}})
     return render_template('/my-list.html')
 
 
@@ -65,12 +76,11 @@ def all_beers():
     favourite_beers = []
     favourite_beers_id = []
 
-    for fav in current_user_favourites:
-        current_beer = mongo.db.beers.find_one({'_id': fav})
-        current_beer_id = current_beer['_id']
-        favourite_beers_id.append(current_beer_id)
-
-    print(favourite_beers_id.index(current_beer_id))
+    if len(current_user_favourites) != 0:
+        for fav in current_user_favourites:
+            current_beer = mongo.db.beers.find_one({'_id': fav})
+            current_beer_id = current_beer['_id']
+            favourite_beers_id.append(current_beer_id)
 
     return render_template("beers/all-beers.html", favourite_beers_id=favourite_beers_id, beers=mongo.db.beers.find(), body_id="all-beers", current_user=users.find_one({'name': session['username']}))
 
