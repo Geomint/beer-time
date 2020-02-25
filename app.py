@@ -167,13 +167,15 @@ def createAccount():
     if request.method == 'POST':
         users = mongo.db.users
         existing_user = users.find_one({'name': request.form['username']})
+        favourites_array = []
 
         if existing_user is None:
             hashpass = bcrypt.hashpw(
                 request.form['password'].encode('utf-8'), bcrypt.gensalt())
             users.insert({
                 'name': request.form['username'],
-                'password': hashpass
+                'password': hashpass,
+                'favourites': favourites_array
             })
             session['username'] = request.form['username']
             return redirect(url_for('index'))
