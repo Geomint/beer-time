@@ -14,16 +14,18 @@
                         <p>{{ beer._id }}</p>
                         <p>Type: {{ beer.type }}</p>
                         <p>ABV: {{ beer.abv }}</p>
-                            <div class="beer-panel__group__session-buttons">
-                                <a class="btn btn__no-inner" href="/my-list">My List</a>
-                                <form class="add-to-favourites" action="{{ url_for('addToFavourites', beer_id=beer._id) }}" method="POST">
-                                    {% if beer._id in favourite_beers_id %}
-                                        <span>Favourite?</span><input type="checkbox" id="favourite" class="checkedBox">
-                                    {% else %}
-                                        <span>Favourite?</span><input type="checkbox" id="favourite" class="favourite">
-                                    {% endif %}
-                                </form>
-                            </div>
+                        <div class="beer-panel__group__session-buttons">
+                            <a class="btn btn__no-inner" href="/my-list">My List</a>
+                            {% if beer._id in favourite_beers_id %}
+                            <form class="remove-from-favourites" action="{{ url_for('remove_from_favourites', beer_id=beer._id) }}" method="POST">
+                                <span>Favourite?</span><input type="checkbox" id="favourite" class="checkedBox">
+                            </form>
+                            {% else %}
+                            <form class="add-to-favourites" action="{{ url_for('addToFavourites', beer_id=beer._id) }}" method="POST">
+                                <span>Favourite?</span><input type="checkbox" id="favourite" class="favourite">
+                            </form>
+                            {% endif %}
+                        </div>
                         {% if current_user['admin'] == true %}
                         <a href="{{ url_for('edit_beer', beer_id=beer._id)}}">Edit</a>
                         <a href="{{ url_for('delete_beer', beer_id=beer._id)}}">Delete</a>
