@@ -72,11 +72,11 @@ def all_beers():
     current_user = session['username']
     users = mongo.db.users
     current_user_obj = users.find_one({'name': session['username']})
-    current_user_favourites = current_user_obj['favourites']
-    favourite_beers = []
+    if len(current_user_obj['favourites']) != 0:
+        current_user_favourites = current_user_obj['favourites']
     favourite_beers_id = []
 
-    if len(current_user_favourites) != 0:
+    if len(current_user_obj['favourites']) != 0:
         for fav in current_user_favourites:
             current_beer = mongo.db.beers.find_one({'_id': fav})
             current_beer_id = current_beer['_id']
