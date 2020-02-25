@@ -23,7 +23,7 @@ def addToFavourites(beer_id):
     current_user_favourites = current_user_obj['favourites']
     mongo.db.users.update(
         current_user_obj, {"$push": {"favourites": ObjectId(beer_id)}})
-    return render_template('/my-list.html')
+    return redirect(url_for('myList'))
 
 
 @app.route('/remove-from-favourites/<beer_id>', methods=['POST'])
@@ -34,7 +34,7 @@ def remove_from_favourites(beer_id):
     current_user_favourites = current_user_obj['favourites']
     mongo.db.users.update(
         current_user_obj, {"$pull": {"favourites": ObjectId(beer_id)}})
-    return render_template('/my-list.html')
+    return redirect(url_for('myList'))
 
 
 @app.route('/delete-beer/<beer_id>')
