@@ -13,6 +13,7 @@
                         <p>Brewery: {{ beer.brewery }}</p>
                         <p>Type: {{ beer.type }}</p>
                         <p>ABV: {{ beer.abv }}</p>
+                        <a href="{{url_for('beer_page', beer_id=beer._id)}}">lol</a>
                         <div class="beer-panel__group__session-buttons">
                             <a class="btn btn__no-inner" href="/my-list">My List</a>
                             {% if beer._id in favourite_beers_id %}
