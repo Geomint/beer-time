@@ -15,6 +15,12 @@ mongo = PyMongo(app)
 # Routes for beer time
 
 
+@app.route('/beer/<beer_id>')
+def beer_page(beer_id):
+    the_beer = mongo.db.beers.find_one({"_id": ObjectId(beer_id)})
+    return render_template('beers/beer.html', beer=the_beer)
+
+
 @app.route('/add-to-fav/<beer_id>', methods=['POST'])
 def addToFavourites(beer_id):
     current_user = session['username']
