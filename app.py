@@ -1,9 +1,10 @@
 import os
 from flask import Flask, render_template, request, flash, session, redirect, url_for
 import json
-import bcrypt
 from flask_pymongo import PyMongo
 from bson.objectid import ObjectId
+import bcrypt
+
 
 app = Flask(__name__)
 app.config["MONGO_DBNAME"] = 'Beer-Time'
@@ -67,7 +68,7 @@ def myList():
         current_beer = mongo.db.beers.find_one({'_id': fav})
         favourite_beers.append(current_beer)
 
-    return render_template("my-list.html", body_id="my-list", page_title="My List", favourite_beers_id=favourite_beers_id,  favourite_beers=favourite_beers, current_user=users.find_one({'name': session['username']}))
+    return render_template("my-list.html", body_id="my-list", page_title="My List", favourite_beers_id=favourite_beers_id, favourite_beers=favourite_beers, current_user=users.find_one({'name': session['username']}))
 
 
 @app.route('/add-to-fav/<beer_id>', methods=['POST'])
@@ -189,7 +190,7 @@ def login():
 Route for sign-out
 """
 @app.route('/sign-out')
-def signOut():
+def sign_out():
     session.clear()
     return redirect('/')
 
