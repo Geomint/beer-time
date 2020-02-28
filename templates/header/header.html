@@ -9,13 +9,23 @@
             <li class="main-nav__inner__nav__item"><a href="{{ url_for('index') }}">Home</a></li>
             <li class="main-nav__inner__nav__item"><a href="{{ url_for('all_beers') }}">All Beers</a></li>
             <li class="main-nav__inner__nav__item"><a href="{{ url_for('contact') }}">Contact</a></li>
-            {% if session['username'] %}
-            <li class="main-nav__inner__nav__item"><a class="btn btn__primary" href="{{ url_for('myList') }}">My
-                    List</a></li>
-            {% else %}
-            <li class="main-nav__inner__nav__item"><a class="btn btn__primary" href="{{ url_for('signIn') }}">Sign
-                    In</a></li>
-            {% endif %}
+            <li class="main-nav__inner__nav__list__trigger">
+                {% if session['username'] %}
+                <a href="#"><i class="fa fa-user-circle fa-fw"></i></a>
+                {% else %}
+                <a href="#"><i class="far fa-user-circle fa-fw"></i></a>
+                {% endif %}
+                <div class="main-nav__inner__nav__list__dropped">
+                    <ul class="main-nav__inner__nav__list__dropped__group">
+                    {% if session['username'] %}
+                            <li class="main-nav__inner__nav__list__dropped__item"><a class="" href="{{ url_for('myList') }}">My List</a></li>
+                            <li class="main-nav__inner__nav__list__dropped__item"><a class="" href="{{ url_for('signOut') }}">Sign Out</a></li>
+                        {% else %}
+                            <li class="main-nav__inner__nav__list__dropped__item"><a class="" href="{{ url_for('signIn') }}">Sign In</a></li>
+                    {% endif %}
+                    </ul>
+                </div>
+            </li>
         </ul>
     </div>
 </nav>
