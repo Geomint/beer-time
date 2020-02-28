@@ -28,6 +28,55 @@
           }
         }
       }
+
+      &__list {
+
+        &__dropped {
+          display: none;
+          list-style: none;
+
+          &__group {
+            list-style: none;
+            position: absolute;
+            padding: 2px 10px;
+            background: $primary-color;
+            border: 1px solid rgba(0,0,0,0.4);
+            box-shadow: $darkest-box-shadow
+          }
+
+          &__item {
+            padding: 6px 0;
+            a {
+              color: $secondary-color;
+            }
+
+            &:hover {
+              a {
+                color: darken($secondary-color, 10%);
+              }
+            }
+          }
+        }
+
+        &__trigger {
+          padding: 0 10px;
+
+          i {
+            color: $secondary-color;
+            font-size: 30px;
+
+            &:hover {
+              color: darken($secondary-color, 10%);
+            }
+          }
+
+          &:hover {
+            div {
+              display: block;
+            }
+          }
+        }
+      }
     }
   }
 
