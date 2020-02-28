@@ -15,65 +15,38 @@
 }
 
 .beer-panel {
-    margin-top: 20px;
+    transition: $default-transition;
+
+    &:hover {
+        .beer-panel__main-wrapper {
+            transition: $default-transition;
+            box-shadow: 2px 2px 3px rgba(0,0,0,0.4);
+            transform: scale(1.02);
+        }
+    }
 
     a {
-        color: unset;
+        text-decoration: none;
+        color: $primary-color;
     }
 
-    &__excerpt {
-        opacity: 0;
-        text-align: center;
-        position: absolute;
-        z-index: 1;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        transition: $default-transition;
-    }
-
-    &__group {
-        padding: 20px;
+    &__image {
         background: $default-body-color;
-        transition: $default-transition;
         box-shadow: $darkest-box-shadow;
-        border-radius: 3px;
+    }
+    
+    &__wrapper {
+        padding: 10px;
+        background: $default-body-color;
+        box-shadow: $darkest-box-shadow;
+        margin-bottom: 30px;
+    }
 
-        &__title {
-            text-align: center;
-        }
+    &__text {
 
-        &:hover {
-            .beer-panel__excerpt {
-                opacity: 1;
-                background: rgba(0,0,0,0.6);
-                color: $white-color;
-                text-shadow: $default-text-shadow;
-            }
+    }
 
-            background: $primary-color;
+    &__links {
 
-            p {
-                color: $secondary-color;
-            }
-
-            h2 {
-                color: $white-color;
-            }
-        }
-
-        &__title {
-            padding-bottom: 20px;
-        }
-
-        &__session-buttons {
-            display: inline-flex;
-            width: 100%;
-
-            a {
-                max-width: 50%;
-                margin: auto;
-            }
-        }
-    }    
+    }
 }
