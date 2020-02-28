@@ -14,10 +14,25 @@
   margin-top: 20px;
 
   &__title {
-    padding-bottom: 10px;
+    padding-bottom: 40px;
   }
 
   &__text {
     padding-bottom: 10px;
+  }
+
+  &__favourite {
+    margin-bottom: 30px;
+
+    &__image {
+      background: $default-body-color;
+      box-shadow: $darkest-box-shadow;
+    }
+
+    &__wrapper {
+      padding: 10px;
+      background: $default-body-color;
+      box-shadow: $darkest-box-shadow;
+    }
   }
 }
