@@ -23,10 +23,42 @@ def index():
     return render_template("index.html", body_id="home-page", page_title="Home")
 
 
-@app.route('/beer/<beer_id>')
-def beer_page(beer_id):
-    the_beer = mongo.db.beers.find_one({"_id": ObjectId(beer_id)})
-    return render_template('beers/beer.html', beer=the_beer)
+"""
+
+"""
+
+
+@app.route('/all-beers')
+def all_beers():
+    current_user = session['username']
+    users = mongo.db.users
+    current_user_obj = users.find_one({'name': session['username']})
+    if len(current_user_obj['favourites']) != 0:
+        current_user_favourites = current_user_obj['favourites']
+    favourite_beers_id = []
+
+    if len(current_user_obj['favourites']) != 0:
+        for fav in current_user_favourites:
+            current_beer = mongo.db.beers.find_one({'_id': fav})
+            current_beer_id = current_beer['_id']
+            favourite_beers_id.append(current_beer_id)
+
+    return render_template("beers/all-beers.html", favourite_beers_id=favourite_beers_id, beers=mongo.db.beers.find(), body_id="all-beers", current_user=users.find_one({'name': session['username']}))
+
+
+@app.route('/my-list', methods=["GET", "POST"])
+def myList():
+    current_user = session['username']
+    users = mongo.db.users
+    current_user_obj = users.find_one({'name': session['username']})
+    current_user_favourites = current_user_obj['favourites']
+    favourite_beers = []
+
+    for fav in current_user_favourites:
+        current_beer = mongo.db.beers.find_one({'_id': fav})
+        favourite_beers.append(current_beer)
+
+    return render_template("my-list.html", body_id="my-list", page_title="My List", favourite_beers=favourite_beers, current_user=users.find_one({'name': session['username']}))
 
 
 @app.route('/add-to-fav/<beer_id>', methods=['POST'])
@@ -51,9 +83,21 @@ def remove_from_favourites(beer_id):
     return redirect(url_for('myList'))
 
 
-@app.route('/delete-beer/<beer_id>')
-def delete_beer(beer_id):
-    mongo.db.beers.remove({'_id': ObjectId(beer_id)})
+@app.route('/beer/<beer_id>')
+def beer_page(beer_id):
+    the_beer = mongo.db.beers.find_one({"_id": ObjectId(beer_id)})
+    return render_template('beers/beer.html', beer=the_beer)
+
+
+@app.route('/add-beer')
+def add_beer():
+    return render_template('beers/add-beer.html', body_id="add-beer", types=mongo.db.types.find())
+
+
+@app.route('/insert-beer', methods=['POST'])
+def insert_beer():
+    beers = mongo.db.beers
+    beers.insert_one(request.form.to_dict())
     return redirect(url_for('all_beers'))
 
 
@@ -81,49 +125,10 @@ def update_beer(beer_id):
     return redirect(url_for('add_beer'))
 
 
-@app.route('/all-beers')
-def all_beers():
-    current_user = session['username']
-    users = mongo.db.users
-    current_user_obj = users.find_one({'name': session['username']})
-    if len(current_user_obj['favourites']) != 0:
-        current_user_favourites = current_user_obj['favourites']
-    favourite_beers_id = []
-
-    if len(current_user_obj['favourites']) != 0:
-        for fav in current_user_favourites:
-            current_beer = mongo.db.beers.find_one({'_id': fav})
-            current_beer_id = current_beer['_id']
-            favourite_beers_id.append(current_beer_id)
-
-    return render_template("beers/all-beers.html", favourite_beers_id=favourite_beers_id, beers=mongo.db.beers.find(), body_id="all-beers", current_user=users.find_one({'name': session['username']}))
-
-
-@app.route('/add-beer')
-def add_beer():
-    return render_template('beers/add-beer.html', body_id="add-beer", types=mongo.db.types.find())
-
-
-@app.route('/insert-beer', methods=['POST'])
-def insert_beer():
-    beers = mongo.db.beers
-    beers.insert_one(request.form.to_dict())
+@app.route('/delete-beer/<beer_id>')
+def delete_beer(beer_id):
+    mongo.db.beers.remove({'_id': ObjectId(beer_id)})
     return redirect(url_for('all_beers'))
-
-
-@app.route('/my-list', methods=["GET", "POST"])
-def myList():
-    current_user = session['username']
-    users = mongo.db.users
-    current_user_obj = users.find_one({'name': session['username']})
-    current_user_favourites = current_user_obj['favourites']
-    favourite_beers = []
-
-    for fav in current_user_favourites:
-        current_beer = mongo.db.beers.find_one({'_id': fav})
-        favourite_beers.append(current_beer)
-
-    return render_template("my-list.html", body_id="my-list", page_title="My List", favourite_beers=favourite_beers, current_user=users.find_one({'name': session['username']}))
 
 
 @app.route('/register', methods=["GET", "POST"])
@@ -162,16 +167,6 @@ def login():
             session['username'] = request.form['username']
             return redirect(url_for('index'))
     return 'invalid user/pass'
-
-
-@app.route('/sign-in', methods=["POST", "GET"])
-def signIn():
-    return render_template("sign-in.html", body_id="sign-in", page_title="Sign In")
-
-
-@app.route('/beer-page')
-def beerPage():
-    return render_template("beer-page.html", body_id="beer-page", page_title="beer-page")
 
 
 """
