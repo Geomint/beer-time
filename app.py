@@ -14,18 +14,20 @@ mongo = PyMongo(app)
 
 # Routes for beer time
 
-"""
+'''
 This app route is for the index page, this accesses the beers collection in order to output a list of beers 
 onto the slider toward the bottom of the page. 
-"""
+'''
 @app.route('/')
 def index():
     return render_template("index.html", body_id="home-page", page_title="Home")
 
 
-"""
-
-"""
+'''
+This 'all-beers' route is for the main beer page where all beers in the database are output to the page, the function
+will check if there is a user in session and wether or not they have a 'favourites' array in the collection. If the
+Array has ObjectIds present these are marked as favourites on the beer panel itself. 
+'''
 
 
 @app.route('/all-beers')
@@ -53,12 +55,19 @@ def myList():
     current_user_obj = users.find_one({'name': session['username']})
     current_user_favourites = current_user_obj['favourites']
     favourite_beers = []
+    favourite_beers_id = []
+
+    if len(current_user_obj['favourites']) != 0:
+        for fav in current_user_favourites:
+            current_beer = mongo.db.beers.find_one({'_id': fav})
+            current_beer_id = current_beer['_id']
+            favourite_beers_id.append(current_beer_id)
 
     for fav in current_user_favourites:
         current_beer = mongo.db.beers.find_one({'_id': fav})
         favourite_beers.append(current_beer)
 
-    return render_template("my-list.html", body_id="my-list", page_title="My List", favourite_beers=favourite_beers, current_user=users.find_one({'name': session['username']}))
+    return render_template("my-list.html", body_id="my-list", page_title="My List", favourite_beers_id=favourite_beers_id,  favourite_beers=favourite_beers, current_user=users.find_one({'name': session['username']}))
 
 
 @app.route('/add-to-fav/<beer_id>', methods=['POST'])
@@ -157,7 +166,14 @@ def createAccount():
 """
 Route for the sign-in page
 """
-@app.route('/login', methods=["POST"])
+
+
+@app.route('/sign-in', methods=["POST", "GET"])
+def signIn():
+    return render_template("sign-in.html", body_id="sign-in", page_title="Sign In")
+
+
+@app.route('/login', methods=["POST", "GET"])
 def login():
     users = mongo.db.users
     login_user = users.find_one({'name': request.form['username']})
