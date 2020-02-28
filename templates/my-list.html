@@ -1,23 +1,51 @@
 {% extends 'base/base.html' %}
-
 {% block content %}
-    <section class="row">
-        <div class="col-sm-12">
-            <div class="my-list">
-                <!-- coniditional code will sit here to check if list is empty/filled etc -->
-                <div class="my-list__no-beers">
-                    <h2 class="my-list__title">Oh No!</h2>
-                    <p class="my-list__text">Your list is empty</p>
-                    <p class="my-list__text">Use the button below to browse our beers</p>
+<section class="row">
+    <div class="col-sm-12">
+        <div class="my-list">
+            {% if favourite_beers|length %}
+            <h2 class="my-list__title">Browse your list</h2>
+            {% else %}
+            <div class="my-list__no-beers">
+                <h2 class="my-list__title">Oh No!</h2>
+                <p class="my-list__text">Your list is empty</p>
+                <p class="my-list__text">Use the button below to browse our beers</p>
+            </div>
+            <a class="btn btn__primary" href="{{ url_for('all_beers') }}">View Beers</a>
+            {% endif %}
+        </div>
+    </div>
+</section>
+<section class="row">
+    {% for beer in favourite_beers %}
+    <div class="col-md-4 col-sm-12">
+        <div class="my-list__favourite">
+            <div class="my-list__favourite__image">
+                <img class="img-responsive" src="{{ beer.image }}" alt="{{ beer.name }}">
+            </div>
+            <div class="my-list__favourite__wrapper">
+                <div class="my-list__favourite__text">
+                    <h2>{{ beer.name }}</h2>
+                    <p>{{ beer.brewery }}</p>
+                    <p>{{ beer.type }}</p>
+                    <p>{{ beer.abv }}</p>
                 </div>
-                <a class="btn btn__primary" href="{{ url_for('all_beers') }}">View Beers</a>
+                <div class="my-list__favourite__links">
+                    {% if beer._id in favourite_beers_id %}
+                    <form class="remove-from-favourites"
+                        action="{{ url_for('remove_from_favourites', beer_id=beer._id) }}" method="POST">
+                        <span>Favourite?</span><input type="checkbox" id="favourite" class="checkedBox">
+                    </form>
+                    {% else %}
+                    <form class="add-to-favourites" action="{{ url_for('addToFavourites', beer_id=beer._id) }}"
+                        method="POST">
+                        <span>Favourite?</span><input type="checkbox" id="favourite" class="favourite">
+                    </form>
+                    {% endif %}
+                </div>
             </div>
         </div>
-    </section>
-    <div class="row">
-        {% for beer in favourite_beers %}
-            <h1>{{beer.name}}</h1>
-            {{beer.abv}}
-        {% endfor %}
     </div>
+    {% endfor %}
+</sectin>
 {% endblock %}
