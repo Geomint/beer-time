@@ -170,7 +170,7 @@ Route for the sign-in page
 
 
 @app.route('/sign-in', methods=["POST", "GET"])
-def signIn():
+def sign_in():
     return render_template("sign-in.html", body_id="sign-in", page_title="Sign In")
 
 
