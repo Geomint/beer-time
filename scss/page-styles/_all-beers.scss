@@ -43,10 +43,39 @@
     }
 
     &__text {
+        padding: 10px;
 
+        h2 {
+            overflow: hidden;
+            white-space: nowrap;
+        }
     }
 
     &__links {
+        display: inline-flex;
+        
+        .btn__no-inner {
+            padding: 10px;
+        }
 
+        form {
+            padding: 0 10px;
+        }
+    }
+
+    &__admin-links {
+        display: block;
+        width: 100%;
+
+        &__link {
+            i {
+                font-size: 20px;
+                transition: $default-transition;
+
+                &:hover {
+                    color: darken($secondary-color, 10%);
+                }
+            }
+        }
     }
 }
