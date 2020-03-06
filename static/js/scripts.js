@@ -17,3 +17,6 @@ $('.checkedBox').click(function() {
 })
 
 $('.checkedBox').attr('checked', true);
+
+
+$('[data-toggle="tooltip"]').tooltip();
