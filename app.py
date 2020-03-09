@@ -33,20 +33,23 @@ Array has ObjectIds present these are marked as favourites on the beer panel its
 
 @app.route('/all-beers')
 def all_beers():
-    current_user = session['username']
-    users = mongo.db.users
-    current_user_obj = users.find_one({'name': session['username']})
-    if len(current_user_obj['favourites']) != 0:
-        current_user_favourites = current_user_obj['favourites']
-    favourite_beers_id = []
+    try:
+        current_user = session['username']
+        users = mongo.db.users
+        current_user_obj = users.find_one({'name': session['username']})
+        if len(current_user_obj['favourites']) != 0:
+            current_user_favourites = current_user_obj['favourites']
+        favourite_beers_id = []
 
-    if len(current_user_obj['favourites']) != 0:
-        for fav in current_user_favourites:
-            current_beer = mongo.db.beers.find_one({'_id': fav})
-            current_beer_id = current_beer['_id']
-            favourite_beers_id.append(current_beer_id)
+        if len(current_user_obj['favourites']) != 0:
+            for fav in current_user_favourites:
+                current_beer = mongo.db.beers.find_one({'_id': fav})
+                current_beer_id = current_beer['_id']
+                favourite_beers_id.append(current_beer_id)
 
-    return render_template("beers/all-beers.html", favourite_beers_id=favourite_beers_id, beers=mongo.db.beers.find(), body_id="all-beers", current_user=users.find_one({'name': session['username']}))
+        return render_template("beers/all-beers.html", favourite_beers_id=favourite_beers_id, beers=mongo.db.beers.find(), body_id="all-beers", current_user=users.find_one({'name': session['username']}))
+    except:
+        return redirect(url_for('createAccount'))
 
 
 @app.route('/my-list', methods=["GET", "POST"])
@@ -97,7 +100,7 @@ def remove_from_favourites(beer_id):
 def beer_page(beer_id):
     the_beer = mongo.db.beers.find_one({"_id": ObjectId(beer_id)})
     you_might_like = mongo.db.beers.find().limit(3)
-    return render_template('beers/beer.html', beer=the_beer, you_might_like=you_might_like )
+    return render_template('beers/beer.html', beer=the_beer, you_might_like=you_might_like)
 
 
 @app.route('/add-beer')
