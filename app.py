@@ -100,7 +100,7 @@ def remove_from_favourites(beer_id):
 def beer_page(beer_id):
     the_beer = mongo.db.beers.find_one({"_id": ObjectId(beer_id)})
     you_might_like = mongo.db.beers.find().limit(3)
-    return render_template('beers/beer.html', beer=the_beer, you_might_like=you_might_like)
+    return render_template('beers/beer.html', beer=the_beer, you_might_like=you_might_like, body_id="beer-product")
 
 
 @app.route('/add-beer')
