@@ -1,0 +1,12 @@
+<div class="col-md-4">
+    <div class="beer-page__bottom__yml">
+        <div class="beer-page__bottom__yml__image">
+            <img class="img-responsive" src="/{{ yml.image }}" alt="{{yml.image}}">
+        </div>
+        <div class="beer-page__bottom__yml__text">
+            <p>{{ yml.name }}</p>
+            <p>{{ yml.type }}</p>
+            <a class="btn btn__primary" href="{{ url_for('all_beers')}}">All Beers</a>
+        </div>
+    </div>
+</div>
