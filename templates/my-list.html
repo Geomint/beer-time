@@ -19,32 +19,7 @@
 <section class="row">
     {% for beer in favourite_beers %}
     <div class="col-md-4 col-sm-12">
-        <div class="my-list__favourite">
-            <div class="my-list__favourite__image">
-                <img class="img-responsive" src="{{ beer.image }}" alt="{{ beer.name }}">
-            </div>
-            <div class="my-list__favourite__wrapper">
-                <div class="my-list__favourite__text">
-                    <h2>{{ beer.name }}</h2>
-                    <p>{{ beer.brewery }}</p>
-                    <p>{{ beer.type }}</p>
-                    <p>{{ beer.abv }}</p>
-                </div>
-                <div class="my-list__favourite__links">
-                    {% if beer._id in favourite_beers_id %}
-                    <form class="remove-from-favourites"
-                        action="{{ url_for('remove_from_favourites', beer_id=beer._id) }}" method="POST">
-                        <span>Favourite?</span><input type="checkbox" id="favourite" class="checkedBox">
-                    </form>
-                    {% else %}
-                    <form class="add-to-favourites" action="{{ url_for('addToFavourites', beer_id=beer._id) }}"
-                        method="POST">
-                        <span>Favourite?</span><input type="checkbox" id="favourite" class="favourite">
-                    </form>
-                    {% endif %}
-                </div>
-            </div>
-        </div>
+        {% include 'components/beer-panel.html' %}
     </div>
     {% endfor %}
 </sectin>
