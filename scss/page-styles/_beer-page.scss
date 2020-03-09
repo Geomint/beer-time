@@ -1,6 +1,16 @@
+#beer-product {
+  .banner {
+    display: none;
+  }
+
+  .main-nav {
+    background: $primary-color;
+    position: unset !important;
+  }
+}
+
 .beer-page {
   padding-bottom: 80px;
-  padding-top: 80px;
 
   &__hero {
     background: $default-body-color;
@@ -21,6 +31,32 @@
 
     &__text {
       padding: 5px 0;
+    }
+  }
+
+  &__bottom {
+
+    &__title {
+      padding: 20px 0;
+    }
+
+    &__yml {
+      background: $default-body-color;
+      box-shadow: $darkest-box-shadow;
+      border-radius: 5px;
+
+      &__image {
+        padding: 20px;
+      }
+
+      &__text {
+        text-align: center;
+        padding-bottom: 15px;
+        
+        a {
+          margin-top: 5px;
+        }
+      }
     }
   }
 }
