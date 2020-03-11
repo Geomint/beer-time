@@ -40,3 +40,13 @@ deleteButton.click(function (e) {
             }
         });
 })
+
+$(document).ready(function () {
+    if ($(".swal-create-account").length) {
+        swal({
+            title: "Hey!",
+            text: "Please register an account to view our beers!",
+            icon: "warning",
+        })
+    }
+})
