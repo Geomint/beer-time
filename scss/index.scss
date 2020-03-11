@@ -1,36 +1,25 @@
-//import variables
-@import "variables/variables";
-
 //import base styles
+@import "base/variables/variables";
 @import "base/base";
 @import "base/fonts";
 @import "base/mixins";
 
-//import header styles
-@import "header/header";
-@import "header/static-header";
-
-//import index styles
-@import "home/home";
-
-//import button styles
-@import "buttons/buttons";
-
 //import components
-@import "components/contact-form";
-
-//import banners
-@import "banner/banner";
-
-//import footer
-@import "footer-styles/footer";
+@import "components/forms/contact-form";
+@import "components/forms/account-nav-form";
+@import "components/banner/banner";
+@import "components/footer/footer";
+@import "components/header/header";
+@import "components/header/static-header";
+@import "components/buttons/buttons";
 
 //import pages
 @import "page-styles/favourites";
 @import "page-styles/beer-page";
 @import "page-styles/contact";
-@import "page-styles/sign-in";
+@import "page-styles/account-nav";
 @import "page-styles/my-list";
 @import "page-styles/beer-main";
 @import "page-styles/all-beers";
 @import "page-styles/add-beers";
+@import "page-styles/home/home";
