@@ -13,7 +13,7 @@
                     </div>
                     <div class="beer-panel__links">
                         {% if session['username'] %}
-                        <a class="btn btn__no-inner" href="/my-list">My List</a>
+                        <a class="btn btn__no-inner" href="{{ url_for('my_list') }}">My List</a>
                         {% endif %}
                         {% if beer._id in favourite_beers_id %}
                         <form class="remove-from-favourites"

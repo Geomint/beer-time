@@ -17,12 +17,22 @@
                 {% endif %}
                 <div class="main-nav__inner__nav__list__dropped">
                     <ul class="main-nav__inner__nav__list__dropped__group">
-                    {% if session['username'] %}
-                            <li class="main-nav__inner__nav__list__dropped__item"><a class="" href="{{ url_for('myList') }}">My List</a></li>
-                            <li class="main-nav__inner__nav__list__dropped__item"><a class="" href="{{ url_for('sign_out') }}">Sign Out</a></li>
+                        {% if session['username'] %}
+                        <li class="main-nav__inner__nav__list__dropped__item"><a class=""
+                                href="{{ url_for('my_list') }}">My List</a></li>
+                        <li class="main-nav__inner__nav__list__dropped__item"><a class=""
+                                href="{{ url_for('sign_out') }}">Sign Out</a></li>
                         {% else %}
-                            <li class="main-nav__inner__nav__list__dropped__item"><a class="" href="{{ url_for('sign_in') }}">Sign In</a></li>
-                    {% endif %}
+                        <li class="main-nav__inner__nav__list__dropped__item"><a class=""
+                                href="{{ url_for('sign_in') }}">Sign In</a></li>
+                        {% endif %}
+                        {% if session['username'] %}
+                            {% if current_user['admin'] == true %}
+                        <li class="main-nav__inner__nav__list__dropped__item"><a class=""
+                                href="{{ url_for('add_beer') }}">Add Beer</a></li>
+                            {% endif %}
+                        {% endif %}
+
                     </ul>
                 </div>
             </li>
