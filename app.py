@@ -1,12 +1,13 @@
 import os
 from flask import Flask, render_template, request, flash, session, redirect, url_for
-import json
 from flask_pymongo import PyMongo
 from bson.objectid import ObjectId
 import bcrypt
 
-
+# Create an instance of flask and assign it to 'app'.
 app = Flask(__name__)
+
+# Initilize connection to MongoDB
 app.config["MONGO_DBNAME"] = 'Beer-Time'
 app.config["MONGO_URI"] = os.getenv("MONGO_URI")
 app.secret_key = "vRb81oq80xFpG45So4CKACqU1GvA9Fv"
@@ -15,12 +16,12 @@ mongo = PyMongo(app)
 
 # Routes for beer time
 
-'''
-This app route is for the index page, this accesses the beers collection in order to output a list of beers 
-onto the slider toward the bottom of the page. 
-'''
+
 @app.route('/')
 def index():
+    """
+    This function is for the home page, it renders the index template and is the standard landing page for the site.
+    """
     try:
         current_user = session['username']
         users = mongo.db.users
@@ -29,15 +30,13 @@ def index():
         return render_template("pages/index.html", body_id="home-page", page_title="Home")
 
 
-'''
-This 'all-beers' route is for the main beer page where all beers in the database are output to the page, the function
-will check if there is a user in session and wether or not they have a 'favourites' array in the collection. If the
-Array has ObjectIds present these are marked as favourites on the beer panel itself. 
-'''
-
-
 @app.route('/all-beers')
 def all_beers():
+    """
+    This function is for the all-beers page, this is the main focus of the website, the beers collection is accessed and made available to the HTML template.
+    The favourites array of the current user in session is accessed and then passed into the favourites_beers_id array, which is then used to show the user which
+    beer they currently have saved as a favourite.
+    """
     try:
         current_user = session['username']
         users = mongo.db.users
@@ -59,6 +58,10 @@ def all_beers():
 
 @app.route('/my-list', methods=["GET", "POST"])
 def my_list():
+    """
+    This is the function for the my-list page, here the favourited beers are accessed through the current users object. The id's in the array are
+    looped over in order to render them to the HTML.
+    """
     current_user = session['username']
     users = mongo.db.users
     current_user_obj = users.find_one({'name': session['username']})
@@ -81,6 +84,10 @@ def my_list():
 
 @app.route('/add-to-fav/<beer_id>', methods=['POST'])
 def addToFavourites(beer_id):
+    """
+    This is the function to handle adding or pushing beers into the current users favourites array. The current user object is selected from the session name and the beer_id
+    is aquired through the url, this then gets pushed through into the favourites array.
+    """
     current_user = session['username']
     users = mongo.db.users
     current_user_obj = users.find_one({'name': session['username']})
@@ -92,6 +99,10 @@ def addToFavourites(beer_id):
 
 @app.route('/remove-from-favourites/<beer_id>', methods=['POST'])
 def remove_from_favourites(beer_id):
+    """
+    This is the function to handle removing or pulling beers out of the current users favourites array. The current user object is selected from the session name and the beer_id
+    is aquired through the url, this then gets pulled or removed from the favourites array.
+    """
     current_user = session['username']
     users = mongo.db.users
     current_user_obj = users.find_one({'name': session['username']})
@@ -103,6 +114,9 @@ def remove_from_favourites(beer_id):
 
 @app.route('/beer/<beer_id>')
 def beer_page(beer_id):
+    """
+    This is the function that creates the beer 'product-page' where the user can read more about the beer and view alternatives.
+    """
     current_user = session['username']
     users = mongo.db.users
     the_beer = mongo.db.beers.find_one({"_id": ObjectId(beer_id)})
@@ -112,11 +126,18 @@ def beer_page(beer_id):
 
 @app.route('/add-beer')
 def add_beer():
+    """
+    This is the function that creates the beer 'product-page' where the user can read more about the beer and view alternatives.
+    """
     return render_template('pages/beers/add-beer.html', body_id="add-beer", types=mongo.db.types.find())
 
 
 @app.route('/insert-beer', methods=['POST'])
 def insert_beer():
+    """
+    This is the function that gets triggered from the 'add-beer' page and handles the inserting of new documents into the database.
+    The beer dictionary is constructed using the information collected from the HTML form.
+    """
     beers = mongo.db.beers
     beers.insert_one(request.form.to_dict())
     return redirect(url_for('all_beers'))
@@ -124,6 +145,10 @@ def insert_beer():
 
 @app.route('/edit-beer/<beer_id>')
 def edit_beer(beer_id):
+    """
+    This is the function that handles the page in which the user can edit the beers, this function is only callable by the user with the admin setting.
+
+    """
     current_user = session['username']
     users = mongo.db.users
     the_beer = mongo.db.beers.find_one({"_id": ObjectId(beer_id)})
@@ -133,6 +158,9 @@ def edit_beer(beer_id):
 
 @app.route('/update-beer/<beer_id>', methods=['POST'])
 def update_beer(beer_id):
+    """
+    This function updates the beers in the database based on the beer_id from the url, this will update any value that is changed on the HTML form. 
+    """
     beer = mongo.db.beers
     beer.update({'_id': ObjectId(beer_id)},
                 {
@@ -150,12 +178,20 @@ def update_beer(beer_id):
 
 @app.route('/delete-beer/<beer_id>')
 def delete_beer(beer_id):
+    """
+    This function deletes the selected beer from the database based on the beer_id passed in from the url.
+    """
     mongo.db.beers.remove({'_id': ObjectId(beer_id)})
     return redirect(url_for('all_beers'))
 
 
 @app.route('/register', methods=["GET", "POST"])
 def create_account():
+    """
+    This is the function which handles the creation of new accounts on the website, if the request method is POST the code checks to see if the entered
+    username exists in the database, it also checks to see if the passwords entered match for further validation. If the username doesnt exist and the passwords match
+    the password is then encrypted using bcrypt and inserted into the users table in the database.
+    """
     if request.method == 'POST':
         users = mongo.db.users
         existing_user = users.find_one({'name': request.form['username']})
@@ -179,18 +215,19 @@ def create_account():
     return render_template("pages/account-nav.html", body_id="register-page", page_title="Create an Account")
 
 
-"""
-Route for the sign-in page
-"""
-
-
 @app.route('/sign-in', methods=["POST", "GET"])
 def sign_in():
+    """
+    This is the function that renders the sign in page where users on the website can sign into their accounts.
+    """
     return render_template("pages/account-nav.html", body_id="sign-in", page_title="Sign In")
 
 
 @app.route('/login', methods=["POST", "GET"])
 def login():
+    """
+    This is the function that checks if the user exists in the database, and populates that value inside the login_user variable. 
+    """
     users = mongo.db.users
     login_user = users.find_one({'name': request.form['username'].lower()})
 
@@ -202,11 +239,11 @@ def login():
     return redirect(url_for('sign_in'))
 
 
-"""
-Route for sign-out
-"""
 @app.route('/sign-out')
 def sign_out():
+    """
+    This function clears the session when the route is accessed.
+    """
     session.clear()
     return redirect('/')
 
