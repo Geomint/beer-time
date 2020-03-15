@@ -257,12 +257,12 @@ def contact():
         current_user = session['username']
         users = mongo.db.users
         if request.method == "POST":
-            flash("Thanks {} we have recieved your message!".format(
+            flash("Thanks {} we have recieved your message! A member of our team will be in touch shortly".format(
                 request.form["name"]))
         return render_template("pages/contact-us.html", body_id="contact-page", page_title="Contact Us", current_user=users.find_one({'name': session['username']}))
     except:
         if request.method == "POST":
-            flash("Thanks {} we have recieved your message!".format(
+            flash("Thanks {} we have recieved your message! A member of our team will be in touch shortly".format(
                 request.form["name"]))
         return render_template("pages/contact-us.html", body_id="contact-page", page_title="Contact Us")
 
