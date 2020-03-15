@@ -5,6 +5,7 @@
     {% include 'components/head/head.html' %}
 </head>
 {% include 'components/header/header.html' %}
+{% include 'components/header/hidden-nav.html' %}
 <body id="{{ body_id }}">
     {% include 'components/banner/top-banner.html' %}
     <main class="page-padding container">
@@ -12,6 +13,7 @@
     </main>
     {% block beers_list %} {% endblock %}
     {% include 'components/footer/footer.html' %}
+    {% include 'components/overlay.html' %}
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.slim.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.15.0/umd/popper.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
