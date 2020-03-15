@@ -7,11 +7,11 @@
             </div>
             <div class="account-nav__form__group">
                 <label class="account-nav__form__group__label" for="password">Password</label>
-                <input required class="account-nav__form__group__input" type="text" name="password">
+                <input required class="account-nav__form__group__input" type="password" name="password">
             </div>
             <div class="account-nav__form__group">
                 <label class="account-nav__form__group__label" for="repeat-password">Repeat Password</label>
-                <input required class="account-nav__form__group__input" type="text" name="repeat_password">
+                <input required class="account-nav__form__group__input" type="password" name="repeat_password">
                 {% with messages = get_flashed_messages() %}
                     {% if messages %}
                         {% for message in messages %}
