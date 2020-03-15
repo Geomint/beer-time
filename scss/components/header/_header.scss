@@ -27,6 +27,11 @@
             text-decoration: none;
           }
         }
+
+        i {
+          color: $secondary-color;
+          font-size: 30px;
+        }
       }
 
       &__list {
