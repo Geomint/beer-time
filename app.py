@@ -23,7 +23,7 @@ def index():
     This function is for the home page, it renders the index template and is the standard landing page for the site.
     """
     try:
-        current_user = session['username']
+        current_user = session['username'].lower()
         users = mongo.db.users
         return render_template("pages/index.html", body_id="home-page", page_title="Home", current_user=users.find_one({'name': session['username']}))
     except:
@@ -38,9 +38,9 @@ def all_beers():
     beer they currently have saved as a favourite.
     """
     try:
-        current_user = session['username']
+        current_user = session['username'].lower()
         users = mongo.db.users
-        current_user_obj = users.find_one({'name': session['username']})
+        current_user_obj = users.find_one({'name': session['username'].lower()})
         if len(current_user_obj['favourites']) != 0:
             current_user_favourites = current_user_obj['favourites']
         favourite_beers_id = []
@@ -51,7 +51,7 @@ def all_beers():
                 current_beer_id = current_beer['_id']
                 favourite_beers_id.append(current_beer_id)
 
-        return render_template("pages/beers/all-beers.html", favourite_beers_id=favourite_beers_id, beers=mongo.db.beers.find(), body_id="all-beers", current_user=users.find_one({'name': session['username']}))
+        return render_template("pages/beers/all-beers.html", favourite_beers_id=favourite_beers_id, beers=mongo.db.beers.find(), body_id="all-beers", current_user=users.find_one({'name': session['username'].lower()}))
     except:
         return redirect(url_for('create_account'))
 
@@ -62,9 +62,9 @@ def my_list():
     This is the function for the my-list page, here the favourited beers are accessed through the current users object. The id's in the array are
     looped over in order to render them to the HTML.
     """
-    current_user = session['username']
+    current_user = session['username'].lower()
     users = mongo.db.users
-    current_user_obj = users.find_one({'name': session['username']})
+    current_user_obj = users.find_one({'name': session['username'].lower()})
     current_user_favourites = current_user_obj['favourites']
     favourite_beers = []
     favourite_beers_id = []
@@ -79,7 +79,7 @@ def my_list():
         current_beer = mongo.db.beers.find_one({'_id': fav})
         favourite_beers.append(current_beer)
 
-    return render_template("pages/my-list.html", body_id="my-list", page_title="My List", favourite_beers_id=favourite_beers_id, favourite_beers=favourite_beers, current_user=users.find_one({'name': session['username']}))
+    return render_template("pages/my-list.html", body_id="my-list", page_title="My List", favourite_beers_id=favourite_beers_id, favourite_beers=favourite_beers, current_user=users.find_one({'name': session['username'].lower()}))
 
 
 @app.route('/add-to-fav/<beer_id>', methods=['POST'])
@@ -88,9 +88,9 @@ def addToFavourites(beer_id):
     This is the function to handle adding or pushing beers into the current users favourites array. The current user object is selected from the session name and the beer_id
     is aquired through the url, this then gets pushed through into the favourites array.
     """
-    current_user = session['username']
+    current_user = session['username'].lower()
     users = mongo.db.users
-    current_user_obj = users.find_one({'name': session['username']})
+    current_user_obj = users.find_one({'name': session['username'].lower()})
     current_user_favourites = current_user_obj['favourites']
     mongo.db.users.update(
         current_user_obj, {"$push": {"favourites": ObjectId(beer_id)}})
