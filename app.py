@@ -117,7 +117,7 @@ def beer_page(beer_id):
     """
     This is the function that creates the beer 'product-page' where the user can read more about the beer and view alternatives.
     """
-    current_user = session['username']
+    current_user = session['username'].lower()
     users = mongo.db.users
     the_beer = mongo.db.beers.find_one({"_id": ObjectId(beer_id)})
     you_might_like = mongo.db.beers.find().limit(3)
@@ -129,7 +129,9 @@ def add_beer():
     """
     This is the function that creates the beer 'product-page' where the user can read more about the beer and view alternatives.
     """
-    return render_template('pages/beers/add-beer.html', body_id="add-beer", types=mongo.db.types.find())
+    current_user = session['username']
+    users = mongo.db.users
+    return render_template('pages/beers/add-beer.html', body_id="add-beer", types=mongo.db.types.find(), current_user=users.find_one({'name': session['username'].lower()}))
 
 
 @app.route('/insert-beer', methods=['POST'])
