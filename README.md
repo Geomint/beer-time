@@ -107,7 +107,25 @@ This project naturally will need alot of testing due to the scope of the website
 
 ## Bugs 🐞
 
+#### Bugs During Development: 
+
+<p>During development of this project, I face a few puzzling bugs that proved to be somewhat challenging, being new to Flask, Python etc means that it took me 
+somewhat longer to find soltuions and fixes.</p>
+
+<p>Case Sensitive Confusion:</p>
+
+- <strong>Bug</strong> 🐞: <p>The code that handles the creation and and registration of the user accounts on BeerTime captures the inputted data and then transforms that into lowercase to then store into the database, the code that checks to see what current user was in session was throwing errors because it WAS looking for a case sensitive value.</p>
+ 
+- <strong>Fix</strong> 🔧: <p>Altered the code so that it is no longer case sensitive when determining which user is currently active or in session on the website.</p>
+
+- <strong>Verdict</strong> ✅: <p>This bug was squashed and meant I could continue working on other aspects of the project.</p>
+
+#### Known Bugs: 
+
+
 ## Deployment 🚀
 
 ## Credits 💳
+
+
 
