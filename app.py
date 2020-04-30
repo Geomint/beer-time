@@ -7,14 +7,14 @@ import bcrypt
 # Create an instance of flask and assign it to 'app'.
 app = Flask(__name__)
 
-# Initilize connection to MongoDB
+# Initilize connection to MongoDB.
 app.config["MONGO_DBNAME"] = 'Beer-Time'
 app.config["MONGO_URI"] = os.getenv("MONGO_URI")
 app.secret_key = "vRb81oq80xFpG45So4CKACqU1GvA9Fv"
 
 mongo = PyMongo(app)
 
-# Routes for beer time
+# Routes for beer time.
 
 
 @app.route('/')
@@ -30,6 +30,11 @@ def index():
         return render_template("pages/index.html", body_id="home-page", page_title="Home")
 
 
+@app.route("/reviews")
+def reviews():
+    return render_template("pages/reviews.html", reviews=mongo.db.reviews.find())
+
+
 @app.route('/all-beers')
 def all_beers():
     """
@@ -40,7 +45,8 @@ def all_beers():
     try:
         current_user = session['username'].lower()
         users = mongo.db.users
-        current_user_obj = users.find_one({'name': session['username'].lower()})
+        current_user_obj = users.find_one(
+            {'name': session['username'].lower()})
         if len(current_user_obj['favourites']) != 0:
             current_user_favourites = current_user_obj['favourites']
         favourite_beers_id = []
@@ -105,7 +111,7 @@ def remove_from_favourites(beer_id):
     """
     current_user = session['username']
     users = mongo.db.users
-    current_user_obj = users.find_one({'name': session['username']})
+    current_user_obj = users.find_one({'name': session['username'].lower()})
     current_user_favourites = current_user_obj['favourites']
     mongo.db.users.update(
         current_user_obj, {"$pull": {"favourites": ObjectId(beer_id)}})
@@ -120,8 +126,9 @@ def beer_page(beer_id):
     current_user = session['username'].lower()
     users = mongo.db.users
     the_beer = mongo.db.beers.find_one({"_id": ObjectId(beer_id)})
+    reviews = mongo.db.reviews.find()
     you_might_like = mongo.db.beers.find().limit(3)
-    return render_template('pages/beers/beer.html', beer=the_beer, you_might_like=you_might_like, body_id="beer-product", current_user=users.find_one({'name': session['username']}))
+    return render_template('pages/beers/beer.html', beer=the_beer, you_might_like=you_might_like, body_id="beer-product", reviews=reviews, current_user=users.find_one({'name': session['username']}))
 
 
 @app.route('/add-beer')
