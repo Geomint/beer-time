@@ -59,4 +59,62 @@
       }
     }
   }
+
+  &__review {
+
+    &__title {
+      padding: 20px 0;
+    }
+
+    &__wrapper {
+      background: $default-body-color;
+      box-shadow: $darkest-box-shadow;
+      border-radius: 5px;
+    }
+
+
+    &__form {
+      display: none;
+
+      p {
+        text-align: center;
+      }
+
+      &__group {
+        padding: 25px;
+
+        textarea {
+          border: none;
+          width: 100%;
+          padding: 10px;
+        }
+      }
+
+      &__submit {
+        margin: auto;
+        display: block;
+      }
+    }
+
+    &__reviews {
+      padding: 10px;
+    }
+
+    &__comment {
+      padding: 10px;
+      >p {
+        padding: 10px 3px;
+        border-bottom: 1px solid rgba(0,0,0,0.3);
+      }
+
+      &:last-child {
+        p {border: none;}
+      }
+    }
+
+    &__leave-a-review {
+      text-align: center;
+      padding: 10px;
+    }
+  }
 }
