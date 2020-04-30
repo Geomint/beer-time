@@ -1,4 +1,11 @@
 const header = $('.main-nav');
+const reviewSlideSelector = $('#review-selector')
+
+reviewSlideSelector.click(function(){
+    $(".beer-page__review__form").show();
+    reviewSlideSelector.hide();
+    return false;
+})
 
 $(window).scroll(function () {
     if ($(window).scrollTop() > 0) {
@@ -30,3 +37,4 @@ $('.nav-button').on('click', function() {
 $('.overlay, .mobile-nav').on('click', function(){
     $('html').removeClass('open-nav show-overlay')
 });
+
