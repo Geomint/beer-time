@@ -7,7 +7,7 @@
 </section>
 <section class="add-beer-form-background row">
     <div class="col-sm-6 offset-sm-3">
-        <form id="test" action="{{ url_for('insert_beer') }}" method="POST" class="add-beer-form">
+        <form enctype=multipart/form-data action="{{ url_for('insert_beer') }}" method="POST" class="add-beer-form">
             <div class="add-beer-form__collection">
                 <div class="add-beer-form__group">
                     <div class="add-beer-form__group__text">
