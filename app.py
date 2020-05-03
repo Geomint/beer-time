@@ -126,10 +126,33 @@ def beer_page(beer_id):
     current_user = session['username'].lower()
     users = mongo.db.users
     the_beer = mongo.db.beers.find_one({"_id": ObjectId(beer_id)})
-    reviews = mongo.db.reviews.find()
     you_might_like = mongo.db.beers.find().limit(3)
-    return render_template('pages/beers/beer.html', beer=the_beer, you_might_like=you_might_like, body_id="beer-product", reviews=reviews, current_user=users.find_one({'name': session['username']}))
+    current_beer_reviews = the_beer['reviews']
+    return render_template('pages/beers/beer.html', beer=the_beer, you_might_like=you_might_like, beer_reviews=current_beer_reviews, body_id="beer-product", current_user=users.find_one({'name': session['username']}))
 
+
+@app.route('/add-review/<beer_id>', methods=["POST", "GET"])
+def add_review(beer_id):
+    users = mongo.db.users
+    the_beer = mongo.db.beers.find_one({"_id": ObjectId(beer_id)})
+    mongo.db.beers.update(the_beer, {"$push": {"reviews": {'name': request.form.get('name'),'review': request.form.get('review')}}})
+    return render_template("pages/beers/all-beers.html", current_user=users.find_one({'name': session['username']}))
+
+
+@app.route('/delete-review/<beer_id>', methods=["POST", "GET"])
+def delete_review(beer_id):
+    users = mongo.db.users
+    the_beer = mongo.db.beers.find_one({"_id": ObjectId(beer_id)})
+    mongo.db.beers.update(the_beer, {"$pull": {"reviews": {}}})
+    return render_template("pages/beers/all-beers.html", current_user=users.find_one({'name': session['username']}))
+
+
+@app.route('/edit-review/<beer_id>', methods=["POST", "GET"])
+def edit_review(beer_id):
+    users = mongo.db.users
+    the_beer = mongo.db.beers.find_one({"_id": ObjectId(beer_id)})
+    mongo.db.beers.update(the_beer, {"$push": {"reviews": {'name': request.form.get('name'),'review': request.form.get('review')}}})
+    return render_template("pages/beers/all-beers.html", current_user=users.find_one({'name': session['username']}))
 
 @app.route('/add-beer')
 def add_beer():
@@ -168,7 +191,7 @@ def edit_beer(beer_id):
 @app.route('/update-beer/<beer_id>', methods=['POST'])
 def update_beer(beer_id):
     """
-    This function updates the beers in the database based on the beer_id from the url, this will update any value that is changed on the HTML form. 
+    This function updates the beers in the database based on the beer_id from the url, this will update any value that is changed on the HTML form.
     """
     beer = mongo.db.beers
     beer.update({'_id': ObjectId(beer_id)},
@@ -180,8 +203,7 @@ def update_beer(beer_id):
                 'notes': request.form.get('notes'),
                 'abv': request.form.get('abv'),
                 'image': request.form.get('image')
-                }
-                )
+                })
     return redirect(url_for('add_beer'))
 
 
@@ -235,7 +257,7 @@ def sign_in():
 @app.route('/login', methods=["POST", "GET"])
 def login():
     """
-    This is the function that checks if the user exists in the database, and populates that value inside the login_user variable. 
+    This is the function that checks if the user exists in the database, and populates that value inside the login_user variable.
     """
     users = mongo.db.users
     login_user = users.find_one({'name': request.form['username'].lower()})
