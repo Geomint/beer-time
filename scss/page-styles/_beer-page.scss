@@ -102,13 +102,28 @@
 
     &__comment {
       padding: 10px;
-      >p {
-        padding: 10px 3px;
+      p {
+        padding: 15px 3px;
         border-bottom: 1px solid rgba(0,0,0,0.3);
       }
 
       &:last-child {
         p {border: none;}
+      }
+
+      &__icons {
+        display: flex;
+        justify-content: center;
+
+        a {
+          padding: 0 5px;
+          color: $primary-color;
+          transition: $default-transition;
+
+          &:hover {
+            color: $secondary-color;
+          }
+        }
       }
     }
 
