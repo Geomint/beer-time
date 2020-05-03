@@ -23,20 +23,37 @@
                 <h2 class="beer-page__review__title">What do other people think?</h2>
                 <div class="beer-page__review__wrapper">
                     <div class="beer-page__review__reviews">
+                        {% for review in beer_reviews %}
                         <div class="beer-page__review__comment">
-                            {% for review in reviews %}
-                                <h3>{{ review.name }} Says...</h3>
-                                <p>{{ review.beer_id }}</p>
-                                <p>{{ review.review }}</p>
-                            {% endfor %}
+                            <div class="row align-items-center">
+                                <div class="col-md-10">
+                                    <h4>{{ review.name }} Says...</h4>
+                                    <p>{{ review.review }}</p>
+                                </div>
+                                <div class="col-md-2">
+                                    <div class="beer-page__review__comment__icons">
+                                        {% if review.name == session['username'] %}
+                                        <a href="{{ url_for('delete_review', beer_id=beer._id)}}"><i
+                                                class="fas fa-trash"></i></a>
+                                        <a href=""><i class="fas fa-edit"></i></a>
+                                        {% endif %}
+                                    </div>
+                                </div>
+                            </div>
                         </div>
+                        {% endfor %}
                     </div>
-                    <form class="beer-page__review__form" action="">
+                    <form class="beer-page__review__form" action="{{ url_for('add_review', beer_id=beer._id) }}"
+                        method="POST">
                         <p>Please type your review in the box below and hit submit.</p>
-                        <div class="beer-page__review__form__group">
-                            <textarea class="beer-page__review__form__group__message" name="" id="" cols="30" rows="10"></textarea>
+                        <div class="beer-page__review__form__group hidden">
+                            <input type="text" name="name" id="name" value="{{ session['username'] }}">
                         </div>
-                        <input class="beer-page__review__form__submit btn btn__primary" type="submit" name="" id="">
+                        <div class="beer-page__review__form__group">
+                            <textarea class="beer-page__review__form__group__message" name="review" id="review"
+                                cols="30" rows="10"></textarea>
+                        </div>
+                        <input class="beer-page__review__form__submit btn btn__primary" type="submit">
                     </form>
                     <div class="beer-page__review__leave-a-review">
                         <a class="btn btn__primary" id="review-selector" href="#">Leave a review</a>
