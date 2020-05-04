@@ -57,6 +57,15 @@ The goal of this project is to showcase various types of craft ales for those wh
 
 ### User Stories:
 
+Gabe says:
+""
+
+Mike says:
+""
+
+John says:
+"" 
+
 ### User Requirements and Expectations:
 
 #### Requirements:
