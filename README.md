@@ -130,7 +130,18 @@ I Built the wireframes for this project using Sketch, this software allowed me t
 View the wireframes for this project <a href="https://github.com/Geomint/beer-time/tree/master/wireframes">here.</a>
  
 ### Account Creation Flowchart:
+The account creation flowchart allowed me to understand the required logic in order to handle the creation and management of letting users create accounts on the website, this flowchart can be veiwed <a href="https://github.com/Geomint/beer-time/tree/master/wireframes/flowcharts">here.</a>
 ### Database Design:
+Utilising the NoSQL features that MongoDB provides I was able to map out the following collections.
+
+### Data Storage Types:
+The types of data that are stored in the MongoDB database.
+- ObjectID
+- String
+- Boolean
+- Object
+- Array
+- Binary
 
 Beers Collection:
 **Title**|**Key in Collection**|**Data Type**
@@ -165,7 +176,18 @@ View the schema templates for the database collections <a href="https://github.c
 ## Features: 🎡
 
 ### Features that have been developed:
+- Sliding banner to sit on various pages that provides additional call-to-action.
+- Register an account form, Sign-in & Sign-out functionality.
+- Add to favourites feature, allowing users to flag beverages as a 'favourite' and having them visible on their unique, 'my-list' page.
+- Users can leave reviews on individual beers, edit their reviews, delete their reviews, and read what other people have to say.
+- The webmaster has access to the 'add-beer', 'edit-beer' and delete beer pages & functions.
+
 ### Features that will be developed in the future:
+- An option to purchase the products users can see on the website.
+- Advanced product information, including maps leading users to the closest place they can taste the beverage.
+- An option for users to opt-in to a mailing list to keep up to date with the latest from BeerTime.
+- Email authentication to provide a second level of security.
+- The ability to filter the beverages by type, abv% etc.
 
 ## Technologies Used: 👨‍💻
 #### Languages:
