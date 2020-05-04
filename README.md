@@ -239,6 +239,100 @@ This project naturally will need alot of testing due to the scope of the website
 
 - <strong>Verdict</strong> ✅: This test has passed based on the above criteria and notes.
 
+<strong>Create an account -</strong>
+- <strong>Plan</strong> 📝: In order to meet the criteria of the project goals I needed to implement a way in that users on the website could create an account on the website that would then allow them to perform actions that manipulates or creates records within the collections in the MongDB. I needed to research the best ways to handle this feature in terms of making it easy for users to create an account and also properly hash the password when it is stored into the database.
+
+- <strong>Implementation</strong> 🏭: Firstly importing session and bcrypt was required in order to efficiently handle the request. The code checks first that the passwords entered match so that the user does not make any typo mistake, after that the code checks to see if the username entered already exists in the database, using flash here to alert the user to any mistakes or issues they encounter when creating an account. Upon passing the prior tests the new user is passed into the users.collection as an object with the ‘name’ field and hashed password thanks to bcrypt. Then the code initiates the ‘session’ for the user signing them in.
+
+- <strong>Test</strong> 🧪: To test this feature I had to create a few temporary accounts in order to test that the registration worked as intended, checking what values were passed & stored in the database.
+
+- <strong>Result</strong> 🏆: The test passed as the created test user accounts stored in the database with encrypted passwords and the user was signed into session.
+
+- <strong>Verdict</strong> ✅: This test has passed based on the above criteria and notes.
+
+<strong>Sign into account -</strong>
+- <strong>Plan</strong> 📝: I needed to build a page and function that allowed the users to sign in to their account that they made so they can access the information stored in their favourites array, and also have access to view all of the beers and information listed on beer time.
+
+- <strong>Implementation</strong> 🏭: The code checks that the information from the request matches the information that is stored in the users collection, and if it does the session is made with the user, otherwise a flash is triggered letting the user know that there was an in issue with his/hers account details.
+- <strong>Test</strong> 🧪: To test the sign in feature I first made a test account with username test123 and password test123 and attempted to sign in using this page.
+
+- <strong>Result</strong> 🏆: The test passed as the session was made and i was signed into the account ‘test123’ i double checked this by checking the session cookie in dev-tools.
+
+- <strong>Verdict</strong> ✅: This test has passed based on the above criteria and Notes.
+
+<strong>Sign out of account -</strong>
+- <strong>Plan</strong> 📝: There also needed to be a sign-out feature for the users so that they could sign out of their account if they so wished.
+
+- <strong>Implementation</strong> 🏭: Creating a route and method for the sign-out functionality was relatively simple, using session.clear clears the active session.
+
+- <strong>Test</strong> 🧪: Testing this feature was simple, all i had to do was sign into the previously created account and click the sign-out button in the navigation.
+
+- <strong>Result</strong> 🏆: The test passed as the session was cleared out and the user was no longer signed in.
+
+- <strong>Verdict</strong> ✅: This test has passed based on the above criteria and notes.
+
+<strong>Add beer to favourites list -</strong>
+- <strong>Plan</strong> 📝: I wanted to develop a way that the user could interact with the beers listed on the all-beers page, and therefore planned to create an add to favourites button, this would allow the user to read about the beer, decide whether or not they liked the sound of it and click the empty beer icon which would then fill the beer icon and add that objectid of that beer to the users favourites array, this would then be visible on the my-list page.
+
+- <strong>Implementation</strong> 🏭: To implement this feature i created a form that would auto submit once the checkbox was checked using JavaScript, the beer_id which is unique and accessible in the jinja templates is then passed into the current users favourites array and stored in the mongoDB.
+
+- <strong>Test</strong> 🧪: To test this feature worked i needed to submit the form and check the database to see if the objectID had been placed into the correct user that was signed in.
+
+- <strong>Result</strong> 🏆: The objectID for the beer clicked successfully was entered into the favourites array of the test account.
+
+- <strong>Verdict</strong> ✅: This test has passed based on the above criteria and notes.
+
+<strong>My List page -</strong>
+- <strong>Plan</strong> 📝: In order to utilise the add to favourites feature in more depth i wanted to create a page in which users could view all of the beers they had marked as favourite, creating a one stop place for them to check if they are out. I needed to make this page access the data of each beer using the objectID store in the favourites array of the current user.
+
+- <strong>Implementation</strong> 🏭: To implement this feature i looped over each id in the current users favourites array, and then passed this data to the template where the beers in the users favourites array were generated.
+
+- <strong>Test</strong> 🧪: Testing this feature was relatively simple, once the objectID was in the favourites array of the current user, the beer should appear on the my list page.
+
+- <strong>Result</strong> 🏆: The beer appeared on the my list page individually which shows how only the selected objectID was passed into the favourites array of the current user.
+
+- <strong>Verdict</strong> ✅: This test has passed based on the above criteria and notes.
+
+<strong>Write a review of a beer -</strong>
+- <strong>Plan</strong> 📝: 
+- <strong>Implementation</strong> 🏭: 
+- <strong>Test</strong> 🧪: 
+- <strong>Result</strong> 🏆: 
+- <strong>Verdict</strong> ✅: This test has passed based on the above criteria and notes.
+
+<strong>Read the reviews of a beer -</strong>
+- <strong>Plan</strong> 📝: 
+- <strong>Implementation</strong> 🏭:
+- <strong>Test</strong> 🧪: 
+- <strong>Result</strong> 🏆: 
+- <strong>Verdict</strong> ✅: This test has passed based on the above criteria and notes.
+
+<strong>Delete reviews created by specific user -</strong>
+- <strong>Plan</strong> 📝:
+- <strong>Implementation</strong> 🏭: 
+- <strong>Test</strong> 🧪: 
+- <strong>Result</strong> 🏆: 
+- <strong>Verdict</strong> ✅: This test has passed based on the above criteria and notes.
+
+<strong>Edit reviews created by specific user -</strong>
+- <strong>Plan</strong> 📝: 
+- <strong>Implementation</strong> 🏭: 
+- <strong>Test</strong> 🧪: 
+- <strong>Result</strong> 🏆: 
+- <strong>Verdict</strong> ✅: This test has passed based on the above criteria and notes.
+
+<strong>All beers page -</strong>
+- <strong>Plan</strong> 📝: I needed to create a page in which all the beers in the beers collection could be rendered, this would be done on the all-beers page, in order to interact with the add-to-favourites functionality im going to need this page to be accessible only when a user is in session.
+
+- <strong>Implementation</strong> 🏭: Implementing this page + feature was relatively simple, i made the connection to the collection on the route and made the data available for the template, then i created a loop using Jinja and each beer rendered correctly.
+
+- <strong>Test</strong> 🧪: To test if this feature worked i accessed the all-beers page and determined whether all the data was rendered correctly.
+
+- <strong>Result</strong> 🏆: The data was rendered correctly and all the beers in the collection were pulled out.
+
+- <strong>Verdict</strong> ✅: This test has passed based on the above criteria and notes.
+
+
 ## Bugs 🐞
 
 #### Bugs During Development: 
