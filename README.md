@@ -2,8 +2,6 @@
 
 # Beer Time! 🍻
 
-** insert device screenshot **
-
 <img src="https://github.com/Geomint/beer-time/raw/master/wireframes/screenshot/multi-device.png?raw=true"></img>
 
 Welcome to Beer Time, if you're like me then you love to drink beer, and not just the basic stuff, explore the wide range of variety using this website and make sure to add your favourites to your personal list. If you would like to get in touch about this project head over to my GitHub contact details.
