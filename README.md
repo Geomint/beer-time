@@ -33,22 +33,70 @@ Welcome to Beer Time, if you're like me then you love to drink beer, and not jus
 - Testing + Planning: ✏️ 🔌
 - Bugs 🐞
 - Deployment 🚀
+	- Deploying to Heroku
+    - Locally run this project
 - Credits 💳
 
 ## User Experience: 👍
 
 ### Project Goals:
+The goal of this project is to showcase various types of craft ales for those who enjoy the experimentation in the brewing process. The users who access to website will be able to create a favourites list from a list of products. This website is not aimed at people who are under the suitable age to consume alchohol.
+
 ### Target Audience Goals:
+- To be able to find out information about various craft beverages.
+- Create an account and build up a favourites list to keep track of the beers they have tasted.
+- A visually inviting and appealing design.
+- A facility to send messages to the company to discuss the beverages.
+- To be able to consume the information on the website on Desktop/Tablet and mobile devices.
+
 ### Site Owner Goals:
+- Generate increased interest for various branded beverages.
+- Collect user information in terms of site analytics.
+- Recieve messages from the users to interact with.
+- Attract branded beverages to feature on the website.
+
 ### User Stories:
+
 ### User Requirements and Expectations:
 
+#### Requirements:
+- Interact with a visually appealing website.
+- Navigate the website with ease & with fast load times.
+- Extract information on various craft beverages.
+- Information on the website to be laid out in a clear and effective way.
+- Construct a list of beverages to try, or to remember.
+#### Expectations:
+- The website protects the users information.
+- The users can interact with the elements visible on the page.
+- The website loads with sufficient speed.
+- The content on the website renders correctly on desktop, mobile and tablet.
+- The users feel informed and satisfied with the informaton available.
 
 ## Design Choices: 🎨
+The design of this website had to reflect the theme of craft beverages, therefore using a rustic font and bold colours were a must. I believe the choices I have made make an intruiging and sophisticated blend and both complete a design the users will likely interact with on a positive level.
 
 ### Fonts:
+I chose to use two font families, one for the Titles on the website and another for the content, i.e paragraphs, descriptions etc.
+
+#### Heading-font:
+I chose to use the 'Permanent Marker' font for the titles on this project as it encapsulates the chalk on a black board look, which is perfect for this theme. With the main focus on showcasing beverages that often have been started by a few people experimenting, I thought this rustic, creative looking font really did the trick.
+
+#### Content-font: 
+I chose to use the 'Roboto Mono' font for the content on the website, it provides an elegant yet clear layout for the content on the website.
+
 ### Icons:
+Utilising the vast array of icons from font-awesome I was easily able to locate the icons I needed to provide the best user experience for those interacting with the site.
 ### Colours:
+The colours I chose to use for this website provide a visually captivating experience for the users, provoking a positive response using bright colours will potentially increase the interaction levels on the website.
+
+- Primary: #1B443A 'msu-green' This green provides a bold structural aspect to the website and defines the borders of the web page.
+- Secondary: #ffc038 'winter-orange' The yellow/orange colour used on the website contrasts elegantly with the primary colour and provides a clear option to use on elements like navigaton links.
+- Default body color: #E3E4DB 'platinum' This 'off-white' platinum colour provides a neutral backdrop for featured elements on the webpage, neatly highlighting the important aspects on the webpage and drawing the users attention.
+- Error colour: #FFCCCC 'error' This standard error colour is a slightly muted red in order to not provoke too much of a negative response, but to still indicate to the user that someone didn't work as intended.
+- Success colour: #4BB543 'success' The success colour is similarly a muted green, however the selection behind this colour was more influenced by how visually appealing the contrast is between that and the main backdrop of the webpage.
+- White colour: #FFF 'white' Standard white colour. 
+- Red color: #ff0000 'red' Standard red colour.
+- Black colour: #000 'black' Standard black colour.
 ### Base Styles:
 ### Images:
 ### Background (images/colours):
