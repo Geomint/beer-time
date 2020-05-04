@@ -1,0 +1,16 @@
+[{
+    "_id": "<ObjectId()>",
+    "name": "<string>",
+    "brewery": "<string>",
+    "type": "<string>",
+    "excerpt": "<string>",
+    "notes": "<string>",
+    "abv": "<string>",
+    "image": "<string>",
+    "reviews": {
+        "0": {
+            "name": "<string>",
+            "review": "<string>"
+        }
+    }
+}]
