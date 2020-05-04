@@ -98,8 +98,31 @@ The colours I chose to use for this website provide a visually captivating exper
 - Red color: #ff0000 'red' Standard red colour.
 - Black colour: #000 'black' Standard black colour.
 ### Base Styles:
+Colours:
+```
+$primary-color: #1B443A; // msu-green
+$secondary-color: #ffc038; // winter-orange
+$default-body-color: #E3E4DB; // platinum
+$error-color: #FFCCCC; // error
+$success-color: #4BB543; //success
+$white-color: #FFF; // white 
+$red-color: #ff0000; // red
+$black-color: #000; // black
+```
+Shadows:
+```
+$default-box-shadow: 1px 1px 1px rgba(0,0,0,0.5);
+$darkest-box-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+$default-text-shadow: 1px 1px 1px rgba(0,0,0,0.5);
+```
+Transitions:
+```
+$default-transition: 0.15s ease-in-out;
+```
 ### Images:
-### Background (images/colours):
+The images i've chosen to use on the website were selected to invite people into the website by looking appealing to those who are legally allowed to consume alcohol.
+### Background Images:
+The background images i've used on the sliding banner of the website were also selected to provide an instant context to the web page, the user knows what the theme of the page is just by looking at the banner, this also serves as a useful way to draw attention to the call to action buttons on the banners.
 
 ## Wireframes/Flowcharts: 🔧
  
