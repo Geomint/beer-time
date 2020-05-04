@@ -125,10 +125,42 @@ The images i've chosen to use on the website were selected to invite people into
 The background images i've used on the sliding banner of the website were also selected to provide an instant context to the web page, the user knows what the theme of the page is just by looking at the banner, this also serves as a useful way to draw attention to the call to action buttons on the banners.
 
 ## Wireframes/Flowcharts: 🔧
+I Built the wireframes for this project using Sketch, this software allowed me to easily construct a wireframe for multiple devices, and for all the pages and features I wanted to include on the project. Having these were useful to provide me with a blueprint of sorts to follow when writing the code for the website, having the design choices initially mapped out speeded up the process alltogether.
+
+View the wireframes for this project <a href="https://github.com/Geomint/beer-time/tree/master/wireframes">here.</a>
  
-### Website Layout:
 ### Account Creation Flowchart:
 ### Database Design:
+
+Beers Collection:
+**Title**|**Key in Collection**|**Data Type**
+:-----:|:-----:|:-----:
+Beer Id|_id|ObjectId
+Name|name|String
+Brewery|brewery|String
+Type|type|String
+Excerpt|excerpt|String
+Notes|notes|String
+Abv|abv|String
+Image|image|String
+Reviews|reviews|Array
+
+Types Collection:
+**Title**|**Key in Collection**|**Data Type**
+:-----:|:-----:|:-----:
+Type ID|_id|ObjectID
+Beer Type|beer_type|String
+
+Users Collection:
+**Title**|**Key in Collection**|**Data Type**
+:-----:|:-----:|:-----:
+User ID|_id|ObjectID
+Name|name|String
+Password|password|Binary
+Admin|admin|boolean
+Favourites|favourites|array
+
+View the schema templates for the database collections <a href="https://github.com/Geomint/beer-time/tree/master/data/schemas">here.</a>
 
 ## Features: 🎡
 
