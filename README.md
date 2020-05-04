@@ -57,14 +57,14 @@ The goal of this project is to showcase various types of craft ales for those wh
 
 ### User Stories:
 
-Gabe says:
-""
+Phil says:
+"I've wanted to find a website that provides me with a list of craft beverages and all the info about them, it would be nice to be able to store these drinks on a list of some sort so I can keep track of which ones ive had!"
 
 Mike says:
-""
+"Im looking for a tool that not only works on my computer but also on my phone so that i can access it when im out and about exploring cities."
 
 John says:
-"" 
+"When I search for beers online im often bombarded with marketing promotions and offers, I want a clean elegant website that offers me the information i need" 
 
 ### User Requirements and Expectations:
 
