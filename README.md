@@ -350,10 +350,11 @@ somewhat longer to find soltuions and fixes.</p>
 
 #### Known Bugs: 
 
-
 ## Deployment 🚀
 
 ## Credits 💳
 
+## Disclaimer
+The contents of this website are for educational purposes only.
 
 
