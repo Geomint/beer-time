@@ -1,0 +1,8 @@
+<form class="beer-page__review__form__edit" action="{{ url_for('update_review', review_id=review_id) }}" method="POST">
+    <p>Edit your review here and click submit</p>
+    <div class="beer-page__review__form__group">
+        <textarea class="beer-page__review__form__group__message" name="review" id="review" cols="30"
+            rows="10"></textarea>
+    </div>
+    <input id="review-submit" class="beer-page__review__form__submit btn btn__primary" type="submit">
+</form>
