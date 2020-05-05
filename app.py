@@ -123,36 +123,50 @@ def beer_page(beer_id):
     """
     This is the function that creates the beer 'product-page' where the user can read more about the beer and view alternatives.
     """
-    current_user = session['username'].lower()
     users = mongo.db.users
     the_beer = mongo.db.beers.find_one({"_id": ObjectId(beer_id)})
     you_might_like = mongo.db.beers.find().limit(3)
-    current_beer_reviews = the_beer['reviews']
-    return render_template('pages/beers/beer.html', beer=the_beer, you_might_like=you_might_like, beer_reviews=current_beer_reviews, body_id="beer-product", current_user=users.find_one({'name': session['username']}))
+    test = mongo.db.reviews.find({'beer_id': ObjectId(beer_id)})
+    reviews = []
+    cur = test
+    for i in cur:
+        reviews.append(i)
+    return render_template('pages/beers/beer.html', beer=the_beer, beer_reviews=reviews, you_might_like=you_might_like, body_id="beer-product", current_user=users.find_one({'name': session['username']}))
 
 
 @app.route('/add-review/<beer_id>', methods=["POST", "GET"])
 def add_review(beer_id):
     users = mongo.db.users
     the_beer = mongo.db.beers.find_one({"_id": ObjectId(beer_id)})
-    mongo.db.beers.update(the_beer, {"$push": {"reviews": {'name': request.form.get('name'),'review': request.form.get('review')}}})
+    mongo.db.reviews.insert({
+        'name': request.form.get('name'),
+        'review': request.form.get('review'),
+        'beer_id': ObjectId(beer_id),
+    })
     return render_template("pages/beers/all-beers.html", current_user=users.find_one({'name': session['username']}))
 
 
-@app.route('/delete-review/<beer_id>', methods=["POST", "GET"])
-def delete_review(beer_id):
+@app.route('/delete-review/<review_id>', methods=["POST", "GET"])
+def delete_review(review_id):
     users = mongo.db.users
-    the_beer = mongo.db.beers.find_one({"_id": ObjectId(beer_id)})
-    mongo.db.beers.update(the_beer, {"$pull": {"reviews": {}}})
+    mongo.db.reviews.remove({'_id': ObjectId(review_id)})
     return render_template("pages/beers/all-beers.html", current_user=users.find_one({'name': session['username']}))
 
 
-@app.route('/edit-review/<beer_id>', methods=["POST", "GET"])
-def edit_review(beer_id):
+@app.route('/edit-review/<review_id>', methods=["POST", "GET"])
+def edit_review(review_id):
     users = mongo.db.users
-    the_beer = mongo.db.beers.find_one({"_id": ObjectId(beer_id)})
-    mongo.db.beers.update(the_beer, {"$push": {"reviews": {'name': request.form.get('name'),'review': request.form.get('review')}}})
-    return render_template("pages/beers/all-beers.html", current_user=users.find_one({'name': session['username']}))
+    print(review_id)
+
+    return render_template("pages/edit-review.html", review_id=review_id, current_user=users.find_one({'name': session['username']}))
+
+
+@app.route('/update-review/<review_id>', methods=["POST", "GET"])
+def update_review(review_id):
+    users = mongo.db.users
+    mongo.db.reviews.update({'_id': ObjectId(review_id)}, {'$set': {'review': request.form.get('review')}})
+    return render_template("pages/beers/all-beers.html", review_id=review_id, current_user=users.find_one({'name': session['username']}))
+
 
 @app.route('/add-beer')
 def add_beer():
