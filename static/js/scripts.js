@@ -7,6 +7,12 @@ reviewSlideSelector.click(function(){
     return false;
 })
 
+$('#edit-review').click(function(){
+    $(".beer-page__review__form__edit").show();
+    reviewSlideSelector.hide();
+    return false;
+})
+
 $(window).scroll(function () {
     if ($(window).scrollTop() > 0) {
         header.addClass('main-nav__scrolling');
@@ -37,4 +43,3 @@ $('.nav-button').on('click', function() {
 $('.overlay, .mobile-nav').on('click', function(){
     $('html').removeClass('open-nav show-overlay')
 });
-
