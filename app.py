@@ -138,35 +138,37 @@ def beer_page(beer_id):
 def add_review(beer_id):
     users = mongo.db.users
     the_beer = mongo.db.beers.find_one({"_id": ObjectId(beer_id)})
+    current_user = users.find_one({'name': session['username']})
     mongo.db.reviews.insert({
         'name': request.form.get('name'),
         'review': request.form.get('review'),
         'beer_id': ObjectId(beer_id),
     })
-    return render_template("pages/beers/all-beers.html", current_user=users.find_one({'name': session['username']}))
+    return redirect(url_for('beer_page', beer_id=beer_id))
 
 
 @app.route('/delete-review/<review_id>', methods=["POST", "GET"])
 def delete_review(review_id):
     users = mongo.db.users
     mongo.db.reviews.remove({'_id': ObjectId(review_id)})
-    return render_template("pages/beers/all-beers.html", current_user=users.find_one({'name': session['username']}))
+    current_user=users.find_one({'name': session['username']})
+    return redirect(url_for('all_beers'))
 
 
 @app.route('/edit-review/<review_id>', methods=["POST", "GET"])
 def edit_review(review_id):
     users = mongo.db.users
-    print(review_id)
-
-    return render_template("pages/edit-review.html", review_id=review_id, current_user=users.find_one({'name': session['username']}))
+    review = mongo.db.reviews.find({"_id": ObjectId(review_id)})
+    return render_template("pages/edit-review.html", body_id="edit-review-page", review=review, review_id=review_id, current_user=users.find_one({'name': session['username']}))
 
 
 @app.route('/update-review/<review_id>', methods=["POST", "GET"])
 def update_review(review_id):
     users = mongo.db.users
+    current_user = users.find_one({'name': session['username']})
     mongo.db.reviews.update({'_id': ObjectId(review_id)}, {
                             '$set': {'review': request.form.get('review')}})
-    return render_template("pages/beers/all-beers.html", review_id=review_id, current_user=users.find_one({'name': session['username']}))
+    return redirect(url_for('edit_review', review_id=review_id))
 
 
 @app.route('/add-beer')
@@ -218,7 +220,7 @@ def update_beer(beer_id):
                     'notes': request.form.get('notes'),
                     'abv': request.form.get('abv'),
                     'image': request.form.get('image')
-                })
+    })
     return redirect(url_for('add_beer'))
 
 
