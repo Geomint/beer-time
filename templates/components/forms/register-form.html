@@ -13,13 +13,13 @@
                 <label class="account-nav__form__group__label" for="repeat-password">Repeat Password</label>
                 <input required class="account-nav__form__group__input" type="password" name="repeat_password">
                 {% with messages = get_flashed_messages() %}
-                    {% if messages %}
-                        {% for message in messages %}
-                            <div class="account-nav__form__group__error">
-                                <p>{{ message }}</p>
-                            </div>
-                        {% endfor %}
-                    {% endif %}
+                {% if messages %}
+                {% for message in messages %}
+                <div class="account-nav__form__group__error">
+                    <p>{{ message }}</p>
+                </div>
+                {% endfor %}
+                {% endif %}
                 {% endwith %}
             </div>
             <div class="account-nav__form__group--submit">
