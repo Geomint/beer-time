@@ -164,7 +164,8 @@ def edit_review(review_id):
 @app.route('/update-review/<review_id>', methods=["POST", "GET"])
 def update_review(review_id):
     users = mongo.db.users
-    mongo.db.reviews.update({'_id': ObjectId(review_id)}, {'$set': {'review': request.form.get('review')}})
+    mongo.db.reviews.update({'_id': ObjectId(review_id)}, {
+                            '$set': {'review': request.form.get('review')}})
     return render_template("pages/beers/all-beers.html", review_id=review_id, current_user=users.find_one({'name': session['username']}))
 
 
@@ -210,13 +211,13 @@ def update_beer(beer_id):
     beer = mongo.db.beers
     beer.update({'_id': ObjectId(beer_id)},
                 {
-                'name': request.form.get('name'),
-                'brewery': request.form.get('brewery'),
-                'type': request.form.get('type'),
-                'excerpt': request.form.get('excerpt'),
-                'notes': request.form.get('notes'),
-                'abv': request.form.get('abv'),
-                'image': request.form.get('image')
+                    'name': request.form.get('name'),
+                    'brewery': request.form.get('brewery'),
+                    'type': request.form.get('type'),
+                    'excerpt': request.form.get('excerpt'),
+                    'notes': request.form.get('notes'),
+                    'abv': request.form.get('abv'),
+                    'image': request.form.get('image')
                 })
     return redirect(url_for('add_beer'))
 
