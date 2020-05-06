@@ -27,7 +27,7 @@
                         <label for="name">Beer Types</label>
                     </div>
                     <select name="type" id="type">
-                        <option value="" disabled selected>Please select a beer type</option>
+                        <option value="" disabled selected>Select type...</option>
                         {% for type in types %}
                         <option value="{{ type.beer_type }}">{{ type.beer_type }}</option>
                         {% endfor %}
@@ -55,12 +55,12 @@
                     <div class="add-beer-form__group__text">
                         <label for="name">Image</label>
                     </div>
-                    <input id="image" name="image" type="file" value="{{beer.image}}">
+                    <input id="image" name="image" type="text" required placeholder="update file path">
                     <p>Current image:</p>
                     <img class="img-responsive" src="/{{beer.image}}" alt="{{beer.name}}">
                 </div>
                 <div class="add-beer-form__group">
-                    <input class="btn btn__primary" type="submit">
+                    <input class="btn btn__primary" type="submit" value="Update Beer">
                 </div>
             </div>
         </form>
