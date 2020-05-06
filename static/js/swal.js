@@ -4,11 +4,11 @@ const deleteButton = $('.ud-button-delete');
 editButton.click(function (e) {
     e.preventDefault();
     swal({
-        title: "Are you sure?",
-        text: "You really want to edit this thing?",
-        icon: "warning",
-        buttons: true,
-    })
+            title: "Are you sure?",
+            text: "You really want to edit this thing?",
+            icon: "warning",
+            buttons: true,
+        })
         .then((willEdit) => {
             if (willEdit) {
                 swal("Taking you to the edit page", {
@@ -24,11 +24,11 @@ editButton.click(function (e) {
 deleteButton.click(function (e) {
     e.preventDefault();
     swal({
-        title: "Are you sure?",
-        text: "Are you super sure you want to delete this?",
-        icon: "warning",
-        buttons: true,
-    })
+            title: "Are you sure?",
+            text: "Are you super sure you want to delete this?",
+            icon: "warning",
+            buttons: true,
+        })
         .then((willDelete) => {
             if (willDelete) {
                 swal("Deleted from the database", {
