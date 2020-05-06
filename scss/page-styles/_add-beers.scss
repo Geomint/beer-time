@@ -17,6 +17,10 @@
 
 .add-beer-form {
     max-width: 70%;
+
+    @include breakpoint(xs) {
+        max-width: 100%;
+    }
     margin: auto;
     display: block;
     background: $default-body-color;
@@ -36,6 +40,15 @@
 
         &:last-child {
             border: none;
+        }
+
+        select {
+            border: $secondary-color;
+            width: 100%;
+        }
+
+        textarea {
+            width: 100%;
         }
     }
 
