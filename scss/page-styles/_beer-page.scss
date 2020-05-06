@@ -25,6 +25,11 @@
   &__right-panel {
     padding: 30px;
 
+    @include breakpoint(xs) {
+      text-align: center;
+      padding: 5px;
+    }
+
     &__title {
       padding-bottom: 10px;
     }
@@ -38,12 +43,18 @@
 
     &__title {
       padding: 20px 0;
+      @include breakpoint(xs) {
+        text-align: center;
+      }
     }
 
     &__yml {
       background: $default-body-color;
       box-shadow: $darkest-box-shadow;
       border-radius: 5px;
+      @include breakpoint(xs) {
+        margin-bottom: 10px;
+      }
 
       &__image {
         padding: 20px;
@@ -64,6 +75,10 @@
 
     &__title {
       padding: 20px 0;
+
+      @include breakpoint(xs) {
+        text-align: center;
+      }
     }
 
     &__wrapper {
@@ -102,10 +117,19 @@
 
     &__comment {
       padding: 10px;
+      @include breakpoint(xs) {
+        text-align: center;
+        background: $white-color;
+        margin-bottom: 10px;
+        border-radius: 4px;
+      }
 
       p {
         padding: 15px 3px;
         border-bottom: 1px solid rgba(0, 0, 0, 0.3);
+        @include breakpoint(xs) {
+          border: none;
+        }
       }
 
       &:last-child {
