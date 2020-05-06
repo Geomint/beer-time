@@ -6,27 +6,27 @@
     </div>
 </section>
 <section class="add-beer-form-background row">
-    <div class="col-sm-6 offset-sm-3">
+    <div class="col-sm-6 offset-sm-3 col-xs-12">
         <form enctype=multipart/form-data action="{{ url_for('insert_beer') }}" method="POST" class="add-beer-form">
             <div class="add-beer-form__collection">
                 <div class="add-beer-form__group">
                     <div class="add-beer-form__group__text">
                         <label for="name">Name</label>
                     </div>
-                    <input id="name" name="name" type="text">
+                    <input required id="name" name="name" type="text">
                 </div>
                 <div class="add-beer-form__group">
                     <div class="add-beer-form__group__text">
                         <label for="name">Brewery</label>
                     </div>
-                    <input id="brewery" name="brewery" type="text">
+                    <input required id="brewery" name="brewery" type="text">
                 </div>
                 <div class="add-beer-form__group">
                     <div class="add-beer-form__group__text">
                         <label for="name">Beer Types</label>
                     </div>
-                    <select name="type" id="type">
-                        <option value="" disabled selected>Please select a beer type</option>
+                    <select required name="type" id="type">
+                        <option value="" disabled selected>Select type...</option>
                         {% for type in types %}
                         <option value="{{ type.beer_type }}">{{ type.beer_type }}</option>
                         {% endfor %}
@@ -36,25 +36,25 @@
                     <div class="add-beer-form__group__text">
                         <label for="name">Excerpt</label>
                     </div>
-                    <input id="excerpt" name="excerpt" type="text">
+                    <input required id="excerpt" name="excerpt" type="text">
                 </div>
                 <div class="add-beer-form__group">
                     <div class="add-beer-form__group__text">
                         <label for="name">Notes</label>
                     </div>
-                    <input type="text">
+                    <input required type="text">
                 </div>
                 <div class="add-beer-form__group">
                     <div class="add-beer-form__group__text">
                         <label for="name">ABV</label>
                     </div>
-                    <input id="abv" name="abv" type="text">
+                    <input required id="abv" name="abv" type="text">
                 </div>
                 <div class="add-beer-form__group">
                     <div class="add-beer-form__group__text">
                         <label for="name">Image</label>
                     </div>
-                    <input id="image" name="image" type="file">
+                    <input id="image" name="image" type="text" required placeholder="include file path">
                 </div>
                 <div class="add-beer-form__group">
                     <input class="btn btn__primary" type="submit">
