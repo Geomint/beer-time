@@ -13,7 +13,8 @@
         input {
             width: 100%;
 
-            &:active, &:focus {
+            &:active,
+            &:focus {
                 border: 2px solid $secondary-color !important;
                 outline: none;
             }
@@ -21,9 +22,10 @@
 
         textarea {
             width: 100%;
-            
 
-            &:active, &:focus {
+
+            &:active,
+            &:focus {
                 border: 2px solid $secondary-color !important;
                 outline: none;
             }
@@ -35,7 +37,8 @@
 
         &__submit {
             width: 100%;
-            button {    
+
+            button {
                 width: 100%;
                 margin-top: 20px;
             }

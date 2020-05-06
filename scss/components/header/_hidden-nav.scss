@@ -48,15 +48,15 @@
 
             &__item {
                 padding-top: 10px;
-                
-                a {
-                color: $white-color;
-                font-size: 1rem;
 
-                 &:hover {
-                    color: darken($secondary-color, 10%);
-                    text-decoration: none;
-                 }
+                a {
+                    color: $white-color;
+                    font-size: 1rem;
+
+                    &:hover {
+                        color: darken($secondary-color, 10%);
+                        text-decoration: none;
+                    }
                 }
             }
         }

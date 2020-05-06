@@ -4,17 +4,17 @@
 
     &__nav {
         &__list {
-        list-style: none;
+            list-style: none;
 
-        &__item {
-            a {
-                color: $secondary-color;
+            &__item {
+                a {
+                    color: $secondary-color;
 
-                &:hover {
-                    color: darken($secondary-color, 10%);
+                    &:hover {
+                        color: darken($secondary-color, 10%);
+                    }
                 }
             }
-        }
         }
     }
 
