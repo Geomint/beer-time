@@ -18,6 +18,10 @@
     box-shadow: $darkest-box-shadow;
     align-items: center;
 
+    @include breakpoint(xs) {
+      text-align: center;
+    }
+
     &__text {
       padding: 20px 0;
 
