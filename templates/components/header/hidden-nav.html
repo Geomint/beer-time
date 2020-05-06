@@ -6,7 +6,12 @@
                 <li class="hidden-nav__panel__list__item"><a aria-label="" href="{{ url_for('index') }}">Home</a></li>
                 <li class="hidden-nav__panel__list__item"><a aria-label="" href="{{ url_for('all_beers') }}">All
                         Beers</a></li>
-                {% if session['username'] %}
+                
+                    {% if session['username'] %}
+                    {% if current_user['admin'] == true %}
+                <li class="hidden-nav__panel__list__item"><a aria-label="" href="{{ url_for('add_beer') }}">Add a
+                        Beer</a>
+                    {% endif%}
                 <li class="hidden-nav__panel__list__item"><a aria-label="" href="{{ url_for('my_list') }}">My List</a>
                 <li class="hidden-nav__panel__list__item"><a aria-label="" href="{{ url_for('sign_out') }}">Sign Out</a>
                 </li>
@@ -14,6 +19,7 @@
                 <li class="hidden-nav__panel__list__item"><a aria-label="" href="{{ url_for('sign_in') }}">Sign In</a>
                 </li>
                 {% endif %}
+
             </ul>
         </div>
     </div>
