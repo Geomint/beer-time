@@ -1,13 +1,13 @@
 {% include 'components/head/head.html' %}
 {% block content %}
-    <div class="error-page">
-        <div class="error-page__details">
-            <i class="error-page__details__icon fas fa-sad-tear"></i>
-            <h1>404: Page Not Found</h1>
-            <p>Oops, looks like you've got lost, press the button below to go back to safety.</p>
-            <div class="error-page__details__button">
-                <a class="btn btn__primary" href="{{ url_for('index')}}">Go Home</a>
-            </div>
+<div class="error-page">
+    <div class="error-page__details">
+        <i class="error-page__details__icon fas fa-sad-tear"></i>
+        <h1>404: Page Not Found</h1>
+        <p>Oops, looks like you've got lost, press the button below to go back to safety.</p>
+        <div class="error-page__details__button">
+            <a class="btn btn__primary" href="{{ url_for('index')}}">Go Home</a>
         </div>
     </div>
+</div>
 {% endblock %}
