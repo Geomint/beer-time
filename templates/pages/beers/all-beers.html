@@ -2,6 +2,9 @@
 {% block beers_list %}
 <div class="container all-beers">
     <section class="row">
+        <div class="col-sm-12">
+            <h1 class="page-title">Browse our selection</h1>
+        </div>
         {% for beer in beers %}
         <div class="col-md-4 col-sm-12">
             {% include 'components/beer-panel.html' %}
