@@ -1,8 +1,14 @@
 .footer {
     background: $primary-color;
     padding: 20px;
+    @include breakpoint(xs) {
+        text-align: center;
+    }
 
     &__nav {
+        @include breakpoint(xs) {
+            padding: 10px 0;
+        }
         &__list {
             list-style: none;
 
