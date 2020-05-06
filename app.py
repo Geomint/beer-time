@@ -11,30 +11,27 @@ app = Flask(__name__)
 app.config["MONGO_DBNAME"] = 'Beer-Time'
 app.config["MONGO_URI"] = os.getenv("MONGO_URI")
 app.secret_key = os.environ.get('SECRET_KEY')
-
 mongo = PyMongo(app)
 
-# Routes for beer time.
+# 404 page
+@app.errorhandler(404)
+def page_not_found(e):
+    return render_template("pages/404.html"), 404
 
-
+# Home page
 @app.route('/')
 def index():
     """
     This function is for the home page, it renders the index template and is the standard landing page for the site.
     """
     try:
-        current_user = session['username'].lower()
         users = mongo.db.users
         return render_template("pages/index.html", body_id="home-page", page_title="Home", current_user=users.find_one({'name': session['username']}))
     except:
         return render_template("pages/index.html", body_id="home-page", page_title="Home")
 
 
-@app.route("/reviews")
-def reviews():
-    return render_template("pages/reviews.html", reviews=mongo.db.reviews.find())
-
-
+# All beers page
 @app.route('/all-beers')
 def all_beers():
     """
@@ -43,7 +40,6 @@ def all_beers():
     beer they currently have saved as a favourite.
     """
     try:
-        current_user = session['username'].lower()
         users = mongo.db.users
         current_user_obj = users.find_one(
             {'name': session['username'].lower()})
@@ -61,14 +57,13 @@ def all_beers():
     except:
         return redirect(url_for('create_account'))
 
-
+# My list page
 @app.route('/my-list', methods=["GET", "POST"])
 def my_list():
     """
     This is the function for the my-list page, here the favourited beers are accessed through the current users object. The id's in the array are
     looped over in order to render them to the HTML.
     """
-    current_user = session['username'].lower()
     users = mongo.db.users
     current_user_obj = users.find_one({'name': session['username'].lower()})
     current_user_favourites = current_user_obj['favourites']
@@ -87,37 +82,33 @@ def my_list():
 
     return render_template("pages/my-list.html", body_id="my-list", page_title="My List", favourite_beers_id=favourite_beers_id, favourite_beers=favourite_beers, current_user=users.find_one({'name': session['username'].lower()}))
 
-
+# Add to favourites route
 @app.route('/add-to-fav/<beer_id>', methods=['POST'])
-def addToFavourites(beer_id):
+def add_to_favourites(beer_id):
     """
     This is the function to handle adding or pushing beers into the current users favourites array. The current user object is selected from the session name and the beer_id
     is aquired through the url, this then gets pushed through into the favourites array.
     """
-    current_user = session['username'].lower()
     users = mongo.db.users
     current_user_obj = users.find_one({'name': session['username'].lower()})
-    current_user_favourites = current_user_obj['favourites']
     mongo.db.users.update(
         current_user_obj, {"$push": {"favourites": ObjectId(beer_id)}})
     return redirect(url_for('my_list'))
 
-
+# Remove from favourites route
 @app.route('/remove-from-favourites/<beer_id>', methods=['POST'])
 def remove_from_favourites(beer_id):
     """
     This is the function to handle removing or pulling beers out of the current users favourites array. The current user object is selected from the session name and the beer_id
     is aquired through the url, this then gets pulled or removed from the favourites array.
     """
-    current_user = session['username']
     users = mongo.db.users
     current_user_obj = users.find_one({'name': session['username'].lower()})
-    current_user_favourites = current_user_obj['favourites']
     mongo.db.users.update(
         current_user_obj, {"$pull": {"favourites": ObjectId(beer_id)}})
     return redirect(url_for('my_list'))
 
-
+# Beer page
 @app.route('/beer/<beer_id>')
 def beer_page(beer_id):
     """
@@ -133,12 +124,12 @@ def beer_page(beer_id):
         reviews.append(i)
     return render_template('pages/beers/beer.html', beer=the_beer, beer_reviews=reviews, you_might_like=you_might_like, body_id="beer-product", current_user=users.find_one({'name': session['username']}))
 
-
+# Add Review route
 @app.route('/add-review/<beer_id>', methods=["POST", "GET"])
 def add_review(beer_id):
-    users = mongo.db.users
-    the_beer = mongo.db.beers.find_one({"_id": ObjectId(beer_id)})
-    current_user = users.find_one({'name': session['username']})
+    """
+    This function inserts user inputted reviews in to the reviews collection by taking the information from the request form and inserting into the collection.
+    """
     mongo.db.reviews.insert({
         'name': request.form.get('name'),
         'review': request.form.get('review'),
@@ -146,41 +137,45 @@ def add_review(beer_id):
     })
     return redirect(url_for('beer_page', beer_id=beer_id))
 
-
+# Delete Review route
 @app.route('/delete-review/<review_id>', methods=["POST", "GET"])
 def delete_review(review_id):
-    users = mongo.db.users
+    """
+    This function removes the selected review based on the id that is passed via the URL.
+    """
     mongo.db.reviews.remove({'_id': ObjectId(review_id)})
-    current_user=users.find_one({'name': session['username']})
     return redirect(url_for('all_beers'))
 
-
+# Edit Review page
 @app.route('/edit-review/<review_id>', methods=["POST", "GET"])
 def edit_review(review_id):
+    """
+    This function constructs a version of the edit-review page with the review passed from the URL, the user can then edit the message and submit.
+    """
     users = mongo.db.users
     review = mongo.db.reviews.find({"_id": ObjectId(review_id)})
     return render_template("pages/edit-review.html", body_id="edit-review-page", review=review, review_id=review_id, current_user=users.find_one({'name': session['username']}))
 
-
+# Update Review route
 @app.route('/update-review/<review_id>', methods=["POST", "GET"])
 def update_review(review_id):
-    users = mongo.db.users
-    current_user = users.find_one({'name': session['username']})
+    """
+    This function handles the updating of existing reviews within the collection, the review will only be updated against the message, not the id or name fields.
+    """
     mongo.db.reviews.update({'_id': ObjectId(review_id)}, {
-                            '$set': {'review': request.form.get('review')}})
+        '$set': {'review': request.form.get('review')}})
     return redirect(url_for('edit_review', review_id=review_id))
 
-
+# Add beer page
 @app.route('/add-beer')
 def add_beer():
     """
     This is the function that creates the beer 'product-page' where the user can read more about the beer and view alternatives.
     """
-    current_user = session['username']
     users = mongo.db.users
     return render_template('pages/beers/add-beer.html', body_id="add-beer", types=mongo.db.types.find(), current_user=users.find_one({'name': session['username'].lower()}))
 
-
+# Insert beer route
 @app.route('/insert-beer', methods=['POST'])
 def insert_beer():
     """
@@ -191,20 +186,19 @@ def insert_beer():
     beers.insert_one(request.form.to_dict())
     return redirect(url_for('all_beers'))
 
-
+# Edit beer page
 @app.route('/edit-beer/<beer_id>')
 def edit_beer(beer_id):
     """
     This is the function that handles the page in which the user can edit the beers, this function is only callable by the user with the admin setting.
 
     """
-    current_user = session['username']
     users = mongo.db.users
     the_beer = mongo.db.beers.find_one({"_id": ObjectId(beer_id)})
     all_types = mongo.db.types.find()
     return render_template('pages/beers/edit-beer.html', body_id='edit-page', beer=the_beer, types=all_types, current_user=users.find_one({'name': session['username']}))
 
-
+# Update beer route
 @app.route('/update-beer/<beer_id>', methods=['POST'])
 def update_beer(beer_id):
     """
@@ -212,18 +206,18 @@ def update_beer(beer_id):
     """
     beer = mongo.db.beers
     beer.update({'_id': ObjectId(beer_id)},
-                {
-                    'name': request.form.get('name'),
-                    'brewery': request.form.get('brewery'),
-                    'type': request.form.get('type'),
-                    'excerpt': request.form.get('excerpt'),
-                    'notes': request.form.get('notes'),
-                    'abv': request.form.get('abv'),
-                    'image': request.form.get('image')
+    {
+        'name': request.form.get('name'),
+        'brewery': request.form.get('brewery'),
+        'type': request.form.get('type'),
+        'excerpt': request.form.get('excerpt'),
+        'notes': request.form.get('notes'),
+        'abv': request.form.get('abv'),
+        'image': request.form.get('image')
     })
     return redirect(url_for('add_beer'))
 
-
+# Delete beer route
 @app.route('/delete-beer/<beer_id>')
 def delete_beer(beer_id):
     """
@@ -232,7 +226,7 @@ def delete_beer(beer_id):
     mongo.db.beers.remove({'_id': ObjectId(beer_id)})
     return redirect(url_for('all_beers'))
 
-
+# Register Account page
 @app.route('/register', methods=["GET", "POST"])
 def create_account():
     """
@@ -262,7 +256,7 @@ def create_account():
         flash('The passwords dont match.')
     return render_template("pages/account-nav.html", body_id="register-page", page_title="Create an Account")
 
-
+# Sign-in page
 @app.route('/sign-in', methods=["POST", "GET"])
 def sign_in():
     """
@@ -270,7 +264,7 @@ def sign_in():
     """
     return render_template("pages/account-nav.html", body_id="sign-in", page_title="Sign In")
 
-
+# log-in route
 @app.route('/login', methods=["POST", "GET"])
 def login():
     """
@@ -286,7 +280,7 @@ def login():
     flash('That username/password combination was incorrect')
     return redirect(url_for('sign_in'))
 
-
+# sign-out route
 @app.route('/sign-out')
 def sign_out():
     """
@@ -295,14 +289,13 @@ def sign_out():
     session.clear()
     return redirect('/')
 
-
-"""
-Route for the contact page
-"""
+# Contact Page
 @app.route('/contact', methods=["GET", "POST"])
 def contact():
+    """
+    This is the contact page for beertime, users can input messages into the relevant fields and send a message to the database, a flashed response message notifies the user that some action has been taken.
+    """
     try:
-        current_user = session['username']
         users = mongo.db.users
         if request.method == "POST":
             flash("Thanks {} we have recieved your message! A member of our team will be in touch shortly".format(
