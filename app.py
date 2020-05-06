@@ -16,7 +16,7 @@ mongo = PyMongo(app)
 # 404 page
 @app.errorhandler(404)
 def page_not_found(e):
-    return render_template("pages/404.html"), 404
+    return render_template('pages/404.html'), 404
 
 # Home page
 @app.route('/')
@@ -119,10 +119,23 @@ def beer_page(beer_id):
     you_might_like = mongo.db.beers.find().limit(3)
     test = mongo.db.reviews.find({'beer_id': ObjectId(beer_id)})
     reviews = []
+    current_user_obj = users.find_one({'name': session['username'].lower()})
+    current_user_favourites = current_user_obj['favourites']
+    favourite_beers = []
+    favourite_beers_id = []
+    if len(current_user_obj['favourites']) != 0:
+        for fav in current_user_favourites:
+            current_beer = mongo.db.beers.find_one({'_id': fav})
+            current_beer_id = current_beer['_id']
+            favourite_beers_id.append(current_beer_id)
+    for fav in current_user_favourites:
+        current_beer = mongo.db.beers.find_one({'_id': fav})
+        favourite_beers.append(current_beer)
+    print(favourite_beers_id)
     cur = test
     for i in cur:
         reviews.append(i)
-    return render_template('pages/beers/beer.html', beer=the_beer, beer_reviews=reviews, you_might_like=you_might_like, body_id="beer-product", current_user=users.find_one({'name': session['username']}))
+    return render_template('pages/beers/beer.html', favourite_beers_id=favourite_beers_id, beer=the_beer, beer_reviews=reviews, you_might_like=you_might_like, body_id="beer-product", current_user=users.find_one({'name': session['username']}))
 
 # Add Review route
 @app.route('/add-review/<beer_id>', methods=["POST", "GET"])
