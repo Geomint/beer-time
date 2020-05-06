@@ -293,32 +293,18 @@ This project naturally will need alot of testing due to the scope of the website
 
 - <strong>Verdict</strong> ✅: This test has passed based on the above criteria and notes.
 
-<strong>Write a review of a beer -</strong>
-- <strong>Plan</strong> 📝: 
-- <strong>Implementation</strong> 🏭: 
-- <strong>Test</strong> 🧪: 
-- <strong>Result</strong> 🏆: 
-- <strong>Verdict</strong> ✅: This test has passed based on the above criteria and notes.
+<strong>Writing, Reading, Updating and Deleting a review of a beer -</strong>
+- <strong>Plan</strong> 📝: This feature is largely the main focus in terms of demonstrating CRUD functionality that is user facing, I knew I would need to figure out an intuitive way that users
+could post reviews on a specific beer, and only interact, as in update and delete, the ones that they had made. I planned at first to have this information stored against the beer inside the beer collection
+but later created a review collection.
 
-<strong>Read the reviews of a beer -</strong>
-- <strong>Plan</strong> 📝: 
-- <strong>Implementation</strong> 🏭:
-- <strong>Test</strong> 🧪: 
-- <strong>Result</strong> 🏆: 
-- <strong>Verdict</strong> ✅: This test has passed based on the above criteria and notes.
+- <strong>Implementation</strong> 🏭: Once I had setup the reviews collection with the MongoDB database, I could start to contsruct the relevant code that would allow my users to interact with reviews, creating 4 routes for each 
+step within the CRUD operation allowed me to neatly structure this feature.
 
-<strong>Delete reviews created by specific user -</strong>
-- <strong>Plan</strong> 📝:
-- <strong>Implementation</strong> 🏭: 
-- <strong>Test</strong> 🧪: 
-- <strong>Result</strong> 🏆: 
-- <strong>Verdict</strong> ✅: This test has passed based on the above criteria and notes.
+- <strong>Test</strong> 🧪: Performing each step of CRUD on the review tool and checking the database to see if the changes we're being made correctly.
 
-<strong>Edit reviews created by specific user -</strong>
-- <strong>Plan</strong> 📝: 
-- <strong>Implementation</strong> 🏭: 
-- <strong>Test</strong> 🧪: 
-- <strong>Result</strong> 🏆: 
+- <strong>Result</strong> 🏆: The intended changes were made and the database was updated accordingly.
+
 - <strong>Verdict</strong> ✅: This test has passed based on the above criteria and notes.
 
 <strong>All beers page -</strong>
@@ -348,11 +334,78 @@ somewhat longer to find soltuions and fixes.</p>
 
 - <strong>Verdict</strong> ✅: <p>This bug was squashed and meant I could continue working on other aspects of the project.</p>
 
-#### Known Bugs: 
-
 ## Deployment 🚀
 
+BeerTime was developed on Visual Studio Code, using git and GitHub to host the repository.
+
+Cloning BeerTime from GitHub:
+
+Ensure you have the following installed:
+* PIP
+* Python 3
+* Git
+
+Make sure you have an account at <a href="https://www.mongodb.com/">MongoDB</a>
+
+* 1: Clone the BeerTime repository by either downloading from <a href="https://github.com/Geomint/beer-time"> here</a>, or if you have Git installed typing the following command into your terminal
+```git
+git clone https://github.com/geomint/beertime
+```
+* 2: Navigate to this folder in your terminal
+* 3: Enter the following command into your terminal
+```git
+python3 -m .venv venv
+```
+* 4: Initilaize the environment by using the following command
+```git
+.venv\Scripts\activate 
+```
+* 5: Install the relevant requirements & dependancies from the requirements.txt file
+```git
+pip3 -r requirements.txt
+```
+* 6: In your IDE now create a file where you can store your SECRET_KEY and your MONGO_URI, follow the schema structure located in data/schemas to properly setup the Mongo Collections.
+* 7: Run the application using 
+```git
+flask run 
+```
+or 
+```git
+Python3 app.py
+```
+
+Deploying BeerTime to Heroku:
+
+* 1: Create a requirements.txt file using the following command
+```git
+pip3 freeze > requirements.txt
+```
+* 2: Create a Procfile with the following command
+```git
+echo web: python3 app.py > Procfile
+```
+* 3: Push these newly created files to your repository
+* 4: Create a new app for this project on the Heroku Dashboard
+* 5: Select your deployment method by clicking on the deployment method button and select GitHub
+* 6: On the dashboard, set the following config variables:
+
+**Key**|**Value**
+:-----:|:-----:
+IP|0.0.0.0
+PORT|5000
+MONGO\_URI|mongodb+srv://<username>:<password>@<cluster\_name>-qtxun.mongodb.net/<database\_name>?retryWrites=true&w=majority
+SECRET\_KEY|"your\_secret\_key"
+DEBUG|FALSE
+
+* 7: Click the deploy button on the Heroku dashboard
+* 8: The site has been deployed the Heroku
+
 ## Credits 💳
+
+* <a href="https://medium.com/developing-with-sass/creating-a-dead-simple-sass-mixin-to-handle-responsive-breakpoints-889927b37740">Mixin For Breakpoints</a>
+* <a href="https://www.favicon-generator.org/">Favicon Generator</a>  
+* <a href="https://coolors.co/">Coolors.co</a>
+* <a href="https://chrome.google.com/webstore/detail/unicorn-revealer/lmlkphhdlngaicolpmaakfmhplagoaln?hl=en-GB">Unicorn Revealer</a>
 
 ## Disclaimer
 The contents of this website are for educational purposes only.
