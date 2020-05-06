@@ -1,8 +1,10 @@
-#sign-in, #register-page {
+#sign-in,
+#register-page {
     .banner {
         &__slick {
             &__slide {
                 height: 40vh;
+
                 &__content {
                     display: none;
                 }

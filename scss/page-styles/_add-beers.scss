@@ -1,13 +1,14 @@
-#add-beer, #edit-page {
+#add-beer,
+#edit-page {
     .banner {
-      display: none;
+        display: none;
     }
-  
+
     .main-nav {
-      background: $primary-color;
-      position: unset !important;
+        background: $primary-color;
+        position: unset !important;
     }
-  }
+}
 
 .add-beer-title {
     text-align: center;
@@ -26,12 +27,12 @@
 
     &__text {
         display: inline-flex;
-    }    
-    
+    }
+
     &__group {
         padding: 15px 25px;
         background: $default-body-color;
-        border-bottom: 1px solid rgba(0,0,0,0.2);
+        border-bottom: 1px solid rgba(0, 0, 0, 0.2);
 
         &:last-child {
             border: none;

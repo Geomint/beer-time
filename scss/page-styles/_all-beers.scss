@@ -1,13 +1,13 @@
 #all-beers {
     .banner {
-      display: none;
+        display: none;
     }
-  
+
     .main-nav {
-      background: $primary-color;
-      position: unset !important;
+        background: $primary-color;
+        position: unset !important;
     }
-  }
+}
 
 .all-beers {
     padding-top: 30px;
@@ -20,7 +20,7 @@
     &:hover {
         .beer-panel__main-wrapper {
             transition: $default-transition;
-            box-shadow: 2px 2px 3px rgba(0,0,0,0.4);
+            box-shadow: 2px 2px 3px rgba(0, 0, 0, 0.4);
             transform: scale(1.02);
         }
     }
@@ -34,7 +34,7 @@
         background: $default-body-color;
         box-shadow: $darkest-box-shadow;
     }
-    
+
     &__wrapper {
         padding: 10px;
         background: $default-body-color;
@@ -53,7 +53,7 @@
 
     &__links {
         display: inline-flex;
-        
+
         .btn__no-inner {
             padding: 10px;
         }

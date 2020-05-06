@@ -1,0 +1,30 @@
+.error-page {
+    height: 100%;
+    width: 100%;
+    background: darken($error-color, 20%);
+    position: relative;
+
+    &__details {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        z-index: 1;
+        transform: translate(-50%, -50%);
+        text-align: center;
+        padding: 10px 0;
+
+        &__icon {
+            font-size: 200px;
+            padding: 20px 0;
+        }
+
+        p {
+            padding: 20px 0;
+            color: $white-color;
+        }
+
+        &__button {
+            margin-top: 20px;
+        }
+    }
+}

@@ -52,7 +52,7 @@
       &__text {
         text-align: center;
         padding-bottom: 15px;
-        
+
         a {
           margin-top: 5px;
         }
@@ -102,13 +102,16 @@
 
     &__comment {
       padding: 10px;
+
       p {
         padding: 15px 3px;
-        border-bottom: 1px solid rgba(0,0,0,0.3);
+        border-bottom: 1px solid rgba(0, 0, 0, 0.3);
       }
 
       &:last-child {
-        p {border: none;}
+        p {
+          border: none;
+        }
       }
 
       &__icons {
