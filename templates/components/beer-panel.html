@@ -29,7 +29,7 @@
                         </form>
                         {% else %}
                         <form class="add-to-favourites"
-                            action="{{ url_for('addToFavourites', beer_id=beer._id) }}" method="POST">
+                            action="{{ url_for('add_to_favourites', beer_id=beer._id) }}" method="POST">
                             <div class="checkbox-custom">
                                 <div class="checkbox-custom__wrapper">
                                     <input data-toggle="tooltip" data-placement="auto" title="Add to favourites"
