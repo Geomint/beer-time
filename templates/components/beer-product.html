@@ -16,8 +16,33 @@
                     <p class="beer-page__right-panel__text"><span>ABV (alchohol by volume): </span>{{ beer.abv }}
                     </p>
                     <p class="beer-page__right-panel__text"><span>Tasting Notes: </span>{{ beer.notes }}</p>
+
+                    {% if beer._id in favourite_beers_id %}
+                    <form class="remove-from-favourites"
+                        action="{{ url_for('remove_from_favourites', beer_id=beer._id) }}" method="POST">
+                        <div class="checkbox-custom">
+                            <div class="checkbox-custom__wrapper">
+                                <input data-toggle="tooltip" data-placement="auto" title="Remove from favourites"
+                                    type="checkbox" id="favourite" class="favourite checkbox-custom__input checkedBox">
+                            </div>
+                            <label class="checkbox-custom__label"></label>
+                        </div>
+                    </form>
+                    {% else %}
+                    <form class="add-to-favourites" action="{{ url_for('add_to_favourites', beer_id=beer._id) }}"
+                        method="POST">
+                        <div class="checkbox-custom">
+                            <div class="checkbox-custom__wrapper">
+                                <input data-toggle="tooltip" data-placement="auto" title="Add to favourites"
+                                    type="checkbox" id="favourite" class="favourite checkbox-custom__input">
+                            </div>
+                            <label class="checkbox-custom__label">Favourite?</label>
+                        </div>
+                    </form>
+                    {% endif %}
                 </div>
         </section>
+        
         <section class="row">
             <div class="col-sm-12">
                 <h2 class="beer-page__review__title">What do other people think?</h2>
@@ -26,11 +51,11 @@
                         {% for review in beer_reviews %}
                         <div class="beer-page__review__comment">
                             <div class="row align-items-center">
-                                <div class="col-md-10">
+                                <div class="col-md-10 col-xs-12">
                                     <h4>{{ review.name }} Says...</h4>
-                                    <p>{{ review.review }}</p>
+                                    <p>"{{ review.review }}"</p>
                                 </div>
-                                <div class="col-md-2">
+                                <div class="col-md-2 col-xs-12">
                                     <div class="beer-page__review__comment__icons">
                                         {% if review.name == session['username'] or current_user['admin'] == true  %}
                                         <a class="ud-button-delete"
