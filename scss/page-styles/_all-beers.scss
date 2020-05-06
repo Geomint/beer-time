@@ -17,6 +17,10 @@
 .beer-panel {
     transition: $default-transition;
 
+    @include breakpoint(xs) {
+        text-align: center;
+    }
+ 
     &:hover {
         .beer-panel__main-wrapper {
             transition: $default-transition;
@@ -68,6 +72,7 @@
         width: 100%;
 
         &__link {
+            text-align: center;
             i {
                 font-size: 20px;
                 transition: $default-transition;
