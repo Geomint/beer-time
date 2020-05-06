@@ -1,5 +1,3 @@
-######
-
 # Beer Time! 🍻
 
 <img src="https://github.com/Geomint/beer-time/raw/master/wireframes/screenshot/multi-device.png?raw=true"></img>
@@ -212,11 +210,13 @@ View the schema templates for the database collections <a href="https://github.c
 * <a href="https://git-scm.com/">Git</a>
 * <a href="https://getbootstrap.com/">Bootstrap</a>
 * <a href="https://fontawesome.com/icons?d=gallery">Font-Awesome</a>
-* <a href="https://developers.google.com/maps/documentation/javascript/tutorial">Google Maps</a>
 * <a href="https://kenwheeler.github.io/slick/">Slick Carousel</a>
-* <a href="https://gulpjs.com/">Gulp.js</a>
 * <a href="https://sass-lang.com/">SASS/SCSS</a>
 * <a href="https://tinypng.com/">TinyPng (image compression)</a>
+* <a href="https://www.mongodb.com/cloud/atlas">MongoDB Atlas</a>
+* <a href="https://pymongo.readthedocs.io/en/stable/">PyMongo</a>
+* <a href="https://flask.palletsprojects.com/en/1.0.x/">Flask</a>
+* <a href="https://jinja.palletsprojects.com/en/2.10.x/">Jinja</a>
 
 ## Planning:  + Testing: ✏️ 🔌
 
