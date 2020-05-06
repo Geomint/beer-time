@@ -38,8 +38,13 @@ body {
 }
 
 .page-padding {
-  padding-top: 60px;
+  padding-top: 30px;
   padding-bottom: 30px;
+
+  @include breakpoint(xs) {
+    padding-top: 15px;
+    padding-bottom: 15px;
+  }
 }
 
 .layout-padding {
