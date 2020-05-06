@@ -3,9 +3,14 @@
 <section class="row company-intro">
     <div class="col-sm-12">
         <div class="company-intro__block">
+            {% if session['username'] %}
+            <h2>Welcome Back</h2>
+            <p>We're happy you decided to come back to us!</p>
+            {% else %}
             <h2>Welcome to Beer Time</h2>
             <p>Have you ever wanted to construct a library of all the fanstatic beers that are available out
                 there? Look no further as you have found Beer Time. Start adding to your list now.</p>
+            {% endif %}
         </div>
     </div>
 </section>
