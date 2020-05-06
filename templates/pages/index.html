@@ -17,8 +17,7 @@
             <p>Check out the fantastic selection of craft beers from Brewdog, let us know your favourites
                 and share with the rest of the community!</p>
             <div class="main-body__hightlight-panel__text__buttons">
-                <a class="btn btn__no-inner btn__no-inner--alt" href="{{ url_for('all_beers')}}">Read
-                    More</a>
+                <a class="btn btn__no-inner btn__no-inner--alt" href="{{ url_for('all_beers')}}">All Beers</a>
                 {% if session['username'] %}
                 <a class="btn btn__primary" href="{{ url_for('my_list')}}">My List</a>
                 {% else %}
