@@ -26,17 +26,6 @@
                             <label class="checkbox-custom__label"></label>
                         </div>
                     </form>
-                    {% else %}
-                    <form class="add-to-favourites" action="{{ url_for('add_to_favourites', beer_id=beer._id) }}"
-                        method="POST">
-                        <div class="checkbox-custom">
-                            <div class="checkbox-custom__wrapper">
-                                <input data-toggle="tooltip" data-placement="auto" title="Add to favourites"
-                                    type="checkbox" id="favourite" class="favourite checkbox-custom__input">
-                            </div>
-                            <label class="checkbox-custom__label">Favourite?</label>
-                        </div>
-                    </form>
                     {% endif %}
                 </div>
                 {% if current_user['admin'] == true %}
