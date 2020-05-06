@@ -1,0 +1,31 @@
+#edit-review-page {
+    .banner {
+      display: none;
+    }
+  
+    .main-nav {
+      background: $primary-color;
+      position: unset !important;
+    }
+  }
+
+.edit-review {
+
+    &__form {
+        margin: auto;
+        display: block;
+
+        textarea {
+            max-width: 50%;
+            margin: auto;
+            display: block;
+            border: 1px solid $primary-color;
+            transition: $default-transition;
+            border-radius: 3px;
+        }
+    }
+
+    &__text {
+        text-align: center;
+    }
+}
