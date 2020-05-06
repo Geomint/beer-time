@@ -131,7 +131,6 @@ def beer_page(beer_id):
     for fav in current_user_favourites:
         current_beer = mongo.db.beers.find_one({'_id': fav})
         favourite_beers.append(current_beer)
-    print(favourite_beers_id)
     cur = test
     for i in cur:
         reviews.append(i)
@@ -311,12 +310,12 @@ def contact():
     try:
         users = mongo.db.users
         if request.method == "POST":
-            flash("Thanks {} we have recieved your message! A member of our team will be in touch shortly".format(
+            flash("Thanks {} we have received your message! A member of our team will be in touch shortly".format(
                 request.form["name"]))
         return render_template("pages/contact-us.html", body_id="contact-page", page_title="Contact Us", current_user=users.find_one({'name': session['username']}))
     except:
         if request.method == "POST":
-            flash("Thanks {} we have recieved your message! A member of our team will be in touch shortly".format(
+            flash("Thanks {} we have received your message! A member of our team will be in touch shortly".format(
                 request.form["name"]))
         return render_template("pages/contact-us.html", body_id="contact-page", page_title="Contact Us")
 
