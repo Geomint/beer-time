@@ -10,7 +10,7 @@ app = Flask(__name__)
 # Initilize connection to MongoDB.
 app.config["MONGO_DBNAME"] = 'Beer-Time'
 app.config["MONGO_URI"] = os.getenv("MONGO_URI")
-app.secret_key = "vRb81oq80xFpG45So4CKACqU1GvA9Fv"
+app.secret_key = os.environ.get('SECRET_KEY')
 
 mongo = PyMongo(app)
 
