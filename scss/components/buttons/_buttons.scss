@@ -5,12 +5,12 @@
     transition: $default-transition;
 
     &__primary {
-        background: $secondary-color;
+        background: $primary-color;
         color: darken($white-color, 5%) !important;
         text-shadow: $default-text-shadow;
 
         &:hover {
-            background: darken($secondary-color, 15%);
+            background: lighten($primary-color, 15%);
             color: darken($white-color, 15%);
         }
     }
