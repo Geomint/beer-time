@@ -169,24 +169,17 @@ def edit_review(review_id):
     return render_template("pages/edit-review.html", body_id="edit-review-page", review=review, review_id=review_id, current_user=users.find_one({'name': session['username']}))
 
 # Add beer page
-@app.route('/beer/add')
+@app.route('/beer/add', methods=["GET", "POST"])
 def add_beer():
     """
     This is the function that creates the beer 'product-page' where the user can read more about the beer and view alternatives.
     """
+    if request.method == 'POST':
+        beers = mongo.db.beers
+        beers.insert_one(request.form.to_dict())
+        return redirect(url_for('beers'))
     users = mongo.db.users
     return render_template('pages/beers/add-beer.html', body_id="add-beer", types=mongo.db.types.find(), current_user=users.find_one({'name': session['username'].lower()}))
-
-# Insert beer route
-@app.route('/insert-beer', methods=['POST'])
-def insert_beer():
-    """
-    This is the function that gets triggered from the 'add-beer' page and handles the inserting of new documents into the database.
-    The beer dictionary is constructed using the information collected from the HTML form.
-    """
-    beers = mongo.db.beers
-    beers.insert_one(request.form.to_dict())
-    return redirect(url_for('beers'))
 
 # Edit beer page
 @app.route('/beer/edit/<beer_id>', methods=["GET", "POST"])
@@ -257,23 +250,17 @@ def sign_in():
     """
     This is the function that renders the sign in page where users on the website can sign into their accounts.
     """
+    if request.method == 'POST':
+        users = mongo.db.users
+        login_user = users.find_one({'name': request.form['username'].lower()})
+
+        if login_user:
+            if bcrypt.hashpw(request.form['password'].encode('utf-8'), login_user['password']) == login_user['password']:
+                session['username'] = request.form['username']
+                return redirect(url_for('index'))
+            flash('That username/password combination was incorrect')
+            return redirect(url_for('sign_in'))
     return render_template("pages/account-nav.html", body_id="sign-in", page_title="Sign In")
-
-# log-in route
-@app.route('/login', methods=["GET", "POST"])
-def login():
-    """
-    This is the function that checks if the user exists in the database, and populates that value inside the login_user variable.
-    """
-    users = mongo.db.users
-    login_user = users.find_one({'name': request.form['username'].lower()})
-
-    if login_user:
-        if bcrypt.hashpw(request.form['password'].encode('utf-8'), login_user['password']) == login_user['password']:
-            session['username'] = request.form['username']
-            return redirect(url_for('index'))
-    flash('That username/password combination was incorrect')
-    return redirect(url_for('sign_in'))
 
 # sign-out route
 @app.route('/sign-out')
