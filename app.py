@@ -32,8 +32,8 @@ def index():
 
 
 # All beers page
-@app.route('/all-beers')
-def all_beers():
+@app.route('/beers')
+def beers():
     """
     This function is for the all-beers page, this is the main focus of the website, the beers collection is accessed and made available to the HTML template.
     The favourites array of the current user in session is accessed and then passed into the favourites_beers_id array, which is then used to show the user which
@@ -156,7 +156,7 @@ def delete_review(review_id):
     This function removes the selected review based on the id that is passed via the URL.
     """
     mongo.db.reviews.remove({'_id': ObjectId(review_id)})
-    return redirect(url_for('all_beers'))
+    return redirect(url_for('beers'))
 
 # Edit Review page
 @app.route('/edit-review/<review_id>', methods=["POST", "GET"])
@@ -196,7 +196,7 @@ def insert_beer():
     """
     beers = mongo.db.beers
     beers.insert_one(request.form.to_dict())
-    return redirect(url_for('all_beers'))
+    return redirect(url_for('beers'))
 
 # Edit beer page
 @app.route('/edit-beer/<beer_id>')
@@ -236,7 +236,7 @@ def delete_beer(beer_id):
     This function deletes the selected beer from the database based on the beer_id passed in from the url.
     """
     mongo.db.beers.remove({'_id': ObjectId(beer_id)})
-    return redirect(url_for('all_beers'))
+    return redirect(url_for('beers'))
 
 # Register Account page
 @app.route('/register', methods=["GET", "POST"])

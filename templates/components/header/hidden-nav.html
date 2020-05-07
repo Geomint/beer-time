@@ -4,7 +4,7 @@
             <p class="hidden-nav__title">Beer Time</p>
             <ul class="hidden-nav__panel__list">
                 <li class="hidden-nav__panel__list__item"><a aria-label="" href="{{ url_for('index') }}">Home</a></li>
-                <li class="hidden-nav__panel__list__item"><a aria-label="" href="{{ url_for('all_beers') }}">All
+                <li class="hidden-nav__panel__list__item"><a aria-label="" href="{{ url_for('beers') }}">All
                         Beers</a></li>
                 
                     {% if session['username'] %}

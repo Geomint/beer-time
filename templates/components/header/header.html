@@ -7,7 +7,7 @@
         </div>
         <ul class="main-nav__inner__nav d-none d-lg-flex ml-auto align-items-center">
             <li class="main-nav__inner__nav__item"><a href="{{ url_for('index') }}">Home</a></li>
-            <li class="main-nav__inner__nav__item"><a href="{{ url_for('all_beers') }}">All Beers</a></li>
+            <li class="main-nav__inner__nav__item"><a href="{{ url_for('beers') }}">All Beers</a></li>
             <li class="main-nav__inner__nav__item"><a href="{{ url_for('contact') }}">Contact</a></li>
             <li class="main-nav__inner__nav__list__trigger">
                 {% if session['username'] %}
