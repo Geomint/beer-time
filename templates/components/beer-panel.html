@@ -1,5 +1,5 @@
 <div class="beer-panel">
-    <a href="{{url_for('beer_page', beer_id=beer._id)}}">
+    <a aria-label="View This Beer" href="{{url_for('beer_page', beer_id=beer._id)}}">
         <div class="beer-panel__main-wrapper">
             <div class="beer-panel__image">
                 <img class="img-responsive" src="{{ beer.image }}" alt="{{ beer.name }}">
@@ -10,6 +10,7 @@
                     <p>Brewery: {{ beer.brewery }}</p>
                     <p>Type: {{ beer.type }}</p>
                     <p>ABV: {{ beer.abv }}</p>
+                    <p>{{ beer._id}}</p>
                 </div>
                 <div class="beer-panel__links">
                     {% if beer._id in favourite_beers_id %}
@@ -22,14 +23,15 @@
                             </div>
                             <label class="checkbox-custom__label"></label>
                         </div>
+                        <input type="submit" name="submit" id="submit">
                     </form>
                     {% endif %}
                 </div>
                 {% if current_user['admin'] == true %}
                 <div class="beer-panel__admin-links">
-                    <a class="ud-button-edit beer-panel__admin-links__link"
+                    <a aria-label="Edit This Beer" class="ud-button-edit beer-panel__admin-links__link"
                         href="{{ url_for('edit_beer', beer_id=beer._id)}}"><i class="fas fa-edit"></i></a>
-                    <a class="ud-button-delete beer-panel__admin-links__link"
+                    <a aria-label="Delete This Beer" class="ud-button-delete beer-panel__admin-links__link"
                         href="{{ url_for('delete_beer', beer_id=beer._id)}}"><i class="fas fa-trash"></i></a>
                 </div>
                 {% endif %}
