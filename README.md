@@ -192,7 +192,7 @@ View the schema templates for the database collections <a href="https://github.c
 ### Features that will be developed in the future:
 - An option to purchase the products users can see on the website.
 - Advanced product information, including maps leading users to the closest place they can taste the beverage.
-- An option for users to opt-in to a mailing list to keep up to date with the latest from BeerTime.
+- An option for users to opt-in to a mailing list to keep up to date with the latest from BeerTime🍻.
 - Email authentication to provide a second level of security.
 - The ability to filter the beverages by type, abv% etc.
 
@@ -328,46 +328,54 @@ somewhat longer to find soltuions and fixes.</p>
 
 <p>Case Sensitive Confusion:</p>
 
-- <strong>Bug</strong> 🐞: <p>The code that handles the creation and and registration of the user accounts on BeerTime captures the inputted data and then transforms that into lowercase to then store into the database, the code that checks to see what current user was in session was throwing errors because it WAS looking for a case sensitive value.</p>
+- <strong>Bug</strong> 🐞: <p>The code that handles the creation and and registration of the user accounts on BeerTime🍻 captures the inputted data and then transforms that into lowercase to then store into the database, the code that checks to see what current user was in session was throwing errors because it WAS looking for a case sensitive value.</p>
  
 - <strong>Fix</strong> 🔧: <p>Altered the code so that it is no longer case sensitive when determining which user is currently active or in session on the website.</p>
 
 - <strong>Verdict</strong> ✅: <p>This bug was squashed and meant I could continue working on other aspects of the project.</p>
 
+<p>Favourites Array Issue:</p>
+
+- <strong>Bug</strong> 🐞: <p>When the user adds or removes a beer from their 'my-list' or favourites array with multiple beers on the page, the last rendered beer on the page gets added or removed from the list.</p>
+ 
+- <strong>Fix</strong> 🔧: <p>Altering the jQuery selector code fixed this issue and only submits the forms that are the relevant parents of the input.</p>
+
+- <strong>Verdict</strong> ✅: <p>This bug was debugged, dealt with and moved on from.</p>
+
 ## Deployment 🚀
 
-BeerTime was developed on Visual Studio Code, using git and GitHub to host the repository.
+BeerTime🍻 was developed on Visual Studio Code, using git and GitHub to host the repository.
 
-Cloning BeerTime from GitHub:
+### Cloning BeerTime🍻 from GitHub:
 
-Ensure you have the following installed:
+<strong>Ensure</strong> you have the following installed:
 * PIP
 * Python 3
 * Git
 
-Make sure you have an account at <a href="https://www.mongodb.com/">MongoDB</a>
+<strong>Make sure you have an account at <a href="https://www.mongodb.com/">MongoDB</a> in order to construct the database.</strong>
 
 <em>WARNING: You may need to follow a different guide based on the OS you are using, read more <a href="https://python.readthedocs.io/en/latest/library/venv.html">here.</a></em>
 
-* 1: Clone the BeerTime repository by either downloading from <a href="https://github.com/Geomint/beer-time"> here</a>, or if you have Git installed typing the following command into your terminal
-```git
+* 1: <strong>Clone</strong> the BeerTime🍻 repository by either downloading from <a href="https://github.com/Geomint/beer-time"> here</a>, or if you have Git installed typing the following command into your terminal.
+```bash
 git clone https://github.com/geomint/beertime
 ```
-* 2: Navigate to this folder in your terminal
-* 3: Enter the following command into your terminal
-```git
+* 2: <strong>Navigate</strong> to this folder in your terminal.
+* 3: <strong>Enter</strong> the following command into your terminal.
+```bash
 python3 -m .venv venv
 ```
-* 4: Initilaize the environment by using the following command
-```git
+* 4: <strong>Initilaize</strong> the environment by using the following command.
+```bash
 .venv\bin\activate 
 ```
-* 5: Install the relevant requirements & dependancies from the requirements.txt file
-```git
+* 5: <strong>Install</strong> the relevant requirements & dependancies from the requirements.txt file.
+```bash
 pip3 -r requirements.txt
 ```
-* 6: In your IDE now create a file where you can store your SECRET_KEY and your MONGO_URI, follow the schema structure located in data/schemas to properly setup the Mongo Collections.
-<em>NOTE: I developed this on Vistual Studio Code and used the following settings.json file, delete and replace with your values.</em>
+* 6: In your IDE now <strong>create</strong> a file where you can store your SECRET_KEY and your MONGO_URI, follow the schema structure located in data/schemas to properly setup the Mongo Collections.
+<em>NOTE: I developed this website on Visual Studio Code and used the following settings.json file, delete and replace with your values.</em>
 ```json
 {
     "python.pythonPath": "env/bin/python",
@@ -385,28 +393,28 @@ pip3 -r requirements.txt
 }
 ```
 * 7: Run the application using 
-```git
+```bash
 flask run 
 ```
 or 
-```git
+```bash
 Python3 app.py
 ```
 
-Deploying BeerTime to Heroku:
+### Deploying BeerTime🍻 to Heroku:
 
-* 1: Create a requirements.txt file using the following command
-```git
+* 1: <strong>Create</strong> a requirements.txt file using the following command.
+```bash
 pip3 freeze > requirements.txt
 ```
-* 2: Create a Procfile with the following command
-```git
+* 2: <strong>Create</strong> a Procfile with the following command.
+```bash
 echo web: python3 app.py > Procfile
 ```
-* 3: Push these newly created files to your repository
-* 4: Create a new app for this project on the Heroku Dashboard
-* 5: Select your deployment method by clicking on the deployment method button and select GitHub
-* 6: On the dashboard, set the following config variables:
+* 3: <strong>Push</strong> these newly created files to your repository.
+* 4: <strong>Create</strong> a new app for this project on the Heroku Dashboard.
+* 5: <strong>Select</strong> your <strong>deployment</strong> method by clicking on the <strong>deployment</strong> method button and select GitHub.
+* 6: On the dashboard, <strong>set</strong> the following config variables:
 
 **Key**|**Value**
 :-----:|:-----:
@@ -414,8 +422,8 @@ IP|0.0.0.0
 PORT|5000
 MONGO\_URI|mongodb+srv://<username>:<password>@<cluster\_name>-qtxun.mongodb.net/<database\_name>?retryWrites=true&w=majority
 SECRET\_KEY|"your\_secret\_key"
-* 7: Click the deploy button on the Heroku dashboard
-* 8: The site has been deployed the Heroku
+* 7: Click the deploy button on the Heroku dashboard.
+* 8: The site has been deployed the Heroku.
 
 ## Credits 💳
 
