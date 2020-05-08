@@ -1,0 +1,6 @@
+[{
+    "_id": "<ObjectId()>",
+    "name": "<string>",
+    "review": "<string>",
+    "beer_id": "<ObjectID()>"
+}]
