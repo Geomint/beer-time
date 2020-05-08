@@ -10,7 +10,6 @@
                     <p>Brewery: {{ beer.brewery }}</p>
                     <p>Type: {{ beer.type }}</p>
                     <p>ABV: {{ beer.abv }}</p>
-                    <p>{{ beer._id}}</p>
                 </div>
                 <div class="beer-panel__links">
                     {% if beer._id in favourite_beers_id %}
@@ -23,7 +22,6 @@
                             </div>
                             <label class="checkbox-custom__label"></label>
                         </div>
-                        <input type="submit" name="submit" id="submit">
                     </form>
                     {% endif %}
                 </div>

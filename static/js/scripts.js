@@ -26,7 +26,7 @@ $('.favourite').click(function () {
 })
 
 $('.checkedBox').click(function () {
-    $('.remove-from-favourites').submit();
+    $(this.form).submit()
 })
 
 $('.checkedBox').attr('checked', true);
