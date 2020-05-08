@@ -22,7 +22,7 @@ $(window).scroll(function () {
 });
 
 $('.favourite').click(function () {
-    $('.add-to-favourites').submit();
+    $(this.form).submit()
 })
 
 $('.checkedBox').click(function () {
