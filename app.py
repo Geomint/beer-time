@@ -292,7 +292,14 @@ def contact():
 # 404 page
 @app.errorhandler(404)
 def page_not_found(e):
-    return render_template('pages/404.html'), 404
+    error_message = str(e)
+    return render_template('pages/error-page.html', error_message=error_message), 404
+
+# 500 page
+@app.errorhandler(500)
+def server_error(e):
+    error_message = str(e)
+    return render_template('pages/error-page.html', error_message=error_message), 500
 
 
 if __name__ == '__main__':
