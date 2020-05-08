@@ -347,6 +347,8 @@ Ensure you have the following installed:
 
 Make sure you have an account at <a href="https://www.mongodb.com/">MongoDB</a>
 
+<em>WARNING: You may need to follow a different guide based on the OS you are using, read more <a href="https://python.readthedocs.io/en/latest/library/venv.html">here.</a></em>
+
 * 1: Clone the BeerTime repository by either downloading from <a href="https://github.com/Geomint/beer-time"> here</a>, or if you have Git installed typing the following command into your terminal
 ```git
 git clone https://github.com/geomint/beertime
@@ -358,13 +360,30 @@ python3 -m .venv venv
 ```
 * 4: Initilaize the environment by using the following command
 ```git
-.venv\Scripts\activate 
+.venv\bin\activate 
 ```
 * 5: Install the relevant requirements & dependancies from the requirements.txt file
 ```git
 pip3 -r requirements.txt
 ```
 * 6: In your IDE now create a file where you can store your SECRET_KEY and your MONGO_URI, follow the schema structure located in data/schemas to properly setup the Mongo Collections.
+<em>NOTE: I developed this on Vistual Studio Code and used the following settings.json file, delete and replace with your values.</em>
+```json
+{
+    "python.pythonPath": "env/bin/python",
+    "python.terminal.activateEnvironment": true,
+    "python.linting.enabled": true,
+    "python.linting.pylintArgs": ["--load-plugins=pylint_flask"],
+    "files.autoSave": "onFocusChange",
+    "files.useExperimentalFileWatcher": true,
+    "terminal.integrated.env.osx": {
+      "SECRET_KEY": "<your_secret_key>",
+      "DEV": "1",
+      "FLASK_DEBUG": "1",
+      "MONGO_URI": "<your_mongo_uri>"
+    }      
+}
+```
 * 7: Run the application using 
 ```git
 flask run 
@@ -395,8 +414,6 @@ IP|0.0.0.0
 PORT|5000
 MONGO\_URI|mongodb+srv://<username>:<password>@<cluster\_name>-qtxun.mongodb.net/<database\_name>?retryWrites=true&w=majority
 SECRET\_KEY|"your\_secret\_key"
-DEBUG|FALSE
-
 * 7: Click the deploy button on the Heroku dashboard
 * 8: The site has been deployed the Heroku
 
