@@ -191,6 +191,7 @@ View the schema templates for the database collections <a href="https://github.c
 - The webmaster has access to the 'add-beer', 'edit-beer' and delete beer pages & functions.
 
 ### Features that will be developed in the future:
+- Use of AWS image CDNs to handle uploading images to add to beer 'products'.
 - An option to purchase the products users can see on the website.
 - Advanced product information, including maps leading users to the closest place they can taste the beverage.
 - An option for users to opt-in to a mailing list to keep up to date with the latest from BeerTime🍻.
