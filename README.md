@@ -28,12 +28,13 @@ Welcome to Beer Time, if you're like me then you love to drink beer, and not jus
     - Features that have been developed
     - Features that will be implemented in the future
 - Technologies Used 👨‍💻
-- Testing + Planning: ✏️ 🔌
+- Planning + Testing: ✏️ 🔌
 - Bugs 🐞
 - Deployment 🚀
 	- Deploying to Heroku
     - Locally run this project
 - Credits 💳
+- Disclaimer
 
 ## User Experience: 👍
 
@@ -106,7 +107,7 @@ The colours I chose to use for this website provide a visually captivating exper
 - Black colour: #000 'black' Standard black colour.
 ### Base Styles:
 Colours:
-```
+```scss
 $primary-color: #1B443A; // msu-green
 $secondary-color: #ffc038; // winter-orange
 $default-body-color: #E3E4DB; // platinum
@@ -117,13 +118,13 @@ $red-color: #ff0000; // red
 $black-color: #000; // black
 ```
 Shadows:
-```
+```scss
 $default-box-shadow: 1px 1px 1px rgba(0,0,0,0.5);
 $darkest-box-shadow: 1px 1px 2px rgba(0,0,0,0.5);
 $default-text-shadow: 1px 1px 1px rgba(0,0,0,0.5);
 ```
 Transitions:
-```
+```scss
 $default-transition: 0.15s ease-in-out;
 ```
 ### Images:
