@@ -179,6 +179,14 @@ Password|password|Binary
 Admin|admin|boolean
 Favourites|favourites|array
 
+Reivews Collection:
+**Title**|**Key in Collection**|**Data Type**
+:-----:|:-----:|:-----:
+Review Id|_id|ObjectID
+Name|name|String
+Review  |review|String
+Beer_Id|beer_id|ObjectID
+
 View the schema templates for the database collections <a href="https://github.com/Geomint/beer-time/tree/master/data/schemas">here.</a>
 
 ## Features: 🎡
