@@ -18,11 +18,13 @@ mongo = PyMongo(app)
 @app.route('/')
 def index():
     """
-    This function is for the home page, it renders the index template and is the standard landing page for the site.
+    Renders the home page for the website.
     """
     try:
         users = mongo.db.users
-        return render_template("pages/index.html", body_id="home-page", page_title="Home", current_user=users.find_one({'name': session['username']}))
+        return render_template("pages/index.html", body_id="home-page",
+                               page_title="Home", current_user=users.find_one(
+                                   {'name': session['username']}))
     except:
         return render_template("pages/index.html", body_id="home-page", page_title="Home")
 
@@ -31,9 +33,8 @@ def index():
 @app.route('/beers')
 def beers():
     """
-    This function is for the all-beers page, this is the main focus of the website, the beers collection is accessed and made available to the HTML template.
-    The favourites array of the current user in session is accessed and then passed into the favourites_beers_id array, which is then used to show the user which
-    beer they currently have saved as a favourite.
+    Renders beers page where all beers in DB are displayed for the user, code checks
+    for current user favourites and makes data available for front-end.
     """
     try:
         users = mongo.db.users
@@ -49,7 +50,9 @@ def beers():
                 current_beer_id = current_beer['_id']
                 favourite_beers_id.append(current_beer_id)
 
-        return render_template("pages/beers/all-beers.html", favourite_beers_id=favourite_beers_id, beers=mongo.db.beers.find(), body_id="all-beers", current_user=users.find_one({'name': session['username'].lower()}))
+        return render_template("pages/beers/all-beers.html", favourite_beers_id=favourite_beers_id,
+                               beers=mongo.db.beers.find(), body_id="all-beers",
+                               current_user=users.find_one({'name': session['username'].lower()}))
     except:
         return redirect(url_for('create_account'))
 
@@ -57,8 +60,8 @@ def beers():
 @app.route('/my-list', methods=["GET", "POST"])
 def my_list():
     """
-    This is the function for the my-list page, here the favourited beers are accessed through the current users object. The id's in the array are
-    looped over in order to render them to the HTML.
+    Renders the my-list page showing the user which beers they have
+    in their favourites array.
     """
     users = mongo.db.users
     current_user_obj = users.find_one({'name': session['username'].lower()})
@@ -76,14 +79,16 @@ def my_list():
         current_beer = mongo.db.beers.find_one({'_id': fav})
         favourite_beers.append(current_beer)
 
-    return render_template("pages/my-list.html", body_id="my-list", page_title="My List", favourite_beers_id=favourite_beers_id, favourite_beers=favourite_beers, current_user=users.find_one({'name': session['username'].lower()}))
+    return render_template("pages/my-list.html", body_id="my-list",
+                           page_title="My List", favourite_beers_id=favourite_beers_id,
+                           favourite_beers=favourite_beers, current_user=users.find_one(
+                               {'name': session['username'].lower()}))
 
 # Add to favourites route
 @app.route('/add-to-favourites/<beer_id>', methods=["POST"])
 def add_to_favourites(beer_id):
     """
-    This is the function to handle adding or pushing beers into the current users favourites array. The current user object is selected from the session name and the beer_id
-    is aquired through the url, this then gets pushed through into the favourites array.
+    Add the beer_id into the current users favourites array.
     """
     users = mongo.db.users
     current_user_obj = users.find_one({'name': session['username'].lower()})
@@ -95,8 +100,7 @@ def add_to_favourites(beer_id):
 @app.route('/remove-from-favourites/<beer_id>', methods=["POST"])
 def remove_from_favourites(beer_id):
     """
-    This is the function to handle removing or pulling beers out of the current users favourites array. The current user object is selected from the session name and the beer_id
-    is aquired through the url, this then gets pulled or removed from the favourites array.
+    Remove the beer_id from the current users favourites array.
     """
     users = mongo.db.users
     current_user_obj = users.find_one({'name': session['username'].lower()})
@@ -108,7 +112,8 @@ def remove_from_favourites(beer_id):
 @app.route('/beer/<beer_id>')
 def beer_page(beer_id):
     """
-    This is the function that creates the beer 'product-page' where the user can read more about the beer and view alternatives.
+    Constructs page for individual beer,
+    makes reviews and favourite functionality available for front end.
     """
     users = mongo.db.users
     the_beer = mongo.db.beers.find_one({"_id": ObjectId(beer_id)})
@@ -130,13 +135,17 @@ def beer_page(beer_id):
     cur = test
     for i in cur:
         reviews.append(i)
-    return render_template('pages/beers/beer.html', favourite_beers_id=favourite_beers_id, beer=the_beer, beer_reviews=reviews, you_might_like=you_might_like, body_id="beer-product", current_user=users.find_one({'name': session['username']}))
+    return render_template('pages/beers/beer.html',
+                           favourite_beers_id=favourite_beers_id, beer=the_beer,
+                           beer_reviews=reviews, you_might_like=you_might_like,
+                           body_id="beer-product", current_user=users.find_one(
+                               {'name': session['username']}))
 
 # Add Review route
 @app.route('/review/add/<beer_id>', methods=["GET", "POST"])
 def add_review(beer_id):
     """
-    This function inserts user inputted reviews in to the reviews collection by taking the information from the request form and inserting into the collection.
+    Adds user review into the database.
     """
     mongo.db.reviews.insert({
         'name': request.form.get('name'),
@@ -149,7 +158,7 @@ def add_review(beer_id):
 @app.route('/review/delete/<review_id>', methods=["GET", "POST"])
 def delete_review(review_id):
     """
-    This function removes the selected review based on the id that is passed via the URL.
+    Removes user review from the database.
     """
     mongo.db.reviews.remove({'_id': ObjectId(review_id)})
     return redirect(url_for('beers'))
@@ -158,7 +167,7 @@ def delete_review(review_id):
 @app.route('/review/edit/<review_id>', methods=["GET", "POST"])
 def edit_review(review_id):
     """
-    This function constructs a version of the edit-review page with the review passed from the URL, the user can then edit the message and submit.
+    Renders edit page and handles editing user reviews in the database.
     """
     if request.method == 'POST':
         mongo.db.reviews.update({'_id': ObjectId(review_id)}, {
@@ -166,50 +175,55 @@ def edit_review(review_id):
         return redirect(url_for('edit_review', review_id=review_id))
     users = mongo.db.users
     review = mongo.db.reviews.find({"_id": ObjectId(review_id)})
-    return render_template("pages/edit-review.html", body_id="edit-review-page", review=review, review_id=review_id, current_user=users.find_one({'name': session['username']}))
+    return render_template("pages/edit-review.html",
+                           body_id="edit-review-page", review=review, review_id=review_id,
+                           current_user=users.find_one({'name': session['username']}))
 
 # Add beer page
 @app.route('/beer/add', methods=["GET", "POST"])
 def add_beer():
     """
-    This is the function that creates the beer 'product-page' where the user can read more about the beer and view alternatives.
+    Add a beer into the database
     """
     if request.method == 'POST':
-        beers = mongo.db.beers
-        beers.insert_one(request.form.to_dict())
+        mongo.db.beers.insert_one(request.form.to_dict())
         return redirect(url_for('beers'))
     users = mongo.db.users
-    return render_template('pages/beers/add-beer.html', body_id="add-beer", types=mongo.db.types.find(), current_user=users.find_one({'name': session['username'].lower()}))
+    return render_template('pages/beers/add-beer.html',
+                           body_id="add-beer", types=mongo.db.types.find(),
+                           current_user=users.find_one(
+                               {'name': session['username'].lower()}))
 
 # Edit beer page
 @app.route('/beer/edit/<beer_id>', methods=["GET", "POST"])
 def edit_beer(beer_id):
     """
-    This is the function that handles the page in which the user can edit the beers, this function is only callable by the user with the admin setting.
+    Edit a beer in the database
     """
     if request.method == 'POST':
         beer = mongo.db.beers
         beer.update({'_id': ObjectId(beer_id)},
-                    {
-            'name': request.form.get('name'),
-            'brewery': request.form.get('brewery'),
-            'type': request.form.get('type'),
-            'excerpt': request.form.get('excerpt'),
-            'notes': request.form.get('notes'),
-            'abv': request.form.get('abv'),
-            'image': request.form.get('image')
-        })
+                    {'name': request.form.get('name'),
+                     'brewery': request.form.get('brewery'),
+                     'type': request.form.get('type'),
+                     'excerpt': request.form.get('excerpt'),
+                     'notes': request.form.get('notes'),
+                     'abv': request.form.get('abv'),
+                     'image': request.form.get('image')})
         return redirect(url_for('beers'))
     users = mongo.db.users
     the_beer = mongo.db.beers.find_one({"_id": ObjectId(beer_id)})
     all_types = mongo.db.types.find()
-    return render_template('pages/beers/edit-beer.html', body_id='edit-page', beer=the_beer, types=all_types, current_user=users.find_one({'name': session['username']}))
+    return render_template('pages/beers/edit-beer.html',
+                           body_id='edit-page', beer=the_beer,
+                           types=all_types, current_user=users.find_one(
+                               {'name': session['username']}))
 
 # Delete beer route
 @app.route('/beer/delete/<beer_id>')
 def delete_beer(beer_id):
     """
-    This function deletes the selected beer from the database based on the beer_id passed in from the url.
+    Delete a beer from the database
     """
     mongo.db.beers.remove({'_id': ObjectId(beer_id)})
     return redirect(url_for('beers'))
@@ -218,9 +232,8 @@ def delete_beer(beer_id):
 @app.route('/register', methods=["GET", "POST"])
 def create_account():
     """
-    This is the function which handles the creation of new accounts on the website, if the request method is POST the code checks to see if the entered
-    username exists in the database, it also checks to see if the passwords entered match for further validation. If the username doesnt exist and the passwords match
-    the password is then encrypted using bcrypt and inserted into the users table in the database.
+    Renders account register page and handles account registration,
+    inserting new user into the database upon creation.
     """
     if request.method == 'POST':
         users = mongo.db.users
@@ -242,20 +255,22 @@ def create_account():
                 return redirect(url_for('index'))
             flash('That username already exists, try something else.')
         flash('The passwords dont match.')
-    return render_template("pages/account-nav.html", body_id="register-page", page_title="Create an Account")
+    return render_template("pages/account-nav.html",
+                           body_id="register-page", page_title="Create an Account")
 
 # Sign-in page
 @app.route('/sign-in', methods=["GET", "POST"])
 def sign_in():
     """
-    This is the function that renders the sign in page where users on the website can sign into their accounts.
+    Renders sign-in page and handles user sign in attempts.
     """
     if request.method == 'POST':
         users = mongo.db.users
         login_user = users.find_one({'name': request.form['username'].lower()})
 
         if login_user:
-            if bcrypt.hashpw(request.form['password'].encode('utf-8'), login_user['password']) == login_user['password']:
+            if bcrypt.hashpw(request.form['password'].encode('utf-8'),
+                             login_user['password']) == login_user['password']:
                 session['username'] = request.form['username']
                 return redirect(url_for('index'))
             flash('That username/password combination was incorrect')
@@ -275,30 +290,39 @@ def sign_out():
 @app.route('/contact', methods=["GET", "POST"])
 def contact():
     """
-    This is the contact page for beertime, users can input messages into the relevant fields and send a message to the database, a flashed response message notifies the user that some action has been taken.
+    Renders the contact page and flashes responses based on inputs.
     """
     try:
         users = mongo.db.users
         if request.method == "POST":
             flash("Thanks {} we have received your message! A member of our team will be in touch shortly".format(
                 request.form["name"]))
-        return render_template("pages/contact-us.html", body_id="contact-page", page_title="Contact Us", current_user=users.find_one({'name': session['username']}))
+        return render_template("pages/contact-us.html",
+                               body_id="contact-page", page_title="Contact Us",
+                               current_user=users.find_one({'name': session['username']}))
     except:
         if request.method == "POST":
             flash("Thanks {} we have received your message! A member of our team will be in touch shortly".format(
                 request.form["name"]))
-        return render_template("pages/contact-us.html", body_id="contact-page", page_title="Contact Us")
+        return render_template("pages/contact-us.html",
+                               body_id="contact-page", page_title="Contact Us")
 
 # 404 page
 @app.errorhandler(404)
-def page_not_found(e):
-    error_message = str(e)
+def page_not_found(error):
+    """
+    Renders an error page with 404 message.
+    """
+    error_message = str(error)
     return render_template('pages/error-page.html', error_message=error_message), 404
 
 # 500 page
 @app.errorhandler(500)
-def server_error(e):
-    error_message = str(e)
+def server_error(error):
+    """
+    Renders an error page with 500 message.
+    """
+    error_message = str(error)
     return render_template('pages/error-page.html', error_message=error_message), 500
 
 
