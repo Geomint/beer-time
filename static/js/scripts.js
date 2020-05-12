@@ -1,9 +1,16 @@
 const header = $('.main-nav');
 const reviewSlideSelector = $('#review-selector')
+const reviewClose = $('#review-close')
 
 reviewSlideSelector.click(function () {
     $(".beer-page__review__form").show();
     reviewSlideSelector.hide();
+    return false;
+})
+
+reviewClose.click(function () {
+    $(".beer-page__review__form").hide();
+    reviewSlideSelector.show();
     return false;
 })
 
