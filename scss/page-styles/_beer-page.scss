@@ -103,6 +103,14 @@
           width: 100%;
           padding: 10px;
         }
+
+        &__close {
+          i {
+            font-size: 25px; 
+            color: darken($error-color, 30%);
+            float: right;
+          }
+        }
       }
 
       &__submit {
