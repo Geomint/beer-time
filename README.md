@@ -205,6 +205,7 @@ View the schema templates for the database collections <a href="https://github.c
 - An option for users to opt-in to a mailing list to keep up to date with the latest from BeerTime🍻.
 - Email authentication to provide a second level of security.
 - The ability to filter the beverages by type, abv% etc.
+- When a user Edits a review, the user will be able to edit the review on the beer page without having the leave the product they are looking at.
 
 ## Technologies Used: 👨‍💻
 #### Languages:
